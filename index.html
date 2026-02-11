@@ -49,40 +49,36 @@
 <div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px]"></div>
 </div>
 <header class="fixed top-0 w-full z-50 border-b border-gray-200/10 dark:border-white/5 glass-panel">
-<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
-<span class="material-icons text-white text-sm">grid_4x4</span>
-</div>
-<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">UNCOUNTED</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Manifesto</a>
-<a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
-   href="/specs.html">Specs</a>
-<a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Infrastructure</a>
-<a class="ml-4 px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
-</nav>
-<!-- Mobile menu -->
-<div id="mobileMenu" class="md:hidden hidden border-t border-gray-200/10 dark:border-white/5">
-  <div class="px-6 py-4 flex flex-col gap-3">
-    <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary"
-       href="/#">Manifesto</a>
+  <!-- Top bar (높이 고정 영역) -->
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+        <span class="material-icons text-white text-sm">grid_4x4</span>
+      </div>
+      <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">UNCOUNTED</span>
+    </div>
 
-    <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary"
-       href="/specs.html">Specs</a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Manifesto</a>
+      <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="/specs.html">Specs</a>
+      <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Infrastructure</a>
+      <a class="ml-4 px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
+    </nav>
 
-    <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary"
-       href="/#">Infrastructure</a>
-
-    <a class="mt-2 px-5 py-3 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded"
-       href="/#">문의하기</a>
+    <button id="mobileMenuBtn" class="md:hidden text-gray-500 dark:text-gray-400" aria-label="Open menu" aria-expanded="false">
+      <span class="material-icons">menu</span>
+    </button>
   </div>
-</div>
-<button id="mobileMenuBtn" class="md:hidden text-gray-500 dark:text-gray-400" aria-label="Open menu" aria-expanded="false">
-  <span class="material-icons">menu</span>
-</button>
-</div>
+
+  <!-- ✅ Mobile menu (고정높이 div 밖으로 뺌) -->
+  <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200/10 dark:border-white/5 glass-panel">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
+      <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary" href="/#">Manifesto</a>
+      <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary" href="/specs.html">Specs</a>
+      <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary" href="/#">Infrastructure</a>
+      <a class="mt-2 px-5 py-3 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded" href="/#">문의하기</a>
+    </div>
+  </div>
 </header>
 <main class="flex-grow relative z-10 flex flex-col justify-center pt-20">
 <section class="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
