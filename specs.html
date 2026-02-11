@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Uncounted - 표준 데이터셋 JSONL 샘플</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "code-bg": "#1e293b",
+                        "surface-dark": "#1c2631",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }.syntax-key { color: #60a5fa; }.syntax-string { color: #4ade80; }.syntax-number { color: #fbbf24; }.syntax-bool { color: #f87171; }.line-number { color: #475569; user-select: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<header class="w-full border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded bg-primary flex items-center justify-center text-white font-bold">U</div>
+<span class="font-semibold text-lg tracking-tight dark:text-white">Uncounted</span>
+<span class="mx-2 text-slate-400 dark:text-slate-600">/</span>
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Dataset Specs</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">Variant 2 of 3</span>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-icons text-xl">close</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col justify-center py-12 px-6">
+<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-4 flex flex-col gap-8 order-2 lg:order-1">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">표준 데이터셋 – JSONL 샘플</h1>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    머신러닝 수집 파이프라인에 최적화된 원시 데이터 내보내기 형식입니다. 각 줄은 고유하고 상태 비저장(stateless) 상호작용 이벤트를 나타냅니다.
+                </p>
+<div class="flex items-center gap-2 text-primary font-medium cursor-pointer hover:underline mb-8">
+<span class="material-icons text-sm">download</span>
+<span>전체 스키마 사양 다운로드</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="p-2 rounded bg-primary/10 text-primary">
+<span class="material-icons text-xl">dns</span>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">세션 기반 구조</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">데이터는 고유 세션 식별자로 구성되어 시간적 맥락을 보존합니다.</p>
+</div>
+</div>
+</div>
+<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="p-2 rounded bg-primary/10 text-primary">
+<span class="material-icons text-xl">label_off</span>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">의미론적 라벨링 없음</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">사전 추론된 의도 분류가 없는 원시 상호작용 로그입니다.</p>
+</div>
+</div>
+</div>
+<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="p-2 rounded bg-primary/10 text-primary">
+<span class="material-icons text-xl">verified</span>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">품질 및 희귀도 메타데이터 포함</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">필터링을 위한 <code class="text-primary bg-primary/10 px-1 rounded">quality_score</code> 및 <code class="text-primary bg-primary/10 px-1 rounded">rarity_index</code> 포함.</p>
+</div>
+</div>
+</div>
+<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="p-2 rounded bg-primary/10 text-primary">
+<span class="material-icons text-xl">settings_input_component</span>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">다운스트림 프로세싱 준비 완료</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">벡터 데이터베이스 또는 파인 튜닝 작업에 직접 수집 가능한 형식입니다.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 order-1 lg:order-2 h-full">
+<div class="relative w-full rounded-xl overflow-hidden bg-background-dark border border-slate-700 shadow-2xl shadow-primary/10 ring-1 ring-white/5 h-full min-h-[500px] flex flex-col">
+<div class="flex items-center justify-between px-4 py-3 bg-[#16202a] border-b border-slate-700">
+<div class="flex items-center gap-2">
+<div class="flex gap-1.5 mr-4">
+<div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+</div>
+<span class="text-xs text-slate-400 font-mono flex items-center gap-2">
+<span class="material-icons text-[14px] text-primary">description</span>
+                            sample_export_v2.jsonl
+                        </span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">UTF-8</span>
+<span class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">JSON Lines</span>
+<button class="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition">
+<span class="material-icons text-sm">content_copy</span>
+</button>
+</div>
+</div>
+<div class="flex-grow overflow-auto p-4 font-mono text-sm leading-relaxed bg-[#0d131a] relative group">
+<div class="absolute top-[3.5rem] left-0 w-full h-7 bg-primary/5 pointer-events-none hidden md:block border-l-2 border-primary"></div>
+<div class="flex">
+<div class="flex flex-col text-right pr-4 border-r border-slate-800 mr-4 select-none">
+<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</div>
+<div class="whitespace-pre overflow-x-auto scrollbar-hide">
+<span class="text-slate-500">// 배치 ID: #9921-A | 리전: us-east-1</span>
+<span class="text-slate-300">{</span><span class="syntax-key">"session_id"</span><span class="text-slate-300">: </span><span class="syntax-string">"sess_8921_alpha"</span><span class="text-slate-300">, </span><span class="syntax-key">"timestamp"</span><span class="text-slate-300">: </span><span class="syntax-string">"2023-10-27T14:30:00.124Z"</span><span class="text-slate-300">, </span><span class="syntax-key">"metadata"</span><span class="text-slate-300">: {</span><span class="syntax-key">"quality_score"</span><span class="text-slate-300">: </span><span class="syntax-number">0.98</span><span class="text-slate-300">, </span><span class="syntax-key">"rarity_index"</span><span class="text-slate-300">: </span><span class="syntax-string">"high"</span><span class="text-slate-300">, </span><span class="syntax-key">"source"</span><span class="text-slate-300">: </span><span class="syntax-string">"enterprise_tier"</span><span class="text-slate-300">}, </span><span class="syntax-key">"payload"</span><span class="text-slate-300">: {</span><span class="syntax-key">"input_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">156</span><span class="text-slate-300">, </span><span class="syntax-key">"output_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">42</span><span class="text-slate-300">, </span><span class="syntax-key">"vector_ref"</span><span class="text-slate-300">: </span><span class="syntax-string">"v_9921_01"</span><span class="text-slate-300">}}</span>
+<span class="text-slate-300">{</span><span class="syntax-key">"session_id"</span><span class="text-slate-300">: </span><span class="syntax-string">"sess_8922_beta"</span><span class="text-slate-300">, </span><span class="syntax-key">"timestamp"</span><span class="text-slate-300">: </span><span class="syntax-string">"2023-10-27T14:35:12.882Z"</span><span class="text-slate-300">, </span><span class="syntax-key">"metadata"</span><span class="text-slate-300">: {</span><span class="syntax-key">"quality_score"</span><span class="text-slate-300">: </span><span class="syntax-number">0.92</span><span class="text-slate-300">, </span><span class="syntax-key">"rarity_index"</span><span class="text-slate-300">: </span><span class="syntax-string">"medium"</span><span class="text-slate-300">, </span><span class="syntax-key">"source"</span><span class="text-slate-300">: </span><span class="syntax-string">"standard_tier"</span><span class="text-slate-300">}, </span><span class="syntax-key">"payload"</span><span class="text-slate-300">: {</span><span class="syntax-key">"input_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">89</span><span class="text-slate-300">, </span><span class="syntax-key">"output_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">120</span><span class="text-slate-300">, </span><span class="syntax-key">"vector_ref"</span><span class="text-slate-300">: </span><span class="syntax-string">"v_9921_02"</span><span class="text-slate-300">}}</span>
+<span class="text-slate-300">{</span><span class="syntax-key">"session_id"</span><span class="text-slate-300">: </span><span class="syntax-string">"sess_8923_alpha"</span><span class="text-slate-300">, </span><span class="syntax-key">"timestamp"</span><span class="text-slate-300">: </span><span class="syntax-string">"2023-10-27T14:36:05.401Z"</span><span class="text-slate-300">, </span><span class="syntax-key">"metadata"</span><span class="text-slate-300">: {</span><span class="syntax-key">"quality_score"</span><span class="text-slate-300">: </span><span class="syntax-number">0.99</span><span class="text-slate-300">, </span><span class="syntax-key">"rarity_index"</span><span class="text-slate-300">: </span><span class="syntax-string">"ultra"</span><span class="text-slate-300">, </span><span class="syntax-key">"source"</span><span class="text-slate-300">: </span><span class="syntax-string">"enterprise_tier"</span><span class="text-slate-300">}, </span><span class="syntax-key">"payload"</span><span class="text-slate-300">: {</span><span class="syntax-key">"input_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">430</span><span class="text-slate-300">, </span><span class="syntax-key">"output_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">215</span><span class="text-slate-300">, </span><span class="syntax-key">"vector_ref"</span><span class="text-slate-300">: </span><span class="syntax-string">"v_9921_03"</span><span class="text-slate-300">}}</span>
+<span class="text-slate-300">{</span><span class="syntax-key">"session_id"</span><span class="text-slate-300">: </span><span class="syntax-string">"sess_8924_gamma"</span><span class="text-slate-300">, </span><span class="syntax-key">"timestamp"</span><span class="text-slate-300">: </span><span class="syntax-string">"2023-10-27T14:41:00.000Z"</span><span class="text-slate-300">, </span><span class="syntax-key">"metadata"</span><span class="text-slate-300">: {</span><span class="syntax-key">"quality_score"</span><span class="text-slate-300">: </span><span class="syntax-number">0.85</span><span class="text-slate-300">, </span><span class="syntax-key">"rarity_index"</span><span class="text-slate-300">: </span><span class="syntax-string">"low"</span><span class="text-slate-300">, </span><span class="syntax-key">"source"</span><span class="text-slate-300">: </span><span class="syntax-string">"public_tier"</span><span class="text-slate-300">}, </span><span class="syntax-key">"payload"</span><span class="text-slate-300">: {</span><span class="syntax-key">"input_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">22</span><span class="text-slate-300">, </span><span class="syntax-key">"output_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">15</span><span class="text-slate-300">, </span><span class="syntax-key">"vector_ref"</span><span class="text-slate-300">: </span><span class="syntax-string">"v_9921_04"</span><span class="text-slate-300">}}</span>
+<span class="text-slate-300">{</span><span class="syntax-key">"session_id"</span><span class="text-slate-300">: </span><span class="syntax-string">"sess_8925_alpha"</span><span class="text-slate-300">, </span><span class="syntax-key">"timestamp"</span><span class="text-slate-300">: </span><span class="syntax-string">"2023-10-27T14:42:55.999Z"</span><span class="text-slate-300">, </span><span class="syntax-key">"metadata"</span><span class="text-slate-300">: {</span><span class="syntax-key">"quality_score"</span><span class="text-slate-300">: </span><span class="syntax-number">0.96</span><span class="text-slate-300">, </span><span class="syntax-key">"rarity_index"</span><span class="text-slate-300">: </span><span class="syntax-string">"high"</span><span class="text-slate-300">, </span><span class="syntax-key">"source"</span><span class="text-slate-300">: </span><span class="syntax-string">"enterprise_tier"</span><span class="text-slate-300">}, </span><span class="syntax-key">"payload"</span><span class="text-slate-300">: {</span><span class="syntax-key">"input_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">1200</span><span class="text-slate-300">, </span><span class="syntax-key">"output_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">50</span><span class="text-slate-300">, </span><span class="syntax-key">"vector_ref"</span><span class="text-slate-300">: </span><span class="syntax-string">"v_9921_05"</span><span class="text-slate-300">}}</span>
+<span class="text-slate-300">{</span><span class="syntax-key">"session_id"</span><span class="text-slate-300">: </span><span class="syntax-string">"sess_8926_beta"</span><span class="text-slate-300">, </span><span class="syntax-key">"timestamp"</span><span class="text-slate-300">: </span><span class="syntax-string">"2023-10-27T14:45:10.231Z"</span><span class="text-slate-300">, </span><span class="syntax-key">"metadata"</span><span class="text-slate-300">: {</span><span class="syntax-key">"quality_score"</span><span class="text-slate-300">: </span><span class="syntax-number">0.93</span><span class="text-slate-300">, </span><span class="syntax-key">"rarity_index"</span><span class="text-slate-300">: </span><span class="syntax-string">"medium"</span><span class="text-slate-300">, </span><span class="syntax-key">"source"</span><span class="text-slate-300">: </span><span class="syntax-string">"standard_tier"</span><span class="text-slate-300">}, </span><span class="syntax-key">"payload"</span><span class="text-slate-300">: {</span><span class="syntax-key">"input_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">65</span><span class="text-slate-300">, </span><span class="syntax-key">"output_tokens"</span><span class="text-slate-300">: </span><span class="syntax-number">65</span><span class="text-slate-300">, </span><span class="syntax-key">"vector_ref"</span><span class="text-slate-300">: </span><span class="syntax-string">"v_9921_06"</span><span class="text-slate-300">}}</span>
+</div>
+</div>
+</div>
+<div class="h-8 bg-[#16202a] border-t border-slate-700 flex items-center justify-between px-4 text-[10px] text-slate-500 font-mono">
+<div>Ln 12, Col 84</div>
+<div>LF • UTF-8 • JSONL</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1219]">
+<div class="max-w-7xl mx-auto py-8 px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-600">
+<span class="material-icons text-lg">warning_amber</span>
+<p class="text-xs max-w-lg">
+                본 예시는 당사가 인도하는 실제 데이터 형식입니다. 해석 및 후속 처리는 구매사의 책임입니다.
+            </p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs text-slate-400">Page 2/3</span>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-primary/20">
+                Next: Variant 3
+                <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+<div class="fixed top-20 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+</body></html>
