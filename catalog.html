@@ -44,7 +44,6 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        /* 모바일 메뉴 애니메이션 */
         #mobileMenu {
             max-height: 0;
             overflow: hidden;
@@ -53,7 +52,6 @@
         #mobileMenu.show {
             max-height: 500px;
         }
-        /* 오버레이 */
         #menuOverlay {
             opacity: 0;
             pointer-events: none;
@@ -63,7 +61,6 @@
             opacity: 1;
             pointer-events: auto;
         }
-        /* body 스크롤 잠금 */
         body.menu-open {
             overflow: hidden;
         }
@@ -76,25 +73,22 @@
 <div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px]"></div>
 </div>
 
-<!-- 모바일 메뉴 오버레이 -->
 <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 md:hidden"></div>
 
-<!-- 메인 페이지와 동일한 헤더 -->
 <header class="fixed top-0 w-full z-50 border-b border-gray-200/10 dark:border-white/5 glass-panel">
-  <!-- Top bar (높이 고정 영역) -->
-  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+      <div class="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded flex items-center justify-center">
         <span class="material-icons text-white text-sm">grid_4x4</span>
       </div>
-      <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">UNCOUNTED</span>
+      <span class="text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white">UNCOUNTED</span>
     </div>
 
-    <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
       <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="/">Manifesto</a>
       <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="/specs.html">Specs</a>
       <a class="text-sm font-medium text-primary dark:text-primary transition-colors" href="/catalog.html">Catalog</a>
-      <a class="ml-4 px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
+      <a class="ml-2 lg:ml-4 px-4 lg:px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
     </nav>
 
     <button id="mobileMenuBtn" class="md:hidden text-gray-500 dark:text-gray-400 z-50 relative" type="button" aria-label="Open menu" aria-expanded="false">
@@ -102,9 +96,8 @@
     </button>
   </div>
 
-  <!-- Mobile menu -->
   <div id="mobileMenu" class="md:hidden border-t border-gray-200/10 dark:border-white/5 glass-panel">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col gap-3">
       <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary transition-colors" href="/">Manifesto</a>
       <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary transition-colors" href="/specs.html">Specs</a>
       <a class="text-sm font-medium text-primary transition-colors" href="/catalog.html">Catalog</a>
@@ -113,23 +106,23 @@
   </div>
 </header>
 
-<main class="flex-grow relative z-10 pt-20 pb-20 px-6">
-<div class="max-w-7xl mx-auto w-full pt-12">
-<header class="mb-16">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono tracking-wider uppercase mb-6">
+<main class="flex-grow relative z-10 pt-16 sm:pt-20 pb-12 sm:pb-20 px-4 sm:px-6">
+<div class="max-w-7xl mx-auto w-full pt-8 sm:pt-12">
+<header class="mb-12 sm:mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono tracking-wider uppercase mb-4 sm:mb-6">
 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
                 Variant 3.0 — Catalog
             </div>
-<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+<div class="flex flex-col gap-4 sm:gap-6">
 <div class="max-w-2xl">
-<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 break-keep">
-                    표준 데이터셋 카탈로그
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 sm:mb-4 break-keep leading-tight">
+                    표준 데이터셋<br class="sm:hidden"/> 카탈로그
                 </h1>
-<p class="text-lg text-gray-500 dark:text-gray-400 leading-relaxed break-keep">
+<p class="text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed break-keep">
                     즉각적인 ML 인제스션을 위해 사전 검증되고, 익명화 및 구조화된 데이터 원형입니다. 고성능 훈련 파이프라인에 최적화되어 있습니다.
                 </p>
 </div>
-<div class="hidden md:block">
+<div class="block sm:hidden">
 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
 <span class="relative flex h-2 w-2">
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -140,43 +133,43 @@
 </div>
 </div>
 </header>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-<div class="group relative bg-white dark:bg-card-dark border border-gray-200 dark:border-white/5 rounded-xl p-8 hover:border-primary/50 transition-all duration-300 flex flex-col h-full hover:shadow-[0_0_40px_-10px_rgba(17,115,212,0.15)]">
-<div class="flex justify-between items-start mb-6">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-icons-outlined text-2xl">graphic_eq</span>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-20">
+<div class="group relative bg-white dark:bg-card-dark border border-gray-200 dark:border-white/5 rounded-xl p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 flex flex-col h-full hover:shadow-[0_0_40px_-10px_rgba(17,115,212,0.15)]">
+<div class="flex justify-between items-start mb-4 sm:mb-6">
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-icons-outlined text-xl sm:text-2xl">graphic_eq</span>
 </div>
-<span class="font-mono text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+<span class="font-mono text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 whitespace-nowrap">
                         V2.4 STABLE
                     </span>
 </div>
-<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+<h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
                 음성 세션 데이터셋
             </h3>
-<p class="text-gray-500 dark:text-gray-400 mb-8 flex-grow break-keep">
+<p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 flex-grow break-keep">
                 실제 환경에서의 인간 상호작용 고해상도 녹음 데이터입니다. 화자 분리 및 감정 톤 마커가 포함되어 있습니다.
             </p>
-<div class="bg-slate-50 dark:bg-[#0f151b] rounded-lg p-6 mb-8 border border-gray-100 dark:border-white/5">
-<div class="grid grid-cols-2 gap-y-6 gap-x-4">
+<div class="bg-slate-50 dark:bg-[#0f151b] rounded-lg p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-100 dark:border-white/5">
+<div class="grid grid-cols-2 gap-y-4 sm:gap-y-6 gap-x-3 sm:gap-x-4">
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Source</div>
-<div class="text-sm font-medium dark:text-slate-200">실제 환경 세션</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200">실제 환경 세션</div>
 </div>
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Format</div>
-<div class="text-sm font-medium dark:text-slate-200 font-mono">JSONL / WAV (16kHz)</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200 font-mono">JSONL / WAV</div>
 </div>
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Metadata</div>
-<div class="text-sm font-medium dark:text-slate-200">풍부한 문맥 태그</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200">풍부한 문맥 태그</div>
 </div>
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Processing</div>
-<div class="text-sm font-medium dark:text-slate-200">화자 분리(Diarization)</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200">화자 분리</div>
 </div>
 </div>
-<div class="mt-6 pt-6 border-t border-dashed border-slate-200 dark:border-slate-700">
-<div class="flex items-end gap-1 h-8 w-full opacity-60">
+<div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-dashed border-slate-200 dark:border-slate-700">
+<div class="flex items-end gap-1 h-6 sm:h-8 w-full opacity-60">
 <div class="w-1 bg-primary h-[40%] rounded-t-sm"></div>
 <div class="w-1 bg-primary h-[70%] rounded-t-sm"></div>
 <div class="w-1 bg-primary h-[50%] rounded-t-sm"></div>
@@ -201,46 +194,46 @@
 </div>
 </div>
 </div>
-<button class="w-full py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-transparent text-slate-700 dark:text-white font-medium hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-white group-hover:border-primary">
-<span class="material-icons-outlined text-sm">visibility</span>
+<button class="w-full py-2.5 sm:py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-transparent text-slate-700 dark:text-white font-medium hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-white group-hover:border-primary text-sm sm:text-base">
+<span class="material-icons-outlined text-sm sm:text-base">visibility</span>
                 데이터 샘플 보기
             </button>
 </div>
-<div class="group relative bg-white dark:bg-card-dark border border-gray-200 dark:border-white/5 rounded-xl p-8 hover:border-primary/50 transition-all duration-300 flex flex-col h-full hover:shadow-[0_0_40px_-10px_rgba(17,115,212,0.15)]">
-<div class="flex justify-between items-start mb-6">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-icons-outlined text-2xl">account_tree</span>
+<div class="group relative bg-white dark:bg-card-dark border border-gray-200 dark:border-white/5 rounded-xl p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 flex flex-col h-full hover:shadow-[0_0_40px_-10px_rgba(17,115,212,0.15)]">
+<div class="flex justify-between items-start mb-4 sm:mb-6">
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-icons-outlined text-xl sm:text-2xl">account_tree</span>
 </div>
-<span class="font-mono text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+<span class="font-mono text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 whitespace-nowrap">
                         V1.1 BETA
                     </span>
 </div>
-<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+<h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
                 앱 사용 세션 데이터셋
             </h3>
-<p class="text-gray-500 dark:text-gray-400 mb-8 flex-grow break-keep">
+<p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 flex-grow break-keep">
                 세밀한 클릭스트림 및 내비게이션 로그입니다. 사용자 의도 예측 및 의사결정 경로 분석에 최적화되어 있습니다.
             </p>
-<div class="bg-slate-50 dark:bg-[#0f151b] rounded-lg p-6 mb-8 border border-gray-100 dark:border-white/5">
-<div class="grid grid-cols-2 gap-y-6 gap-x-4">
+<div class="bg-slate-50 dark:bg-[#0f151b] rounded-lg p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-100 dark:border-white/5">
+<div class="grid grid-cols-2 gap-y-4 sm:gap-y-6 gap-x-3 sm:gap-x-4">
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Source</div>
-<div class="text-sm font-medium dark:text-slate-200">행동 이벤트</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200">행동 이벤트</div>
 </div>
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Format</div>
-<div class="text-sm font-medium dark:text-slate-200 font-mono">JSONL / PARQUET</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200 font-mono">JSONL / PARQUET</div>
 </div>
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Structure</div>
-<div class="text-sm font-medium dark:text-slate-200">의사결정 경로 중심</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200">의사결정 경로 중심</div>
 </div>
 <div>
 <div class="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase mb-1">Schema</div>
-<div class="text-sm font-medium dark:text-slate-200">Unifiedv2</div>
+<div class="text-xs sm:text-sm font-medium dark:text-slate-200">Unifiedv2</div>
 </div>
 </div>
-<div class="mt-6 pt-6 border-t border-dashed border-slate-200 dark:border-slate-700 relative h-8 overflow-hidden">
+<div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-dashed border-slate-200 dark:border-slate-700 relative h-6 sm:h-8 overflow-hidden">
 <div class="absolute inset-0 flex items-center justify-between px-2">
 <div class="h-2 w-2 rounded-full bg-primary/60"></div>
 <div class="h-[1px] flex-1 bg-primary/20 mx-1"></div>
@@ -252,24 +245,24 @@
 </div>
 </div>
 </div>
-<button class="w-full py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-transparent text-slate-700 dark:text-white font-medium hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-white group-hover:border-primary">
-<span class="material-icons-outlined text-sm">visibility</span>
+<button class="w-full py-2.5 sm:py-3 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-transparent text-slate-700 dark:text-white font-medium hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-white group-hover:border-primary text-sm sm:text-base">
+<span class="material-icons-outlined text-sm sm:text-base">visibility</span>
                 데이터 샘플 보기
             </button>
 </div>
 </div>
-<div class="border-t border-primary/30 pt-8 pb-4">
-<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
+<div class="border-t border-primary/30 pt-6 sm:pt-8 pb-4">
+<div class="flex flex-col gap-4 mb-4">
 <div class="flex items-start gap-3">
-<span class="material-icons-outlined text-primary mt-0.5">info</span>
-<p class="text-sm md:text-base font-semibold text-gray-800 dark:text-white break-keep">
+<span class="material-icons-outlined text-primary mt-0.5 shrink-0">info</span>
+<p class="text-sm sm:text-base font-semibold text-gray-800 dark:text-white break-keep">
                     Uncounted는 표준화된 데이터셋만 제공합니다. 커스텀 데이터 구축은 진행하지 않습니다.
                 </p>
 </div>
-<div class="flex items-center gap-6 text-xs text-gray-500 font-mono">
+<div class="flex flex-wrap items-center gap-3 sm:gap-6 text-xs text-gray-500 font-mono">
 <span>DOC_ID: 994-A</span>
 <span>REV: 3.0</span>
-<span class="hidden md:inline">LAST_UPDATE: 2023-10-24</span>
+<span class="hidden sm:inline">LAST_UPDATE: 2023-10-24</span>
 </div>
 </div>
 <div class="text-xs text-gray-500 dark:text-gray-600 max-w-3xl leading-relaxed">
@@ -279,14 +272,14 @@
 </div>
 </main>
 
-<footer class="border-t border-gray-200/10 dark:border-white/5 py-12 relative z-10">
-<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="text-sm text-gray-500 dark:text-gray-500 font-mono">
+<footer class="border-t border-gray-200/10 dark:border-white/5 py-8 sm:py-12 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
+<div class="text-xs sm:text-sm text-gray-500 dark:text-gray-500 font-mono">
                 © 2024 UNCOUNTED DATA INC.
             </div>
-<div class="flex items-center gap-8">
-<a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">개인정보 처리방침</a>
-<a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">서비스 수준 계약 (SLA)</a>
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+<a class="text-xs sm:text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">개인정보 처리방침</a>
+<a class="text-xs sm:text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">서비스 수준 계약 (SLA)</a>
 <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-600 border border-gray-200 dark:border-white/10 px-3 py-1 rounded">
 <span class="w-2 h-2 rounded-full bg-green-500"></span>
                     SYSTEMS OPERATIONAL
@@ -302,7 +295,6 @@
     const overlay = document.getElementById('menuOverlay');
     const body = document.body;
 
-    // 메뉴 열기/닫기 함수
     function openMenu() {
       menu.classList.add('show');
       overlay.classList.add('show');
@@ -322,7 +314,6 @@
     }
 
     if (btn && menu && overlay) {
-      // 1. 버튼 클릭
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -334,19 +325,16 @@
         }
       });
 
-      // 2. 오버레이 클릭 (메뉴 바깥 클릭)
       overlay.addEventListener('click', function() {
         closeMenu();
       });
 
-      // 3. ESC 키로 닫기
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && menu.classList.contains('show')) {
           closeMenu();
         }
       });
 
-      // 4. 메뉴 링크 클릭 시 메뉴 닫기
       menu.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
           closeMenu();
