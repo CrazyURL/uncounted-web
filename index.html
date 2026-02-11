@@ -187,5 +187,27 @@
 </div>
 </footer>
 </main>
-<script> const btn = document.getElementById('mobileMenuBtn'); const menu = document.getElementById('mobileMenu'); if (btn && menu) { btn.addEventListener('click', () => { menu.classList.toggle('hidden'); const expanded = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', String(!expanded)); }); // 메뉴 항목 누르면 닫히게(UX) menu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); }); }); } </script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    if (btn && menu) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // 클릭 시 페이지 튀는 현상 방지
+        menu.classList.toggle('hidden');
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+      });
+
+      // 메뉴 항목(링크) 누르면 메뉴판 닫기
+      menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>
 </body></html>
