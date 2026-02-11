@@ -61,6 +61,20 @@
         #mobileMenu.show {
             max-height: 500px;
         }
+        /* 오버레이 */
+        #menuOverlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-out;
+        }
+        #menuOverlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        /* body 스크롤 잠금 */
+        body.menu-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-display min-h-screen flex flex-col selection:bg-primary selection:text-white overflow-x-hidden">
@@ -69,6 +83,9 @@
 <div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px]"></div>
 <div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px]"></div>
 </div>
+
+<!-- 모바일 메뉴 오버레이 -->
+<div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 md:hidden"></div>
 
 <!-- 메인 페이지와 동일한 헤더 -->
 <header class="fixed top-0 w-full z-50 border-b border-gray-200/10 dark:border-white/5 glass-panel">
@@ -88,7 +105,7 @@
       <a class="ml-4 px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
     </nav>
 
-    <button id="mobileMenuBtn" class="md:hidden text-gray-500 dark:text-gray-400 z-50" type="button" aria-label="Open menu" aria-expanded="false">
+    <button id="mobileMenuBtn" class="md:hidden text-gray-500 dark:text-gray-400 z-50 relative" type="button" aria-label="Open menu" aria-expanded="false">
       <span class="material-icons">menu</span>
     </button>
   </div>
@@ -247,35 +264,60 @@
 </footer>
 
 <script>
-  // 모바일 메뉴 토글
   (function() {
     const btn = document.getElementById('mobileMenuBtn');
     const menu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('menuOverlay');
+    const body = document.body;
 
-    if (btn && menu) {
+    // 메뉴 열기/닫기 함수
+    function openMenu() {
+      menu.classList.add('show');
+      overlay.classList.add('show');
+      body.classList.add('menu-open');
+      btn.setAttribute('aria-expanded', 'true');
+      const icon = btn.querySelector('.material-icons');
+      if (icon) icon.textContent = 'close';
+    }
+
+    function closeMenu() {
+      menu.classList.remove('show');
+      overlay.classList.remove('show');
+      body.classList.remove('menu-open');
+      btn.setAttribute('aria-expanded', 'false');
+      const icon = btn.querySelector('.material-icons');
+      if (icon) icon.textContent = 'menu';
+    }
+
+    if (btn && menu && overlay) {
+      // 1. 버튼 클릭
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         
-        menu.classList.toggle('show');
-        
-        const isExpanded = menu.classList.contains('show');
-        btn.setAttribute('aria-expanded', String(isExpanded));
-        
-        const icon = btn.querySelector('.material-icons');
-        if (icon) {
-          icon.textContent = isExpanded ? 'close' : 'menu';
+        if (menu.classList.contains('show')) {
+          closeMenu();
+        } else {
+          openMenu();
         }
       });
 
+      // 2. 오버레이 클릭 (메뉴 바깥 클릭)
+      overlay.addEventListener('click', function() {
+        closeMenu();
+      });
+
+      // 3. ESC 키로 닫기
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('show')) {
+          closeMenu();
+        }
+      });
+
+      // 4. 메뉴 링크 클릭 시 메뉴 닫기
       menu.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
-          menu.classList.remove('show');
-          btn.setAttribute('aria-expanded', 'false');
-          const icon = btn.querySelector('.material-icons');
-          if (icon) {
-            icon.textContent = 'menu';
-          }
+          closeMenu();
         });
       });
     }
