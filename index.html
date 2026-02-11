@@ -191,5 +191,5 @@
 </div>
 </footer>
 </main>
-
+<script> const btn = document.getElementById('mobileMenuBtn'); const menu = document.getElementById('mobileMenu'); if (btn && menu) { btn.addEventListener('click', () => { menu.classList.toggle('hidden'); const expanded = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', String(!expanded)); }); // 메뉴 항목 누르면 닫히게(UX) menu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); }); }); } </script>
 </body></html>
