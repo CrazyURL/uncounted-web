@@ -4,6 +4,11 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Uncounted - 표준 데이터셋 JSONL 샘플</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <script>
         tailwind.config = {
             darkMode: "class",
@@ -13,54 +18,102 @@
                         "primary": "#1173d4",
                         "background-light": "#f6f7f8",
                         "background-dark": "#101922",
+                        "surface-dark": "#16202a",
                         "code-bg": "#1e293b",
-                        "surface-dark": "#1c2631",
                     },
                     fontFamily: {
-                        "display": ["Inter", "sans-serif"],
-                        "mono": ["Fira Code", "monospace"],
+                        "display": ["Noto Sans KR", "Inter", "sans-serif"],
+                        "mono": ["Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
                     },
                     borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
                 },
             },
         }
     </script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
+        .glass-panel {
+            background: rgba(16, 25, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
         .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
-        }.syntax-key { color: #60a5fa; }.syntax-string { color: #4ade80; }.syntax-number { color: #fbbf24; }.syntax-bool { color: #f87171; }.line-number { color: #475569; user-select: none; }
+        }
+        .syntax-key { color: #60a5fa; }
+        .syntax-string { color: #4ade80; }
+        .syntax-number { color: #fbbf24; }
+        .syntax-bool { color: #f87171; }
+        .line-number { color: #475569; user-select: none; }
+        /* 모바일 메뉴 애니메이션 */
+        #mobileMenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        #mobileMenu.show {
+            max-height: 500px;
+        }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
-<header class="w-full border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
-<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="h-8 w-8 rounded bg-primary flex items-center justify-center text-white font-bold">U</div>
-<span class="font-semibold text-lg tracking-tight dark:text-white">Uncounted</span>
-<span class="mx-2 text-slate-400 dark:text-slate-600">/</span>
-<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Dataset Specs</span>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-display min-h-screen flex flex-col selection:bg-primary selection:text-white overflow-x-hidden">
+<div class="fixed inset-0 z-0 pointer-events-none">
+<div class="absolute inset-0 bg-grid-pattern bg-[size:4rem_4rem] opacity-[0.03] dark:opacity-[0.05]"></div>
+<div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px]"></div>
 </div>
-<div class="flex items-center gap-4">
-<span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">Variant 2 of 3</span>
-<button class="text-slate-500 hover:text-primary transition-colors">
-<span class="material-icons text-xl">close</span>
-</button>
-</div>
-</div>
+
+<!-- 메인 페이지와 동일한 헤더 -->
+<header class="fixed top-0 w-full z-50 border-b border-gray-200/10 dark:border-white/5 glass-panel">
+  <!-- Top bar (높이 고정 영역) -->
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+        <span class="material-icons text-white text-sm">grid_4x4</span>
+      </div>
+      <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">UNCOUNTED</span>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="/">Manifesto</a>
+      <a class="text-sm font-medium text-primary dark:text-primary transition-colors" href="/specs.html">Specs</a>
+      <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Infrastructure</a>
+      <a class="ml-4 px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
+    </nav>
+
+    <button id="mobileMenuBtn" class="md:hidden text-gray-500 dark:text-gray-400 z-50" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="material-icons">menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden border-t border-gray-200/10 dark:border-white/5 glass-panel">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
+      <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary transition-colors" href="/">Manifesto</a>
+      <a class="text-sm font-medium text-primary transition-colors" href="/specs.html">Specs</a>
+      <a class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary transition-colors" href="#">Infrastructure</a>
+      <a class="mt-2 px-5 py-3 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors text-center" href="#">문의하기</a>
+    </div>
+  </div>
 </header>
-<main class="flex-grow flex flex-col justify-center py-12 px-6">
+
+<main class="flex-grow relative z-10 flex flex-col justify-center pt-20 py-12 px-6">
 <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 <div class="lg:col-span-4 flex flex-col gap-8 order-2 lg:order-1">
 <div>
-<h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">표준 데이터셋 – JSONL 샘플</h1>
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono tracking-wider uppercase mb-6">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    Variant 2.0 — Specs
+                </div>
+<h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 break-keep">표준 데이터셋 – JSONL 샘플</h1>
+<p class="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-6 break-keep">
                     머신러닝 수집 파이프라인에 최적화된 원시 데이터 내보내기 형식입니다. 각 줄은 고유하고 상태 비저장(stateless) 상호작용 이벤트를 나타냅니다.
                 </p>
 <div class="flex items-center gap-2 text-primary font-medium cursor-pointer hover:underline mb-8">
@@ -69,55 +122,55 @@
 </div>
 </div>
 <div class="space-y-4">
-<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="group p-4 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all duration-300 shadow-sm">
 <div class="flex items-start gap-4">
-<div class="p-2 rounded bg-primary/10 text-primary">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-icons text-xl">dns</span>
 </div>
 <div>
-<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">세션 기반 구조</h3>
-<p class="text-xs text-slate-500 dark:text-slate-400">데이터는 고유 세션 식별자로 구성되어 시간적 맥락을 보존합니다.</p>
+<h3 class="font-semibold text-gray-900 dark:text-white text-sm mb-1">세션 기반 구조</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">데이터는 고유 세션 식별자로 구성되어 시간적 맥락을 보존합니다.</p>
 </div>
 </div>
 </div>
-<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="group p-4 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all duration-300 shadow-sm">
 <div class="flex items-start gap-4">
-<div class="p-2 rounded bg-primary/10 text-primary">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-icons text-xl">label_off</span>
 </div>
 <div>
-<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">의미론적 라벨링 없음</h3>
-<p class="text-xs text-slate-500 dark:text-slate-400">사전 추론된 의도 분류가 없는 원시 상호작용 로그입니다.</p>
+<h3 class="font-semibold text-gray-900 dark:text-white text-sm mb-1">의미론적 라벨링 없음</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">사전 추론된 의도 분류가 없는 원시 상호작용 로그입니다.</p>
 </div>
 </div>
 </div>
-<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="group p-4 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all duration-300 shadow-sm">
 <div class="flex items-start gap-4">
-<div class="p-2 rounded bg-primary/10 text-primary">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-icons text-xl">verified</span>
 </div>
 <div>
-<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">품질 및 희귀도 메타데이터 포함</h3>
-<p class="text-xs text-slate-500 dark:text-slate-400">필터링을 위한 <code class="text-primary bg-primary/10 px-1 rounded">quality_score</code> 및 <code class="text-primary bg-primary/10 px-1 rounded">rarity_index</code> 포함.</p>
+<h3 class="font-semibold text-gray-900 dark:text-white text-sm mb-1">품질 및 희귀도 메타데이터 포함</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">필터링을 위한 <code class="text-primary bg-primary/10 px-1 rounded text-[11px]">quality_score</code> 및 <code class="text-primary bg-primary/10 px-1 rounded text-[11px]">rarity_index</code> 포함.</p>
 </div>
 </div>
 </div>
-<div class="group p-4 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm">
+<div class="group p-4 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all duration-300 shadow-sm">
 <div class="flex items-start gap-4">
-<div class="p-2 rounded bg-primary/10 text-primary">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-icons text-xl">settings_input_component</span>
 </div>
 <div>
-<h3 class="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">다운스트림 프로세싱 준비 완료</h3>
-<p class="text-xs text-slate-500 dark:text-slate-400">벡터 데이터베이스 또는 파인 튜닝 작업에 직접 수집 가능한 형식입니다.</p>
+<h3 class="font-semibold text-gray-900 dark:text-white text-sm mb-1">다운스트림 프로세싱 준비 완료</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">벡터 데이터베이스 또는 파인 튜닝 작업에 직접 수집 가능한 형식입니다.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="lg:col-span-8 order-1 lg:order-2 h-full">
-<div class="relative w-full rounded-xl overflow-hidden bg-background-dark border border-slate-700 shadow-2xl shadow-primary/10 ring-1 ring-white/5 h-full min-h-[500px] flex flex-col">
-<div class="flex items-center justify-between px-4 py-3 bg-[#16202a] border-b border-slate-700">
+<div class="relative w-full rounded-xl overflow-hidden bg-background-dark border border-white/10 shadow-2xl shadow-primary/10 ring-1 ring-white/5 h-full min-h-[500px] flex flex-col">
+<div class="flex items-center justify-between px-4 py-3 bg-[#16202a] border-b border-white/10">
 <div class="flex items-center gap-2">
 <div class="flex gap-1.5 mr-4">
 <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
@@ -168,7 +221,7 @@
 </div>
 </div>
 </div>
-<div class="h-8 bg-[#16202a] border-t border-slate-700 flex items-center justify-between px-4 text-[10px] text-slate-500 font-mono">
+<div class="h-8 bg-[#16202a] border-t border-white/10 flex items-center justify-between px-4 text-[10px] text-slate-500 font-mono">
 <div>Ln 12, Col 84</div>
 <div>LF • UTF-8 • JSONL</div>
 </div>
@@ -176,24 +229,56 @@
 </div>
 </div>
 </main>
-<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1219]">
-<div class="max-w-7xl mx-auto py-8 px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-<div class="flex items-center gap-2 text-slate-400 dark:text-slate-600">
-<span class="material-icons text-lg">warning_amber</span>
-<p class="text-xs max-w-lg">
-                본 예시는 당사가 인도하는 실제 데이터 형식입니다. 해석 및 후속 처리는 구매사의 책임입니다.
-            </p>
-</div>
-<div class="flex items-center gap-4">
-<span class="text-xs text-slate-400">Page 2/3</span>
-<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-primary/20">
-                Next: Variant 3
-                <span class="material-icons text-sm">arrow_forward</span>
-</button>
+
+<footer class="border-t border-gray-200/10 dark:border-white/5 py-12 relative z-10">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-sm text-gray-500 dark:text-gray-500 font-mono">
+                © 2024 UNCOUNTED DATA INC.
+            </div>
+<div class="flex items-center gap-8">
+<a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">개인정보 처리방침</a>
+<a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">서비스 수준 계약 (SLA)</a>
+<div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-600 border border-gray-200 dark:border-white/10 px-3 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    SYSTEMS OPERATIONAL
+                </div>
 </div>
 </div>
 </footer>
-<div class="fixed top-20 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-<div class="fixed bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
+<script>
+  // 모바일 메뉴 토글
+  (function() {
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    if (btn && menu) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        menu.classList.toggle('show');
+        
+        const isExpanded = menu.classList.contains('show');
+        btn.setAttribute('aria-expanded', String(isExpanded));
+        
+        const icon = btn.querySelector('.material-icons');
+        if (icon) {
+          icon.textContent = isExpanded ? 'close' : 'menu';
+        }
+      });
+
+      menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.remove('show');
+          btn.setAttribute('aria-expanded', 'false');
+          const icon = btn.querySelector('.material-icons');
+          if (icon) {
+            icon.textContent = 'menu';
+          }
+        });
+      });
+    }
+  })();
+</script>
 </body></html>
