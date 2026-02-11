@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Uncounted - Main Brochure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#16202a",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Sans KR", "Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>.glass-panel {
+            background: rgba(16, 25, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-glow {
+            background: radial-gradient(circle at center, rgba(17, 115, 212, 0.15) 0%, rgba(16, 25, 34, 0) 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-display min-h-screen flex flex-col selection:bg-primary selection:text-white overflow-x-hidden">
+<div class="fixed inset-0 z-0 pointer-events-none">
+<div class="absolute inset-0 bg-grid-pattern bg-[size:4rem_4rem] opacity-[0.03] dark:opacity-[0.05]"></div>
+<div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px]"></div>
+</div>
+<header class="fixed top-0 w-full z-50 border-b border-gray-200/10 dark:border-white/5 glass-panel">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-sm">grid_4x4</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">UNCOUNTED</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Manifesto</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Specs</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Infrastructure</a>
+<a class="ml-4 px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded transition-colors" href="#">문의하기</a>
+</nav>
+<button class="md:hidden text-gray-500 dark:text-gray-400">
+<span class="material-icons">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow relative z-10 flex flex-col justify-center pt-20">
+<section class="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono tracking-wider uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                Variant 1.0 — 메인 브로슈어
+            </div>
+<div class="space-y-6">
+<h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.2] text-gray-900 dark:text-white break-keep">
+                    Uncounted는 오직 <span class="text-primary">표준화된 데이터셋</span>만 제공합니다.
+                </h1>
+<p class="text-lg lg:text-xl text-gray-500 dark:text-gray-400 max-w-xl font-light border-l-2 border-primary/50 pl-6 leading-relaxed break-keep">
+                    우리는 파이프라인을 구축할 뿐, 인텔리전스를 만들지 않습니다. 데이터의 해석, 가공 및 학습은 구매사의 책임 영역입니다.
+                </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="px-8 py-4 bg-transparent border border-gray-300 dark:border-white/20 hover:border-primary text-gray-900 dark:text-white rounded-lg transition-all hover:bg-primary/5 flex items-center justify-center gap-3 group">
+<span class="font-medium">기술 사양서 다운로드</span>
+<span class="material-icons text-sm group-hover:translate-x-1 transition-transform text-gray-400 group-hover:text-primary">arrow_forward</span>
+</button>
+<div class="flex items-center gap-4 px-6 text-sm text-gray-500 dark:text-gray-400 font-mono">
+<span class="flex items-center gap-2">
+<span class="material-icons text-base">check</span>
+                        JSON
+                    </span>
+<span class="flex items-center gap-2">
+<span class="material-icons text-base">check</span>
+                        Parquet
+                    </span>
+<span class="flex items-center gap-2">
+<span class="material-icons text-base">check</span>
+                        Avro
+                    </span>
+</div>
+</div>
+</div>
+<div class="relative h-[400px] lg:h-[600px] w-full flex items-center justify-center">
+<div class="absolute inset-0 hero-glow rounded-full opacity-60"></div>
+<div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-surface-dark group">
+<img alt="Abstract geometric data nodes dark blue background" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="Abstract geometric data nodes dark blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF5R7fZoePESozH1PTWlNDGqR0pf8j69DfHnPM6waR-ML_NzYXGlS-f2j2IFMkbU78Blcago8mjQYrelG8FfclOWsgDU04LeLtNV9mEW6u2ZNLTrdJ44DevXXBw90-grB2A012ImsZoEWxkENyHJaY7Wkacr1HrElZDn84VvmboT4MZah_tEh4-Xu-GRmmJ95eq7p7kpnOUWLxnaj0CPWjLEuqitPmoCao0OnwBZ5gluy5WSEIt-pdA5ObU-7oNuGRaQFzDdWiWxM"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
+<div class="self-end bg-black/40 backdrop-blur-md border border-white/10 p-4 rounded-lg font-mono text-xs text-primary">
+<div>STATUS: LIVE</div>
+<div class="text-white/70 mt-1">LATENCY: &lt;12ms</div>
+</div>
+<div class="self-start bg-black/40 backdrop-blur-md border border-white/10 p-4 rounded-lg font-mono text-xs">
+<div class="flex items-center gap-3 mb-2">
+<div class="h-2 w-2 rounded-full bg-green-500"></div>
+<span class="text-white/90">NODE_SYNC_AC7</span>
+</div>
+<div class="w-32 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="border-t border-gray-200/10 dark:border-white/5 bg-background-light/50 dark:bg-black/20 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-6 py-16">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-colors group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-icons">storage</span>
+</div>
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">표준화된 공급</h3>
+<p class="text-gray-500 dark:text-gray-400 leading-relaxed text-sm break-keep">
+                        페타바이트 규모에서도 일관된 스키마를 제공합니다. 비정형 스크래핑 데이터의 가변성을 제거하십시오.
+                    </p>
+</div>
+<div class="p-8 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-colors group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-icons">code</span>
+</div>
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">고정된 포맷</h3>
+<p class="text-gray-500 dark:text-gray-400 leading-relaxed text-sm break-keep">
+                        JSON/Parquet 출력을 귀사의 파이프라인에 직접 통합하십시오. 수집 단계에서의 맞춤형 ETL이 불필요합니다.
+                    </p>
+</div>
+<div class="p-8 rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-colors group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-icons">hub</span>
+</div>
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">인프라 제공자</h3>
+<p class="text-gray-500 dark:text-gray-400 leading-relaxed text-sm break-keep">
+                        우리는 설계자가 아닌 유틸리티 공급자입니다. 우리는 흐름을 보장하고, 귀사는 로직을 설계합니다.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<footer class="border-t border-gray-200/10 dark:border-white/5 py-12">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-sm text-gray-500 dark:text-gray-500 font-mono">
+                © 2024 UNCOUNTED DATA INC.
+            </div>
+<div class="flex items-center gap-8">
+<a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">개인정보 처리방침</a>
+<a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">서비스 수준 계약 (SLA)</a>
+<div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-600 border border-gray-200 dark:border-white/10 px-3 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    SYSTEMS OPERATIONAL
+                </div>
+</div>
+</div>
+</footer>
+</main>
+
+</body></html>
