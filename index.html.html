@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCOUNTED — 방치된 데이터에서 AI의 미래를 만듭니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #06081a;
+  --bg-primary: #0a0e27;
+  --bg-card: #0f1333;
+  --bg-elevated: #151a42;
+  --purple-core: #7c6cf0;
+  --purple-light: #a78bfa;
+  --purple-glow: rgba(124,108,240,0.15);
+  --purple-subtle: rgba(124,108,240,0.06);
+  --text-primary: #e8e6f0;
+  --text-secondary: #8b87a8;
+  --text-dim: #5a5678;
+  --border: rgba(124,108,240,0.12);
+  --border-strong: rgba(124,108,240,0.25);
+  --white: #ffffff;
+  --green-accent: #34d399;
+  --red-accent: #f87171;
+  --amber-accent: #fbbf24;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+::selection {
+  background: var(--purple-core);
+  color: var(--white);
+}
+
+/* ═══════════════════ UTILITY ═══════════════════ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.mono {
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--purple-core);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--purple-core);
+}
+
+.section-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.section-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+/* ═══════════════════ ANIMATIONS ═══════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  30% { transform: translate(3%, 2%); }
+  50% { transform: translate(-1%, 3%); }
+  70% { transform: translate(2%, -2%); }
+  90% { transform: translate(-3%, 1%); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: var(--purple-core); }
+  50% { border-color: transparent; }
+}
+
+@keyframes count-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ═══════════════════ GRAIN OVERLAY ═══════════════════ */
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain-shift 8s steps(10) infinite;
+}
+
+/* ═══════════════════ NAVBAR ═══════════════════ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar.scrolled {
+  background: rgba(6, 8, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span {
+  color: var(--purple-core);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+  letter-spacing: 0.02em;
+}
+
+.nav-links a:hover {
+  color: var(--purple-light);
+}
+
+.nav-cta {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid var(--purple-core);
+  color: var(--purple-light);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.nav-cta:hover {
+  background: var(--purple-core);
+  color: var(--white);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: all 0.3s;
+}
+
+/* ═══════════════════ HERO ═══════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124,108,240,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,108,240,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.hero-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: rgba(124, 108, 240, 0.08);
+  top: -200px;
+  right: -100px;
+}
+
+.hero-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(45, 27, 105, 0.15);
+  bottom: -100px;
+  left: -100px;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 560px;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--purple-core);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--purple-core);
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+  box-shadow: 0 0 12px var(--purple-core);
+}
+
+.hero-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--purple-light), #c4b5fd, var(--purple-core));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 460px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.btn-primary {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 32px;
+  background: var(--purple-core);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: #6c5ce7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(124, 108, 240, 0.35);
+}
+
+.btn-ghost {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  padding: 14px 24px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  color: var(--purple-light);
+  border-color: var(--purple-core);
+  background: var(--purple-subtle);
+}
+
+/* Hero visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-device {
+  width: 280px;
+  height: 560px;
+  background: var(--bg-card);
+  border-radius: 36px;
+  border: 2px solid var(--border-strong);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(124,108,240,0.08),
+    0 20px 80px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.hero-device::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: var(--bg-deep);
+  border-radius: 0 0 16px 16px;
+  z-index: 3;
+}
+
+.device-screen {
+  position: absolute;
+  inset: 12px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0c1030, #0a0e27);
+}
+
+.device-header {
+  padding: 36px 20px 12px;
+  text-align: center;
+}
+
+.device-header .logo-sm {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.device-header .logo-sm span { color: var(--purple-core); }
+
+.device-stat-row {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+  margin-top: 8px;
+}
+
+.device-stat {
+  flex: 1;
+  background: rgba(124,108,240,0.08);
+  border: 1px solid rgba(124,108,240,0.15);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.device-stat .val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.device-stat .lbl {
+  font-size: 8px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.device-wave {
+  margin: 16px;
+  height: 48px;
+  background: rgba(124,108,240,0.06);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 12px;
+}
+
+.wave-bar {
+  width: 3px;
+  background: var(--purple-core);
+  border-radius: 3px;
+  animation: float 1.5s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.device-items {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.device-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.device-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.device-item-text .title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.device-item-text .meta {
+  font-size: 8px;
+  color: var(--text-dim);
+}
+
+.device-badge {
+  margin: 16px;
+  padding: 10px 14px;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.device-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  animation: pulse-ring 2s infinite;
+}
+
+.device-badge .txt {
+  font-size: 9px;
+  color: var(--green-accent);
+  font-weight: 500;
+}
+
+/* Floating labels around device */
+.hero-float-tag {
+  position: absolute;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 6px 14px;
+  background: rgba(15, 19, 51, 0.9);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  backdrop-filter: blur(12px);
+  white-space: nowrap;
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero-float-tag.t1 { top: 60px; right: -20px; animation-delay: 0s; }
+.hero-float-tag.t2 { top: 200px; left: -40px; animation-delay: 1s; }
+.hero-float-tag.t3 { bottom: 160px; right: -30px; animation-delay: 2s; }
+.hero-float-tag.t4 { bottom: 60px; left: -20px; animation-delay: 0.5s; }
+
+.hero-float-tag .tag-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* ═══════════════════ PROBLEM SECTION ═══════════════════ */
+.section-problem {
+  padding: 120px 0;
+  position: relative;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.problem-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple-core), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.problem-card:hover::before { opacity: 1; }
+
+.problem-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--purple-glow);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.problem-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.problem-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.problem-source {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════ SOLUTION SECTION ═══════════════════ */
+.section-solution {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-solution::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.solution-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 56px;
+  position: relative;
+}
+
+.solution-flow::before {
+  content: '';
+  position: absolute;
+  top: 56px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple-core) 0%, var(--purple-light) 50%, var(--green-accent) 100%);
+  opacity: 0.3;
+}
+
+.solution-step {
+  text-align: center;
+  position: relative;
+  padding: 0 16px;
+}
+
+.step-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--purple-core);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--purple-light);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.solution-step:hover .step-num {
+  background: var(--purple-core);
+  color: var(--white);
+  box-shadow: 0 0 24px rgba(124,108,240,0.4);
+}
+
+.solution-step:last-child .step-num {
+  border-color: var(--green-accent);
+  color: var(--green-accent);
+}
+
+.solution-step:last-child:hover .step-num {
+  background: var(--green-accent);
+  color: var(--bg-deep);
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.step-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.step-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-dim);
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════ B2C SECTION ═══════════════════ */
+.section-b2c {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-b2c::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.b2c-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.b2c-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.b2c-card {
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(15,19,51,0.5) 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.b2c-card:hover {
+  border-color: var(--purple-core);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px var(--purple-glow);
+}
+
+.b2c-card-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: rgba(124,108,240,0.06);
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  line-height: 1;
+}
+
+.b2c-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--purple-glow);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.b2c-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.b2c-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ═══════════════════ B2B / SKU SECTION ═══════════════════ */
+.section-b2b {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-b2b::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.sku-table-wrap {
+  margin-top: 48px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.sku-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sku-table thead th {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-align: left;
+  padding: 16px 24px;
+  background: rgba(124,108,240,0.04);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sku-table tbody td {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.sku-table tbody tr:last-child td { border-bottom: none; }
+
+.sku-table tbody tr {
+  transition: background 0.3s;
+}
+
+.sku-table tbody tr:hover {
+  background: rgba(124,108,240,0.03);
+}
+
+.sku-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--purple-glow);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--purple-light);
+  font-weight: 500;
+}
+
+.sku-name {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 14px;
+}
+
+.sku-name-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.sku-desc {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.sku-target {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.sku-target strong {
+  color: var(--purple-light);
+  font-weight: 500;
+}
+
+/* ═══════════════════ DIFFERENTIATION ═══════════════════ */
+.section-diff {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-diff::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.diff-table-wrap {
+  margin-top: 48px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.diff-table thead th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 18px 20px;
+  background: rgba(124,108,240,0.04);
+  border-bottom: 1px solid var(--border);
+}
+
+.diff-table thead th:first-child {
+  text-align: left;
+}
+
+.diff-table thead th:last-child {
+  background: rgba(124,108,240,0.1);
+  color: var(--purple-light);
+}
+
+.diff-table tbody td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.diff-table tbody td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.diff-table tbody td:last-child {
+  background: rgba(124,108,240,0.03);
+}
+
+.diff-table tbody tr:last-child td { border-bottom: none; }
+
+.diff-check {
+  color: var(--purple-light);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.diff-cross {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.diff-warn {
+  color: var(--amber-accent);
+  font-size: 13px;
+}
+
+/* ═══════════════════ STATS ═══════════════════ */
+.section-stats {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 40px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.stat-card:hover {
+  border-color: var(--purple-core);
+  box-shadow: 0 0 40px rgba(124,108,240,0.1);
+}
+
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-unit {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  color: var(--purple-light);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 10px;
+}
+
+/* ═══════════════════ TEAM ═══════════════════ */
+.section-team {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-team::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+}
+
+.team-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+  border: 2px solid var(--border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.team-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--purple-glow);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--purple-light);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.team-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.team-exp {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.team-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-dim);
+}
+
+/* ═══════════════════ CTA ═══════════════════ */
+.section-cta {
+  padding: 120px 0;
+  position: relative;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #1a1548 50%, var(--bg-card) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  padding: 80px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(124,108,240,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cta-box .section-title {
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+
+.cta-box .section-desc {
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.cta-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 24px;
+}
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+.footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.footer-logo span { color: var(--purple-core); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--purple-light); }
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media (max-width: 1024px) {
+  .hero .container { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { display: none; }
+  .problem-grid { grid-template-columns: repeat(2, 1fr); }
+  .solution-flow { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .solution-flow::before { display: none; }
+  .b2c-header { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .solution-flow { grid-template-columns: 1fr; }
+  .b2c-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .cta-box { padding: 48px 28px; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .footer .container { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-links { justify-content: center; }
+  .diff-table-wrap, .sku-table-wrap { overflow-x: auto; }
+  .diff-table, .sku-table { min-width: 600px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">UN<span>COUNTED</span></a>
+    <ul class="nav-links">
+      <li><a href="#problem">문제</a></li>
+      <li><a href="#solution">솔루션</a></li>
+      <li><a href="#b2c">개인</a></li>
+      <li><a href="#b2b">기업</a></li>
+      <li><a href="#team">팀</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">파일럿 요청 &rarr;</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">C2B2B Data Platform</div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        방치된 데이터에서<br>
+        <span class="accent">AI의 미래</span>를<br>
+        만듭니다
+      </h1>
+      <p class="hero-subtitle reveal reveal-delay-2">
+        개인에겐 데이터 자산을, 기업에겐 적법한 고품질 학습데이터를.
+        온디바이스 비식별화와 양자 동의로 신뢰할 수 있는 데이터 공급 생태계를 구축합니다.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#cta" class="btn-primary">파일럿 데이터 요청 &rarr;</a>
+        <a href="#solution" class="btn-ghost">작동 방식 보기</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay-3">
+      <div class="hero-device">
+        <div class="device-screen">
+          <div class="device-header">
+            <div class="logo-sm">UN<span>COUNTED</span></div>
+          </div>
+          <div class="device-stat-row">
+            <div class="device-stat">
+              <div class="val">142</div>
+              <div class="lbl">보유 세션</div>
+            </div>
+            <div class="device-stat">
+              <div class="val">48h</div>
+              <div class="lbl">총 시간</div>
+            </div>
+            <div class="device-stat">
+              <div class="val">A</div>
+              <div class="lbl">품질등급</div>
+            </div>
+          </div>
+          <div class="device-wave">
+            <div class="wave-bar" style="height:12px; animation-delay:0s"></div>
+            <div class="wave-bar" style="height:24px; animation-delay:0.1s"></div>
+            <div class="wave-bar" style="height:18px; animation-delay:0.2s"></div>
+            <div class="wave-bar" style="height:32px; animation-delay:0.3s"></div>
+            <div class="wave-bar" style="height:20px; animation-delay:0.4s"></div>
+            <div class="wave-bar" style="height:28px; animation-delay:0.15s"></div>
+            <div class="wave-bar" style="height:14px; animation-delay:0.25s"></div>
+            <div class="wave-bar" style="height:36px; animation-delay:0.35s"></div>
+            <div class="wave-bar" style="height:22px; animation-delay:0.05s"></div>
+            <div class="wave-bar" style="height:16px; animation-delay:0.45s"></div>
+            <div class="wave-bar" style="height:30px; animation-delay:0.2s"></div>
+            <div class="wave-bar" style="height:10px; animation-delay:0.3s"></div>
+            <div class="wave-bar" style="height:26px; animation-delay:0.1s"></div>
+            <div class="wave-bar" style="height:18px; animation-delay:0.4s"></div>
+            <div class="wave-bar" style="height:34px; animation-delay:0.05s"></div>
+            <div class="wave-bar" style="height:20px; animation-delay:0.25s"></div>
+          </div>
+          <div class="device-items">
+            <div class="device-item">
+              <div class="device-item-icon" style="background:rgba(124,108,240,0.12)">&#x1F399;</div>
+              <div class="device-item-text">
+                <div class="title">통화_0309_14:23</div>
+                <div class="meta">12:34 &bull; B+ &bull; 비식별 완료</div>
+              </div>
+            </div>
+            <div class="device-item">
+              <div class="device-item-icon" style="background:rgba(52,211,153,0.12)">&#x1F50A;</div>
+              <div class="device-item-text">
+                <div class="title">회의_0308_09:15</div>
+                <div class="meta">45:12 &bull; A &bull; SKU 추출</div>
+              </div>
+            </div>
+          </div>
+          <div class="device-badge">
+            <div class="dot"></div>
+            <div class="txt">온디바이스 비식별화 활성</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-float-tag t1">
+        <span class="tag-dot" style="background:var(--green-accent)"></span>
+        양자 동의 완료
+      </div>
+      <div class="hero-float-tag t2">
+        <span class="tag-dot" style="background:var(--purple-core)"></span>
+        PII 원천 차단
+      </div>
+      <div class="hero-float-tag t3">
+        <span class="tag-dot" style="background:var(--amber-accent)"></span>
+        SKU: U-A02
+      </div>
+      <div class="hero-float-tag t4">
+        <span class="tag-dot" style="background:var(--purple-light)"></span>
+        품질 B+ 이상
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROBLEM ═══════════════════ -->
+<section class="section-problem" id="problem">
+  <div class="container">
+    <div class="section-label reveal">Problem</div>
+    <h2 class="section-title reveal reveal-delay-1">AI 기업이 직면한<br>데이터 위기</h2>
+    <p class="section-desc reveal reveal-delay-2">고품질 학습데이터 확보는 AI 산업의 가장 큰 병목입니다. 기존 조달 방식은 한계에 도달했습니다.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-icon">&#x26A0;</div>
+        <h3>수급 미스매치</h3>
+        <p>AI 기업은 실생활 음성 데이터가 필요하지만, 적법하게 확보할 수 있는 경로가 극히 제한적입니다.</p>
+        <div class="problem-source">국회미래연구원, 2025</div>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-icon">&#x2696;</div>
+        <h3>법적 리스크</h3>
+        <p>자사 고객 통화 데이터의 직접 학습은 개인정보보호법 위반. 웹 크롤링도 저작권 분쟁이 급증하고 있습니다.</p>
+        <div class="problem-source">개인정보보호법 / 통신비밀보호법</div>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-icon">&#x23F3;</div>
+        <h3>텍스트 데이터 포화</h3>
+        <p>공개 텍스트 학습 자원이 2026~2032년 사이 소진될 전망. 비텍스트 원천 다변화가 시급합니다.</p>
+        <div class="problem-source">Epoch AI, 2024 (80% CI)</div>
+      </div>
+      <div class="problem-card reveal reveal-delay-4">
+        <div class="problem-icon">&#x1F4C8;</div>
+        <h3>조달 비용 급증</h3>
+        <p>글로벌 AI 데이터 투자 166억 달러(2024) 기록. 데이터 확보 비용이 모델 개발비를 추월하는 추세입니다.</p>
+        <div class="problem-source">Stanford HAI, AI Index 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SOLUTION ═══════════════════ -->
+<section class="section-solution" id="solution">
+  <div class="container">
+    <div class="section-label reveal">Solution</div>
+    <h2 class="section-title reveal reveal-delay-1">온디바이스 비식별화로<br>신뢰할 수 있는 데이터를</h2>
+    <p class="section-desc reveal reveal-delay-2">서버에 원본이 전송되기 전, 기기 내에서 비식별 처리를 완료합니다. 개인정보 유출 원천 차단.</p>
+
+    <div class="solution-flow">
+      <div class="solution-step reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <div class="step-title">데이터 수집</div>
+        <div class="step-desc">스마트폰 자동녹음에서<br>음성 데이터 추출 및<br>사용자 명시적 동의 확보</div>
+        <div class="step-tag">On-Device</div>
+      </div>
+      <div class="solution-step reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <div class="step-title">비식별 처리</div>
+        <div class="step-desc">기기 내부에서 가명처리·<br>익명화 완료. PII 데이터<br>서버 전송 원천 차단</div>
+        <div class="step-tag">Privacy-First</div>
+      </div>
+      <div class="solution-step reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <div class="step-title">품질 검증·SKU화</div>
+        <div class="step-desc">B등급 이상 필터링,<br>메타데이터 라벨링,<br>용도별 SKU 패키징</div>
+        <div class="step-tag">Quality Gate</div>
+      </div>
+      <div class="solution-step reveal reveal-delay-4">
+        <div class="step-num">&#x2713;</div>
+        <div class="step-title">B2B 공급</div>
+        <div class="step-desc">AI 기업에 즉시 투입 가능한<br>데이터셋 납품. 파일럿 →<br>정식 계약 → API 공급</div>
+        <div class="step-tag">Ready to Deploy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ B2C ═══════════════════ -->
+<section class="section-b2c" id="b2c">
+  <div class="container">
+    <div class="b2c-header">
+      <div>
+        <div class="section-label reveal">For Users</div>
+        <h2 class="section-title reveal reveal-delay-1">내 스마트폰 속 데이터가<br>자산이 됩니다</h2>
+      </div>
+      <p class="section-desc reveal reveal-delay-2" style="margin-left:auto">방치된 자동녹음 파일을 안전하게 자산화하고, 데이터 공유에 대한 정당한 보상을 받으세요.</p>
+    </div>
+
+    <div class="b2c-grid">
+      <div class="b2c-card reveal reveal-delay-1">
+        <div class="b2c-card-num">01</div>
+        <div class="b2c-card-icon">&#x1F4F1;</div>
+        <h3>자동 스캔</h3>
+        <p>스마트폰 속 자동녹음 파일을 자동으로 탐지하고, 품질·유효발화·중복을 분석합니다. 터치 한 번이면 시작.</p>
+      </div>
+      <div class="b2c-card reveal reveal-delay-2">
+        <div class="b2c-card-num">02</div>
+        <div class="b2c-card-icon">&#x1F512;</div>
+        <h3>온디바이스 비식별</h3>
+        <p>음성 데이터가 기기 밖으로 나가기 전에 비식별 처리를 완료합니다. 내 개인정보는 내 폰에만.</p>
+      </div>
+      <div class="b2c-card reveal reveal-delay-3">
+        <div class="b2c-card-num">03</div>
+        <div class="b2c-card-icon">&#x1F4B0;</div>
+        <h3>가치 환원</h3>
+        <p>공유를 허용한 데이터에 대해 투명한 기여도 산정과 정당한 보상을 받습니다. 데이터의 가치를 되찾으세요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ B2B / SKU ═══════════════════ -->
+<section class="section-b2b" id="b2b">
+  <div class="container">
+    <div class="section-label reveal">For Business</div>
+    <h2 class="section-title reveal reveal-delay-1">즉시 투입 가능한<br>실생활 음성 데이터셋</h2>
+    <p class="section-desc reveal reveal-delay-2">용도별로 사전 분류된 SKU 기반 데이터셋. 추가 전처리 없이 AI 학습에 바로 활용하세요.</p>
+
+    <div class="sku-table-wrap reveal reveal-delay-3">
+      <table class="sku-table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>상품명</th>
+            <th>설명</th>
+            <th>주요 수요처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="sku-code">U-A01</span></td>
+            <td>
+              <div class="sku-name">VoiceRaw</div>
+              <div class="sku-name-sub">익명화 음성 원천</div>
+            </td>
+            <td class="sku-desc">비식별 처리된 원천 음성 파일(WAV). 다양한 화자·환경·잡음 포함. 라벨 미부착 가능.</td>
+            <td class="sku-target"><strong>음성 합성/인식</strong><br>STT · TTS</td>
+          </tr>
+          <tr>
+            <td><span class="sku-code">U-A02</span></td>
+            <td>
+              <div class="sku-name">Voice+Context</div>
+              <div class="sku-name-sub">맥락 라벨 음성</div>
+            </td>
+            <td class="sku-desc">사용자 입력 라벨(상황·활동·감정·주제) 부착 음성. 대화 맥락 메타데이터 포함.</td>
+            <td class="sku-target"><strong>AICC · 대화 AI</strong><br>컨택센터 솔루션</td>
+          </tr>
+          <tr>
+            <td><span class="sku-code">U-A03</span></td>
+            <td>
+              <div class="sku-name">Voice+DialogAct</div>
+              <div class="sku-name-sub">대화행위 라벨</div>
+            </td>
+            <td class="sku-desc">dialog_act(요청/응답/확인 등) + intensity 라벨. 세션형 JSONL 포맷.</td>
+            <td class="sku-target"><strong>LLM · 에이전트</strong><br>파인튜닝용</td>
+          </tr>
+          <tr>
+            <td><span class="sku-code">U-M01</span></td>
+            <td>
+              <div class="sku-name">Call Metadata</div>
+              <div class="sku-name-sub">통화 이벤트 메타</div>
+            </td>
+            <td class="sku-desc">통화 시간대(버킷), 통화 시간, 빈도 등 비식별 이벤트 메타. 통화 내용 미포함.</td>
+            <td class="sku-target"><strong>행동 분석</strong><br>리서치 · 패널</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DIFFERENTIATION ═══════════════════ -->
+<section class="section-diff" id="diff">
+  <div class="container">
+    <div class="section-label reveal">Differentiation</div>
+    <h2 class="section-title reveal reveal-delay-1">기존 방식과의 차이</h2>
+    <p class="section-desc reveal reveal-delay-2">스튜디오, 크라우드소싱, 웹 크롤링 — 기존 데이터 조달 방식의 한계를 넘어섭니다.</p>
+
+    <div class="diff-table-wrap reveal reveal-delay-3">
+      <table class="diff-table">
+        <thead>
+          <tr>
+            <th>비교 항목</th>
+            <th>스튜디오 녹음</th>
+            <th>크라우드소싱</th>
+            <th>웹 크롤링</th>
+            <th>UNCOUNTED</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>실생활 자연 대화</td>
+            <td class="diff-cross">&#x2715;</td>
+            <td class="diff-warn">&#x25B2;</td>
+            <td class="diff-cross">&#x2715;</td>
+            <td class="diff-check">&#x2713; 실제 통화·대면</td>
+          </tr>
+          <tr>
+            <td>법적 동의 완비</td>
+            <td class="diff-check">&#x2713;</td>
+            <td class="diff-warn">&#x25B2; 부분적</td>
+            <td class="diff-cross">&#x2715;</td>
+            <td class="diff-check">&#x2713; 양자 동의</td>
+          </tr>
+          <tr>
+            <td>화자·환경 다양성</td>
+            <td class="diff-cross">제한적</td>
+            <td class="diff-warn">&#x25B2;</td>
+            <td class="diff-cross">&#x2715;</td>
+            <td class="diff-check">&#x2713; 전 연령·환경</td>
+          </tr>
+          <tr>
+            <td>구어체·잡음 포함</td>
+            <td class="diff-cross">&#x2715;</td>
+            <td class="diff-warn">&#x25B2;</td>
+            <td class="diff-cross">&#x2715;</td>
+            <td class="diff-check">&#x2713;</td>
+          </tr>
+          <tr>
+            <td>비식별 처리</td>
+            <td>해당없음</td>
+            <td>서버 처리</td>
+            <td class="diff-cross">미처리</td>
+            <td class="diff-check">&#x2713; 온디바이스</td>
+          </tr>
+          <tr>
+            <td>비용 대비 리스크</td>
+            <td>고비용 / 저리스크</td>
+            <td>중비용 / 중리스크</td>
+            <td>저비용 / 고리스크</td>
+            <td class="diff-check">적정비용 / 제로리스크</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STATS ═══════════════════ -->
+<section class="section-stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-value" data-count="7200">0</div>
+        <div class="stat-unit">건</div>
+        <div class="stat-label">실데이터 검증 완료</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-value" data-count="400">0</div>
+        <div class="stat-unit">시간</div>
+        <div class="stat-label">총 녹음 데이터</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-value" data-count="95">0</div>
+        <div class="stat-unit">%</div>
+        <div class="stat-label">MVP 개발 완료율</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-4">
+        <div class="stat-value">B+</div>
+        <div class="stat-unit">&nbsp;</div>
+        <div class="stat-label">평균 데이터 품질</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TEAM ═══════════════════ -->
+<section class="section-team" id="team">
+  <div class="container">
+    <div class="section-label reveal">Team</div>
+    <h2 class="section-title reveal reveal-delay-1">실행할 수 있는 팀</h2>
+    <p class="section-desc reveal reveal-delay-2">보안·개발·운영 — 데이터 비즈니스에 필요한 핵심 역량을 갖춘 팀이 만듭니다.</p>
+
+    <div class="team-grid">
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar">&#x1F6E1;</div>
+        <div class="team-role">CEO</div>
+        <h3>대표</h3>
+        <div class="team-exp">정보보안 PM/PL 15년<br>금융권 보안 구축·운영<br>개인정보보호 체계 설계</div>
+        <div class="team-tags">
+          <span class="team-tag">보안 PM</span>
+          <span class="team-tag">풀스택</span>
+          <span class="team-tag">AI 활용</span>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar">&#x1F4BB;</div>
+        <div class="team-role">CTO</div>
+        <h3>기술 총괄</h3>
+        <div class="team-exp">풀스택 개발 10년<br>AWS 아키텍처 설계·운영<br>대규모 트래픽 안정화</div>
+        <div class="team-tags">
+          <span class="team-tag">풀스택 10Y</span>
+          <span class="team-tag">AWS</span>
+          <span class="team-tag">DevOps</span>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar">&#x1F91D;</div>
+        <div class="team-role">CBO</div>
+        <h3>사업 총괄</h3>
+        <div class="team-exp">운영·마케팅 5년<br>정부사업 수행 경험<br>B2B 파트너십 협상</div>
+        <div class="team-tags">
+          <span class="team-tag">그로스</span>
+          <span class="team-tag">B2B</span>
+          <span class="team-tag">정부사업</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="section-cta" id="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="section-label" style="justify-content:center">
+        <span style="display:none"></span>Get Started
+      </div>
+      <h2 class="section-title" style="text-align:center">
+        귀사의 AI에 필요한<br>데이터를 말씀해 주세요
+      </h2>
+      <p class="section-desc" style="text-align:center">
+        맞춤 샘플 데이터셋을 2주 이내 무상 제공합니다.<br>
+        품질 확인 후 파일럿 계약 여부를 검토해 주세요.
+      </p>
+      <div class="cta-actions">
+        <a href="mailto:contact@uncounted.kr" class="btn-primary" style="font-size:15px; padding: 16px 40px;">
+          파일럿 데이터 요청 &rarr;
+        </a>
+        <a href="mailto:contact@uncounted.kr" class="btn-ghost">
+          일반 문의
+        </a>
+      </div>
+      <div class="cta-note">
+        100~500건 샘플 무상 제공 &bull; NDA 체결 가능 &bull; 2주 이내 납품
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo">UN<span>COUNTED</span></div>
+    <div class="footer-links">
+      <a href="#">이용약관</a>
+      <a href="#">개인정보처리방침</a>
+      <a href="mailto:contact@uncounted.kr">문의</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 UNCOUNTED. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > 40) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  lastScroll = currentScroll;
+}, { passive: true });
+
+// Reveal on scroll
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Counter animation
+const statValues = document.querySelectorAll('.stat-value[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      const duration = 2000;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(eased * target);
+        el.textContent = current.toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+      }
+
+      requestAnimationFrame(update);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+statValues.forEach(el => counterObserver.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Mobile hamburger (simple toggle)
+const hamburger = document.getElementById('hamburger');
+hamburger.addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.position = 'absolute';
+  links.style.top = '60px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = 'rgba(6,8,26,0.95)';
+  links.style.flexDirection = 'column';
+  links.style.padding = '20px 32px';
+  links.style.gap = '16px';
+  links.style.borderBottom = '1px solid var(--border)';
+  links.style.backdropFilter = 'blur(20px)';
+});
+</script>
+
+</body>
+</html>
