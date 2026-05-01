@@ -339,11 +339,11 @@ body {
 
     <!-- 큰 금액 박스 -->
     <div class="amount-box">
-      <div class="amount-label">예상 보상 (양자 동의 풀 도달 시)</div>
+      <div class="amount-label">예상 본인 몫 (양자 동의 풀 도달 시)</div>
       <div class="amount-value" id="amountValue">₩—</div>
-      <div class="amount-disclaimer">
-        ※ Cap ₩300만/년 + 시장 단가 + 매수자 거래에 따라 변동.<br>
-        시드 단계 추정 — LOI 확보 후 정식 단가 공시.
+      <div class="amount-disclaimer" id="amountDisclaimer">
+        ※ 산식: 시간 × ₩300K × 순이익률 60% × 화자 풀 50% × 두 화자 반분 50% = ₩45K/h.<br>
+        Cap ₩300만/년 (분리과세 안전, 매년 1월 리셋) + 잉여 이월. 시드 단계 보수 추정 — LOI 확보 후 정식 공시.
       </div>
     </div>
 
@@ -397,7 +397,7 @@ body {
         <div class="trust-icon">&#x1F4DC;</div>
         <div class="trust-title">분배 알고리즘 공개</div>
         <div class="trust-metric">v0.6</div>
-        <div class="trust-desc">매출 50% 화자 풀 + 선가입자 우선 + Cap ₩300만. 분기 결산 공개.</div>
+        <div class="trust-desc">순이익 50% 화자 풀 (매출 - 운영비) + 선가입자 우선 + Cap ₩300만. 분기 결산 공개.</div>
       </div>
       <div class="trust-card">
         <div class="trust-icon">&#x1F510;</div>
@@ -519,12 +519,22 @@ function extractFallbackMeta() {
   }
 }
 
-// 시드 단가 추정 보상 (UC-A1 ₩100K~500K/건 × 50% 화자 풀 × 시간 비율)
+const YEARLY_CAP_KRW = 3_000_000
+
+// 시드 단계 본인 몫 추정 (BM v10.0 + 약관 v1.1 제11조 정합):
+//   매출 ₩300K/h × 순이익률 60% (운영비 차감) × 화자 풀 50% × 두 화자 반분 50% = ₩45K/h
+// 통화 자산은 본인 + 상대방이 함께 만든 것 → 화자 풀 안에서 또 반분 (양자 동의 가입 단계).
+// ⚠️ 반드시 연 Cap ₩300만으로 클립 (방문판매법·자본시장법 시비 회피).
+// 잉여는 다음 해 자동 이월 — 5년 누적 최대 ₩1,500만.
 function estimateRewardKrw(totalHours) {
   if (!totalHours || totalHours <= 0) return null
-  // 시드 단계 중간값 ₩300K/건 시간당 환산 + 50% 화자 풀
-  // ※ Cap ₩300만/년 + 면책 명시
-  return Math.round(totalHours * 300_000 * 0.5)
+  const raw = Math.round(totalHours * 300_000 * 0.6 * 0.5 * 0.5)
+  return Math.min(raw, YEARLY_CAP_KRW)
+}
+
+function isCappedReward(totalHours) {
+  if (!totalHours || totalHours <= 0) return false
+  return Math.round(totalHours * 300_000 * 0.6 * 0.5 * 0.5) > YEARLY_CAP_KRW
 }
 
 async function loadInvitation() {
