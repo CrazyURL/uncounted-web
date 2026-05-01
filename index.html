@@ -1359,10 +1359,12 @@ body::after {
       </h1>
       <p class="hero-subtitle reveal reveal-delay-2">
         개인에겐 데이터 자산을, 기업에겐 적법한 고품질 학습데이터를.
-        온디바이스 비식별화와 양자 동의로 신뢰할 수 있는 데이터 공급 생태계를 구축합니다.
+        <strong>양자 동의 인프라</strong>와 <strong>PII 마스킹 97.5%</strong>로
+        매수자가 즉시 학습에 투입할 수 있는 데이터 공급 생태계를 구축합니다.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#cta" class="btn-primary">파일럿 데이터 요청 &rarr;</a>
+        <a href="/signup" class="btn-primary" style="background:linear-gradient(135deg,#7c6cf0,#a78bfa)">지금 가입하기 &rarr;</a>
         <a href="#solution" class="btn-ghost">작동 방식 보기</a>
       </div>
     </div>
@@ -1410,20 +1412,20 @@ body::after {
               <div class="device-item-icon" style="background:rgba(124,108,240,0.12)">&#x1F399;</div>
               <div class="device-item-text">
                 <div class="title">통화_0309_14:23</div>
-                <div class="meta">12:34 &bull; B+ &bull; 비식별 완료</div>
+                <div class="meta">12:34 &bull; B+ &bull; 양자 동의 대기</div>
               </div>
             </div>
             <div class="device-item">
               <div class="device-item-icon" style="background:rgba(52,211,153,0.12)">&#x1F50A;</div>
               <div class="device-item-text">
                 <div class="title">회의_0308_09:15</div>
-                <div class="meta">45:12 &bull; A &bull; SKU 추출</div>
+                <div class="meta">45:12 &bull; A &bull; 양자 동의 완료</div>
               </div>
             </div>
           </div>
           <div class="device-badge">
             <div class="dot"></div>
-            <div class="txt">온디바이스 비식별화 활성</div>
+            <div class="txt">디바이스 보관 중 &bull; 양자 동의 후 서버 처리</div>
           </div>
         </div>
       </div>
@@ -1434,7 +1436,7 @@ body::after {
       </div>
       <div class="hero-float-tag t2">
         <span class="tag-dot" style="background:var(--purple-core)"></span>
-        PII 원천 차단
+        PII 마스킹 97.5%
       </div>
       <div class="hero-float-tag t3">
         <span class="tag-dot" style="background:var(--amber-accent)"></span>
@@ -1488,33 +1490,33 @@ body::after {
 <section class="section-solution" id="solution">
   <div class="container">
     <div class="section-label reveal">Solution</div>
-    <h2 class="section-title reveal reveal-delay-1">온디바이스 비식별화로<br>신뢰할 수 있는 데이터를</h2>
-    <p class="section-desc reveal reveal-delay-2">서버에 원본이 전송되기 전, 기기 내에서 비식별 처리를 완료합니다. 개인정보 유출 원천 차단.</p>
+    <h2 class="section-title reveal reveal-delay-1">양자 동의 인프라로<br>신뢰할 수 있는 데이터를</h2>
+    <p class="section-desc reveal reveal-delay-2">디바이스 측 메타 식별 → 양자 동의 → 서버 비식별 처리. 통화 음성은 양자 동의 완료 시점까지 서버 전송 X. 디바이스 갤러리 그대로 보존.</p>
 
     <div class="solution-flow">
       <div class="solution-step reveal reveal-delay-1">
         <div class="step-num">1</div>
-        <div class="step-title">데이터 수집</div>
-        <div class="step-desc">스마트폰 자동녹음에서<br>음성 데이터 추출 및<br>사용자 명시적 동의 확보</div>
-        <div class="step-tag">On-Device</div>
+        <div class="step-title">디바이스 메타 식별</div>
+        <div class="step-desc">스마트폰 자동녹음 자산 자동 탐지.<br>메타만 추출 (시간·길이·해시).<br>음성 원본은 디바이스 보관.</div>
+        <div class="step-tag">On-Device Meta</div>
       </div>
       <div class="solution-step reveal reveal-delay-2">
         <div class="step-num">2</div>
-        <div class="step-title">비식별 처리</div>
-        <div class="step-desc">기기 내부에서 가명처리·<br>익명화 완료. PII 데이터<br>서버 전송 원천 차단</div>
-        <div class="step-tag">Privacy-First</div>
+        <div class="step-title">양자 동의</div>
+        <div class="step-desc">본인 + 상대방 양쪽 동의 완료.<br>카카오톡·웹 동의 페이지로<br>상대방 IP·토큰 chain 검증.</div>
+        <div class="step-tag">Both-Agreed Gate</div>
       </div>
       <div class="solution-step reveal reveal-delay-3">
         <div class="step-num">3</div>
-        <div class="step-title">품질 검증·SKU화</div>
-        <div class="step-desc">B등급 이상 필터링,<br>메타데이터 라벨링,<br>용도별 SKU 패키징</div>
-        <div class="step-tag">Quality Gate</div>
+        <div class="step-title">서버 비식별 처리</div>
+        <div class="step-desc">동의 완료 후에만 서버 GPU 처리.<br>PII 마스킹 97.5% + STT + 화자분리.<br>KISA·PIPA 가이드라인 준수.</div>
+        <div class="step-tag">Server GPU + KISA</div>
       </div>
       <div class="solution-step reveal reveal-delay-4">
         <div class="step-num">&#x2713;</div>
         <div class="step-title">B2B 공급</div>
-        <div class="step-desc">AI 기업에 즉시 투입 가능한<br>데이터셋 납품. 파일럿 →<br>정식 계약 → API 공급</div>
-        <div class="step-tag">Ready to Deploy</div>
+        <div class="step-desc">600h 단위 코호트 v 발급.<br>비독점 N회 판매. 파일럿 →<br>정식 계약 → 신선도 차등 단가.</div>
+        <div class="step-tag">v Cohort + Tiered</div>
       </div>
     </div>
   </div>
@@ -1541,14 +1543,14 @@ body::after {
       <div class="b2c-card reveal reveal-delay-2">
         <div class="b2c-card-num">02</div>
         <div class="b2c-card-icon">&#x1F512;</div>
-        <h3>온디바이스 비식별</h3>
-        <p>음성 데이터가 기기 밖으로 나가기 전에 비식별 처리를 완료합니다. 내 개인정보는 내 폰에만.</p>
+        <h3>양자 동의 후만 서버</h3>
+        <p>본인 + 상대방 양쪽 동의 완료 시점까지 통화 음성은 디바이스 갤러리 그대로 보존. 동의 후에만 서버 비식별 처리. KISA·PIPA 정합.</p>
       </div>
       <div class="b2c-card reveal reveal-delay-3">
         <div class="b2c-card-num">03</div>
         <div class="b2c-card-icon">&#x1F4B0;</div>
-        <h3>가치 환원</h3>
-        <p>공유를 허용한 데이터에 대해 투명한 기여도 산정과 정당한 보상을 받습니다. 데이터의 가치를 되찾으세요.</p>
+        <h3>정당한 보상 + Cap 안전</h3>
+        <p>공유를 허용한 데이터에 대해 투명한 기여도 산정 + 매수자 매출 분배. <strong>연 ₩300만 Cap</strong> (분리과세 안전, 매년 1월 리셋).</p>
       </div>
     </div>
   </div>
@@ -1567,49 +1569,57 @@ body::after {
           <tr>
             <th>SKU</th>
             <th>상품명</th>
+            <th>단위 / 단가</th>
             <th>설명</th>
             <th>주요 수요처</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="sku-code">U-A01</span></td>
+            <td><span class="sku-code">UC-A1</span></td>
             <td>
-              <div class="sku-name">VoiceRaw</div>
-              <div class="sku-name-sub">익명화 음성 원천</div>
+              <div class="sku-name">VoiceRaw 시드</div>
+              <div class="sku-name-sub">파일럿 단위</div>
             </td>
-            <td class="sku-desc">비식별 처리된 원천 음성 파일(WAV). 다양한 화자·환경·잡음 포함. 라벨 미부착 가능.</td>
-            <td class="sku-target"><strong>음성 합성/인식</strong><br>STT · TTS</td>
+            <td class="sku-desc"><strong>6h</strong> / ₩100K~500K/건<br><span style="font-size:11px;color:var(--text-dim)">시드 단계 무료 검증</span></td>
+            <td class="sku-desc">비식별 처리된 원천 음성 파일(WAV). 다양한 화자·환경·잡음 포함.</td>
+            <td class="sku-target"><strong>STT · TTS</strong><br>모델 사전 검증</td>
           </tr>
           <tr>
-            <td><span class="sku-code">U-A02</span></td>
+            <td><span class="sku-code">UC-A2</span></td>
             <td>
-              <div class="sku-name">Voice+Context</div>
-              <div class="sku-name-sub">맥락 라벨 음성</div>
+              <div class="sku-name">VoiceRaw 트라이얼/정기</div>
+              <div class="sku-name-sub">시간당 거래</div>
             </td>
-            <td class="sku-desc">사용자 입력 라벨(상황·활동·감정·주제) 부착 음성. 대화 맥락 메타데이터 포함.</td>
+            <td class="sku-desc"><strong>60h</strong> 또는 <strong>600h</strong><br>₩200~600K / h<br><span style="font-size:11px;color:var(--text-dim)">신선도 차등 (vN > vN-1)</span></td>
+            <td class="sku-desc">사용자 입력 라벨 부착 가능. 대화 맥락 메타데이터 포함. 비독점 N회 (5~10).</td>
             <td class="sku-target"><strong>AICC · 대화 AI</strong><br>컨택센터 솔루션</td>
           </tr>
           <tr>
-            <td><span class="sku-code">U-A03</span></td>
+            <td><span class="sku-code">UC-A3</span></td>
             <td>
-              <div class="sku-name">Voice+DialogAct</div>
-              <div class="sku-name-sub">대화행위 라벨</div>
+              <div class="sku-name">VoiceRaw 대량</div>
+              <div class="sku-name-sub">규모 단위</div>
             </td>
+            <td class="sku-desc"><strong>6,000h</strong><br>₩600K~2M / h<br><span style="font-size:11px;color:var(--text-dim)">희소 도메인 프리미엄</span></td>
             <td class="sku-desc">dialog_act(요청/응답/확인 등) + intensity 라벨. 세션형 JSONL 포맷.</td>
             <td class="sku-target"><strong>LLM · 에이전트</strong><br>파인튜닝용</td>
           </tr>
           <tr>
-            <td><span class="sku-code">U-M01</span></td>
+            <td><span class="sku-code">UC-LLM</span></td>
             <td>
-              <div class="sku-name">Call Metadata</div>
-              <div class="sku-name-sub">통화 이벤트 메타</div>
+              <div class="sku-name">Instruction Data</div>
+              <div class="sku-name-sub">4세대 가공</div>
             </td>
-            <td class="sku-desc">통화 시간대(버킷), 통화 시간, 빈도 등 비식별 이벤트 메타. 통화 내용 미포함.</td>
-            <td class="sku-target"><strong>행동 분석</strong><br>리서치 · 패널</td>
+            <td class="sku-desc"><strong>6,000h</strong><br>₩1~2M / h<br><span style="font-size:11px;color:var(--text-dim)">자동 분류·요약·QA</span></td>
+            <td class="sku-desc">통화 메타 + 자동 분류·요약·QA 가공 데이터. Instruction Tuning 포맷.</td>
+            <td class="sku-target"><strong>LLM 미세조정</strong><br>한국어 instruction</td>
           </tr>
         </tbody>
       </table>
+      <p style="margin-top:16px;font-size:12px;color:var(--text-dim);text-align:center">
+        ※ 단가는 시드 단계 추정 범위. LOI 1건 후 정식 단가 확정. 신선도 차등 (vN ₩600K > vN-1 ₩500K > vN-3 ₩300K).
+      </p>
     </div>
   </div>
 </section>
@@ -1666,7 +1676,7 @@ body::after {
             <td>해당없음</td>
             <td>서버 처리</td>
             <td class="diff-cross">미처리</td>
-            <td class="diff-check">&#x2713; 온디바이스</td>
+            <td class="diff-check">&#x2713; 양자 동의 후 서버 (PII 97.5%)</td>
           </tr>
           <tr>
             <td>비용 대비 리스크</td>
@@ -1686,24 +1696,24 @@ body::after {
   <div class="container">
     <div class="stats-grid">
       <div class="stat-card reveal reveal-delay-1">
-        <div class="stat-value" data-count="7200">0</div>
-        <div class="stat-unit">건</div>
-        <div class="stat-label">실데이터 검증 완료</div>
+        <div class="stat-value">97.5</div>
+        <div class="stat-unit">%</div>
+        <div class="stat-label">PII 마스킹 검출률 (알파 209건)</div>
       </div>
       <div class="stat-card reveal reveal-delay-2">
-        <div class="stat-value" data-count="400">0</div>
-        <div class="stat-unit">시간</div>
-        <div class="stat-label">총 녹음 데이터</div>
+        <div class="stat-value">4.53</div>
+        <div class="stat-unit">%</div>
+        <div class="stat-label">한국어 통화 CER (AI-Hub 능가)</div>
       </div>
       <div class="stat-card reveal reveal-delay-3">
-        <div class="stat-value" data-count="95">0</div>
-        <div class="stat-unit">%</div>
-        <div class="stat-label">MVP 개발 완료율</div>
+        <div class="stat-value" data-count="402">0</div>
+        <div class="stat-unit">건</div>
+        <div class="stat-label">자동 회귀 테스트 PASS</div>
       </div>
       <div class="stat-card reveal reveal-delay-4">
-        <div class="stat-value">B+</div>
+        <div class="stat-value">v10.0</div>
         <div class="stat-unit">&nbsp;</div>
-        <div class="stat-label">평균 데이터 품질</div>
+        <div class="stat-label">BM 인프라 박힘 (시드 출발 준비)</div>
       </div>
     </div>
   </div>
@@ -1762,22 +1772,32 @@ body::after {
         <span style="display:none"></span>Get Started
       </div>
       <h2 class="section-title" style="text-align:center">
-        귀사의 AI에 필요한<br>데이터를 말씀해 주세요
+        지금 시작하세요
       </h2>
       <p class="section-desc" style="text-align:center">
-        맞춤 샘플 데이터셋을 2주 이내 무상 제공합니다.<br>
-        품질 확인 후 파일럿 계약 여부를 검토해 주세요.
+        개인 — 방치된 통화 데이터를 자산으로. <strong>연 ₩300만 Cap</strong> (분리과세 안전).<br>
+        기업 — 맞춤 샘플 데이터셋 2주 이내 무상 제공. NDA 체결 가능.
       </p>
-      <div class="cta-actions">
-        <a href="mailto:admin@uncounted.cloud" class="btn-primary" style="font-size:15px; padding: 16px 40px;">
-          파일럿 데이터 요청 &rarr;
+
+      <div class="cta-actions" style="margin-top:32px">
+        <a href="/signup" class="btn-primary" style="font-size:15px; padding:16px 40px; background:linear-gradient(135deg,#7c6cf0,#a78bfa)">
+          개인 가입하기 &rarr;
         </a>
-        <a href="mailto:admin@uncounted.cloud" class="btn-ghost">
-          일반 문의
+        <a href="mailto:admin@uncounted.cloud?subject=B2B 파일럿 데이터 요청" class="btn-primary" style="font-size:15px; padding:16px 40px;">
+          B2B 파일럿 요청 &rarr;
         </a>
+        <a href="mailto:admin@uncounted.cloud" class="btn-ghost">일반 문의</a>
       </div>
-      <div class="cta-note">
-        100~500건 샘플 무상 제공 &bull; NDA 체결 가능 &bull; 2주 이내 납품
+
+      <div class="cta-note" style="margin-top:24px">
+        <strong>개인:</strong> Android APK + iOS 웹 가입 &bull; 양자 동의 후만 처리 &bull; 매월 정산 &bull; 매년 1월 Cap 리셋<br>
+        <strong>기업:</strong> 100~500건 샘플 무상 &bull; NDA 가능 &bull; 2주 이내 납품 &bull; 비독점 N회 5~10
+      </div>
+
+      <div style="margin-top:32px;padding:20px;background:rgba(124,108,240,0.06);border:1px solid var(--border);border-radius:12px;font-size:12px;color:var(--text-secondary);text-align:center;line-height:1.7">
+        ※ 보상금 산정 — 매출 - 운영비 = 순이익 → 50% 회사 유보 + 50% 화자 풀 (선가입자 우선 + 시간 비례).<br>
+        ※ 분배 알고리즘 + 분기 운영비 결산 공개 (가입자 10K+ 시점부터 외부 회계 감사).<br>
+        ※ 본 페이지의 단가·보상은 시드 단계 추정. LOI 확보 + 첫 매출 발생 후 정식 단가 공시.
       </div>
     </div>
   </div>
