@@ -1,10 +1,7 @@
 # Cloudflare Pages routing
-# /signup, /download는 Cloudflare Pages가 .html 파일 자동 매칭 (clean URL)
-# → _redirects에 박으면 ERR_TOO_MANY_REDIRECTS loop 발생, 제거.
-#
-# /peer/{token}만 dynamic path라 명시 rewrite 필요.
-
-/peer/*   /peer.html   200
+# Cloudflare Pages 자동 .html 매칭으로 /peer /signup /download 모두 박을 필요 X
+# (이전 /peer/* /peer.html 200 = 308 redirect 이슈로 token 잘림)
+# 신규: /peer?token=... query 형식 사용 (peer.html 자동 매칭)
 
 # /legal/* — 약관 페이지 미배포, 메인으로 임시 redirect (302)
 /legal/privacy   /   302

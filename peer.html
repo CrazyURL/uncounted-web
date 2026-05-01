@@ -482,14 +482,14 @@ body {
 <script>
 const API_BASE = 'https://uncounted-api.onrender.com'
 
-// URL pathname에서 token 추출 — /peer/{token} 또는 ?token=
+// URL에서 token 추출 — query string 우선 (/peer?token=...), pathname 폴백 (/peer/{token})
+// Cloudflare Pages가 path 형식 시 308 redirect로 token 자르므로 query 형식 권장.
 function extractToken() {
-  // Path: /peer/abc123 or /peer.html?token=abc123
-  const path = window.location.pathname
-  const pathMatch = path.match(/\/peer\/([^\/\?#]+)/)
-  if (pathMatch) return pathMatch[1]
   const params = new URLSearchParams(window.location.search)
-  return params.get('token')
+  const queryToken = params.get('token')
+  if (queryToken) return queryToken
+  const pathMatch = window.location.pathname.match(/\/peer\/([^\/\?#]+)/)
+  return pathMatch ? pathMatch[1] : null
 }
 
 function fmtKRW(n) {
