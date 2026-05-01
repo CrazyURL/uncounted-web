@@ -1,14 +1,11 @@
 # Cloudflare Pages routing
-# /peer/{token} → peer.html (URL 보존, 200 rewrite)
+# /signup, /download는 Cloudflare Pages가 .html 파일 자동 매칭 (clean URL)
+# → _redirects에 박으면 ERR_TOO_MANY_REDIRECTS loop 발생, 제거.
+#
+# /peer/{token}만 dynamic path라 명시 rewrite 필요.
+
 /peer/*   /peer.html   200
-/peer     /peer.html   200
 
-# /signup → signup.html
-/signup   /signup.html   200
-
-# /download → download.html
-/download   /download.html   200
-
-# /legal/* — 약관 (미배포 시 메인으로)
-/legal/privacy   /index.html   302
-/legal/terms     /index.html   302
+# /legal/* — 약관 페이지 미배포, 메인으로 임시 redirect (302)
+/legal/privacy   /   302
+/legal/terms     /   302
