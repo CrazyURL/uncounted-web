@@ -1,0 +1,14 @@
+# Cloudflare Pages routing
+# /peer/{token} → peer.html (URL 보존, 200 rewrite)
+/peer/*   /peer.html   200
+/peer     /peer.html   200
+
+# /signup → signup.html
+/signup   /signup.html   200
+
+# /download → download.html
+/download   /download.html   200
+
+# /legal/* — 약관 (미배포 시 메인으로)
+/legal/privacy   /index.html   302
+/legal/terms     /index.html   302

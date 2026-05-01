@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCOUNTED — 양자 동의 요청</title>
+<meta name="description" content="통화 데이터 양자 동의 요청. 본인 + 상대방 양쪽 동의 후에만 서버 처리. PII 마스킹 97.5% + KISA 가이드라인 준수.">
+
+<!-- 동적 OG (token별 갱신은 Cloudflare Pages Functions 영역, Sprint 5+) -->
+<meta property="og:title" content="UNCOUNTED — 양자 동의 요청">
+<meta property="og:description" content="통화 데이터 동의 요청. 30초면 확인 가능. PII 97.5% + 양자 동의 인프라.">
+<meta property="og:image" content="https://uncounted-web.pages.dev/og-default.png">
+<meta property="og:url" content="https://uncounted-web.pages.dev/peer">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-deep: #06081a;
+  --bg-primary: #0a0e27;
+  --bg-card: #0f1333;
+  --bg-elevated: #151a42;
+  --bg-cta: #1a1a2e;
+  --purple-core: #7c6cf0;
+  --purple-light: #a78bfa;
+  --purple-dark: #6B46C1;
+  --purple-glow: rgba(124,108,240,0.15);
+  --text-primary: #e8e6f0;
+  --text-secondary: #8b87a8;
+  --text-dim: #5a5678;
+  --border: rgba(124,108,240,0.12);
+  --border-strong: rgba(124,108,240,0.25);
+  --white: #ffffff;
+  --green: #34d399;
+  --red: #f87171;
+  --amber: #fbbf24;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+/* ═══════════════════ TOP NAV ═══════════════════ */
+.topbar {
+  padding: 16px 20px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--white); text-decoration: none; }
+.logo span { color: var(--purple-core); }
+.topbar-link { font-size: 12px; color: var(--text-secondary); text-decoration: none; }
+
+/* ═══════════════════ LAYER 1 — HERO 동의 ═══════════════════ */
+.layer-hero {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-deep) 100%);
+  padding: 48px 0 64px;
+  text-align: center;
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--purple-light);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  background: var(--purple-glow);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.hero-title .name { color: var(--purple-light); }
+.hero-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; }
+
+/* 큰 금액 박스 */
+.amount-box {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-core) 100%);
+  padding: 28px 24px;
+  border-radius: 16px;
+  margin: 24px 0;
+  box-shadow: 0 12px 32px rgba(124,108,240,0.25);
+}
+.amount-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
+.amount-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -1px;
+}
+.amount-disclaimer {
+  font-size: 10px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* 데이터 요약 */
+.data-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0 28px;
+}
+.data-item {
+  background: var(--bg-card);
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.data-item-val { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600; color: var(--white); }
+.data-item-lbl { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+
+/* CTA 버튼 — 동의/거절 1:2 비대칭 */
+.cta-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.btn {
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-decline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+}
+.btn-decline:hover:not(:disabled) { background: var(--bg-card); color: var(--white); }
+.btn-agree {
+  background: linear-gradient(135deg, var(--purple-core), var(--purple-light));
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(124,108,240,0.35);
+}
+.btn-agree:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(124,108,240,0.45); }
+
+.hero-disclaimer {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+/* ═══════════════════ LAYER 2 — TRUST ═══════════════════ */
+.layer-trust { padding: 56px 0; background: var(--bg-deep); }
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  margin-bottom: 12px;
+}
+.section-title { font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; }
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.trust-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 16px;
+}
+.trust-icon { font-size: 22px; margin-bottom: 10px; }
+.trust-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.trust-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+.trust-metric { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--purple-light); margin: 4px 0; }
+
+/* ═══════════════════ LAYER 3 — HOW IT WORKS ═══════════════════ */
+.layer-how { padding: 56px 0; background: var(--bg-primary); }
+.how-steps { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+.how-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.how-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--purple-core);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.how-text { flex: 1; }
+.how-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.how-desc { font-size: 12px; color: var(--text-secondary); }
+
+/* ═══════════════════ LAYER 4 — SIGNUP CTA ═══════════════════ */
+.layer-signup {
+  padding: 64px 0;
+  background: var(--bg-cta);
+  border-top: 1px solid var(--border-strong);
+}
+.signup-eyebrow {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(251,191,36,0.15);
+  color: var(--amber);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.signup-title { font-size: 24px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 12px; }
+.signup-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
+.signup-cap {
+  display: inline-block;
+  background: rgba(124,108,240,0.12);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0 24px;
+  font-size: 13px;
+  color: var(--purple-light);
+}
+.signup-cap strong { color: var(--white); font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+.signup-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.signup-btn {
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.signup-btn-primary {
+  background: var(--purple-core);
+  color: var(--white);
+  border: 1px solid var(--purple-light);
+}
+.signup-btn-primary:hover { background: var(--purple-light); }
+.signup-btn-secondary {
+  background: transparent;
+  color: var(--purple-light);
+  border: 1px solid var(--border-strong);
+}
+.signup-btn-secondary:hover { background: var(--bg-card); }
+
+/* ═══════════════════ STATE ═══════════════════ */
+.state-message {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  margin: 28px 0;
+}
+.state-message.success { border-color: var(--green); background: rgba(52,211,153,0.06); }
+.state-message.error { border-color: var(--red); background: rgba(248,113,113,0.06); }
+.state-emoji { font-size: 36px; margin-bottom: 10px; }
+.state-msg-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.state-msg-desc { font-size: 12px; color: var(--text-secondary); }
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+.footer {
+  padding: 24px 0 32px;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.footer-disclaimer {
+  font-size: 10px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 12px;
+}
+.footer-links { font-size: 11px; color: var(--text-dim); }
+.footer-links a { color: var(--purple-light); text-decoration: none; }
+
+/* ═══════════════════ MOBILE ═══════════════════ */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-title { font-size: 22px; }
+  .amount-value { font-size: 36px; }
+  .data-summary { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .signup-cta-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════ LOADING ═══════════════════ */
+.skeleton { background: linear-gradient(90deg, var(--bg-card), var(--bg-elevated), var(--bg-card)); background-size: 200% 100%; animation: skeleton 1.4s linear infinite; border-radius: 6px; color: transparent; }
+@keyframes skeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="logo">UN<span>COUNTED</span></a>
+    <a href="/" class="topbar-link">메인 사이트 &rarr;</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════ LAYER 1 — HERO 동의 (Above the Fold) ═══════════════════ -->
+<section class="layer-hero">
+  <div class="container">
+    <div class="eyebrow">양자 동의 요청</div>
+    <h1 class="hero-title">
+      <span class="name" id="senderName">[송신자]</span>님이<br>부탁이 있어요
+    </h1>
+    <p class="hero-sub">통화 데이터 동의 요청 · 30초면 확인 가능</p>
+
+    <!-- 큰 금액 박스 -->
+    <div class="amount-box">
+      <div class="amount-label">예상 보상 (양자 동의 풀 도달 시)</div>
+      <div class="amount-value" id="amountValue">₩—</div>
+      <div class="amount-disclaimer">
+        ※ Cap ₩300만/년 + 시장 단가 + 매수자 거래에 따라 변동.<br>
+        시드 단계 추정 — LOI 확보 후 정식 단가 공시.
+      </div>
+    </div>
+
+    <!-- 데이터 요약 -->
+    <div class="data-summary">
+      <div class="data-item">
+        <div class="data-item-val" id="callCount">—</div>
+        <div class="data-item-lbl">통화 건수</div>
+      </div>
+      <div class="data-item">
+        <div class="data-item-val" id="totalHours">—</div>
+        <div class="data-item-lbl">총 시간</div>
+      </div>
+    </div>
+
+    <!-- CTA 1:2 비대칭 -->
+    <div class="cta-row" id="ctaRow">
+      <button class="btn btn-decline" id="btnDecline" disabled>거절</button>
+      <button class="btn btn-agree" id="btnAgree" disabled>동의하기</button>
+    </div>
+
+    <p class="hero-disclaimer">
+      ※ 본 동의는 양자 동의 인프라의 한 축. 본인 + 상대방 양쪽 동의 후에만 통화 음성이
+      서버로 전송되어 PII 마스킹·STT 처리. 그 전엔 송신자 디바이스에 그대로 보관.
+    </p>
+
+    <!-- 동의/거절 후 상태 메시지 (초기 hidden) -->
+    <div id="stateContainer"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LAYER 2 — TRUST ═══════════════════ -->
+<section class="layer-trust">
+  <div class="container">
+    <div class="section-label">왜 안전한가요?</div>
+    <h2 class="section-title">정부 가이드라인 + 측정값으로 검증</h2>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon">&#x1F6E1;&#xFE0F;</div>
+        <div class="trust-title">PII 마스킹 검증</div>
+        <div class="trust-metric">97.5%</div>
+        <div class="trust-desc">알파 209건 baseline. KISA 비식별 조치 가이드라인 준수.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">&#x2696;&#xFE0F;</div>
+        <div class="trust-title">양자 동의 인프라</div>
+        <div class="trust-metric">국내 최초</div>
+        <div class="trust-desc">본인 + 상대방 양쪽 동의 + IP·토큰 chain 검증. PIPA 정합.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">&#x1F4DC;</div>
+        <div class="trust-title">분배 알고리즘 공개</div>
+        <div class="trust-metric">v0.6</div>
+        <div class="trust-desc">매출 50% 화자 풀 + 선가입자 우선 + Cap ₩300만. 분기 결산 공개.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">&#x1F510;</div>
+        <div class="trust-title">언제든 철회</div>
+        <div class="trust-metric">PIPA 정합</div>
+        <div class="trust-desc">동의 후에도 앱·웹에서 즉시 철회. 미납품 데이터 즉시 삭제.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LAYER 3 — HOW IT WORKS ═══════════════════ -->
+<section class="layer-how">
+  <div class="container">
+    <div class="section-label">30초면 확인</div>
+    <h2 class="section-title">3단계로 간단합니다</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-text">
+          <div class="how-title">디바이스 메타 자산 식별</div>
+          <div class="how-desc">송신자 폰에서 통화 메타만 추출 (시간·길이·해시). 음성 원본은 폰에 그대로 보관.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-text">
+          <div class="how-title">양자 동의 (지금 이 단계)</div>
+          <div class="how-desc">본인 + 상대방 양쪽 동의 완료. IP + 토큰 chain 검증. 동의 시점 기록.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-text">
+          <div class="how-title">서버 비식별 처리 + 보상 분배</div>
+          <div class="how-desc">동의 후에만 서버 GPU 처리. PII 97.5% + STT + 화자분리. 매월 정산.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LAYER 4 — SIGNUP CTA ═══════════════════ -->
+<section class="layer-signup">
+  <div class="container">
+    <div class="signup-eyebrow">당신도 통화 자산이 있나요?</div>
+    <h2 class="signup-title">방치된 통화 데이터가<br>자산이 됩니다</h2>
+    <p class="signup-desc">
+      평균 380건 통화 (디바이스마다 다름). 본인 + 상대방 동의로 양쪽 분배.
+    </p>
+    <div class="signup-cap">
+      <strong>연 ₩300만 Cap</strong> (분리과세 안전, 매년 1월 리셋)
+    </div>
+    <div class="signup-cta-grid">
+      <a href="/download" class="signup-btn signup-btn-primary">
+        Android APK 다운로드
+      </a>
+      <a href="/signup" class="signup-btn signup-btn-secondary">
+        iOS 웹 가입
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-disclaimer">
+      개인정보보호법 제15조 + 통신비밀보호법 + PIPA 30조 11항 (음성=생체정보) 정합.<br>
+      양자 동의 완료 후에만 회사 서버에 전송 + 처리. ₩470,000 등 상위 사례는 양자 동의 풀 도달 시 추정.<br>
+      시장 단가·매수자 거래에 따라 변동.
+    </div>
+    <div class="footer-links">
+      <a href="/legal/privacy">개인정보처리방침</a> &middot;
+      <a href="/legal/terms">이용약관</a> &middot;
+      <a href="mailto:contact@uncounted.kr">문의</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+const API_BASE = 'https://uncounted-api.onrender.com'
+
+// URL pathname에서 token 추출 — /peer/{token} 또는 ?token=
+function extractToken() {
+  // Path: /peer/abc123 or /peer.html?token=abc123
+  const path = window.location.pathname
+  const pathMatch = path.match(/\/peer\/([^\/\?#]+)/)
+  if (pathMatch) return pathMatch[1]
+  const params = new URLSearchParams(window.location.search)
+  return params.get('token')
+}
+
+function fmtKRW(n) {
+  if (n == null || isNaN(n)) return '₩—'
+  return '₩' + Math.round(n).toLocaleString('ko-KR')
+}
+
+function showState(type, emoji, title, desc) {
+  const ctaRow = document.getElementById('ctaRow')
+  ctaRow.style.display = 'none'
+  document.getElementById('stateContainer').innerHTML = `
+    <div class="state-message ${type}">
+      <div class="state-emoji">${emoji}</div>
+      <div class="state-msg-title">${title}</div>
+      <div class="state-msg-desc">${desc}</div>
+    </div>
+  `
+}
+
+async function loadInvitation() {
+  const token = extractToken()
+  if (!token) {
+    showState('error', '⚠️', '잘못된 초대 링크', '카카오톡으로 받은 링크를 다시 확인해주세요.')
+    return
+  }
+
+  try {
+    const r = await fetch(`${API_BASE}/api/consent/by-token/${encodeURIComponent(token)}`, {
+      headers: { 'Accept': 'application/json' },
+    })
+    if (!r.ok) {
+      if (r.status === 404) {
+        showState('error', '🔍', '초대를 찾을 수 없습니다', '링크가 만료되었거나 유효하지 않습니다.')
+      } else {
+        showState('error', '⚠️', '일시적 오류', `잠시 후 다시 시도해주세요. (HTTP ${r.status})`)
+      }
+      return
+    }
+    const data = await r.json()
+
+    // 이미 처리된 초대 분기
+    if (data.status === 'agreed') {
+      showState('success', '✅', '이미 동의하셨습니다', '서버 비식별 처리가 진행됩니다. 송신자에게 알림이 전달됩니다.')
+      return
+    }
+    if (data.status === 'declined') {
+      showState('', '🙅', '거절 완료', '본 동의는 거절되었습니다. 송신자가 다시 요청 가능합니다.')
+      return
+    }
+    if (data.status === 'expired') {
+      showState('error', '⏰', '만료된 초대', '송신자에게 새 초대 링크 요청을 부탁드립니다.')
+      return
+    }
+
+    // 정상 pending 상태 — UI 채움
+    document.getElementById('senderName').textContent = data.sender_name || '송신자'
+    document.getElementById('callCount').textContent = (data.call_count ?? '—') + '건'
+    document.getElementById('totalHours').textContent = (data.total_hours ? data.total_hours.toFixed(1) + 'h' : '—')
+    document.getElementById('amountValue').textContent = fmtKRW(data.estimated_amount_krw)
+
+    // 버튼 활성화
+    const btnAgree = document.getElementById('btnAgree')
+    const btnDecline = document.getElementById('btnDecline')
+    btnAgree.disabled = false
+    btnDecline.disabled = false
+
+    btnAgree.addEventListener('click', () => handleResponse('agree', token))
+    btnDecline.addEventListener('click', () => handleResponse('decline', token))
+
+  } catch (e) {
+    showState('error', '🌐', '네트워크 오류', '인터넷 연결을 확인하고 다시 시도해주세요.')
+  }
+}
+
+async function handleResponse(action, token) {
+  const btnAgree = document.getElementById('btnAgree')
+  const btnDecline = document.getElementById('btnDecline')
+  btnAgree.disabled = true
+  btnDecline.disabled = true
+  btnAgree.textContent = '처리 중...'
+
+  try {
+    const r = await fetch(`${API_BASE}/api/consent/${action}/${encodeURIComponent(token)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    })
+    if (!r.ok) {
+      throw new Error(`HTTP ${r.status}`)
+    }
+    if (action === 'agree') {
+      showState('success', '🎉', '동의 완료', '서버 비식별 처리가 시작됩니다. 송신자에게 알림이 전달됩니다. 본인의 통화 데이터도 자산화 가능 — 아래 가입 안내 참고.')
+    } else {
+      showState('', '🙅', '거절 완료', '본 동의는 거절되었습니다. 송신자가 새 요청 보낼 수 있습니다. 본인 통화 데이터도 자산화 관심 있으시면 아래 가입 안내 참고.')
+    }
+    // Layer 4 가입 CTA 자동 스크롤 노출 (잠재 가입자 캡처)
+    setTimeout(() => {
+      document.querySelector('.layer-signup').scrollIntoView({ behavior: 'smooth' })
+    }, 1200)
+  } catch (e) {
+    btnAgree.disabled = false
+    btnDecline.disabled = false
+    btnAgree.textContent = '동의하기'
+    showState('error', '⚠️', '처리 실패', `${e.message}. 잠시 후 다시 시도해주세요.`)
+  }
+}
+
+// 페이지 로드 시 초대 정보 fetch
+loadInvitation()
+</script>
+
+</body>
+</html>
