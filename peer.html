@@ -509,6 +509,24 @@ function showState(type, emoji, title, desc) {
   `
 }
 
+// URL query params에서 fallback 메타 추출 (송신자 클라이언트 측 발송 시 박힘)
+function extractFallbackMeta() {
+  const params = new URLSearchParams(window.location.search)
+  return {
+    callCount: parseInt(params.get('n') || '0', 10) || null,
+    totalHours: parseFloat(params.get('h') || '0') || null,
+    senderName: params.get('s') || null,
+  }
+}
+
+// 시드 단가 추정 보상 (UC-A1 ₩100K~500K/건 × 50% 화자 풀 × 시간 비율)
+function estimateRewardKrw(totalHours) {
+  if (!totalHours || totalHours <= 0) return null
+  // 시드 단계 중간값 ₩300K/건 시간당 환산 + 50% 화자 풀
+  // ※ Cap ₩300만/년 + 면책 명시
+  return Math.round(totalHours * 300_000 * 0.5)
+}
+
 async function loadInvitation() {
   const token = extractToken()
   if (!token) {
@@ -516,52 +534,68 @@ async function loadInvitation() {
     return
   }
 
+  // 1차: URL query params에서 송신자 정보 + 데이터 추출 (즉시 UI 채움)
+  const fallback = extractFallbackMeta()
+  if (fallback.senderName) {
+    document.getElementById('senderName').textContent = fallback.senderName
+  }
+  if (fallback.callCount) {
+    document.getElementById('callCount').textContent = fallback.callCount.toLocaleString('ko-KR') + '건'
+  }
+  if (fallback.totalHours) {
+    document.getElementById('totalHours').textContent = fallback.totalHours.toFixed(1) + 'h'
+    const reward = estimateRewardKrw(fallback.totalHours)
+    if (reward !== null) {
+      document.getElementById('amountValue').textContent = '~' + fmtKRW(reward)
+    }
+  }
+
+  // 2차: 서버 by-token 조회 (서버 등록된 invitation 상태 확인)
+  let serverData = null
   try {
     const r = await fetch(`${API_BASE}/api/consent/by-token/${encodeURIComponent(token)}`, {
       headers: { 'Accept': 'application/json' },
     })
-    if (!r.ok) {
-      if (r.status === 404) {
-        showState('error', '🔍', '초대를 찾을 수 없습니다', '링크가 만료되었거나 유효하지 않습니다.')
-      } else {
-        showState('error', '⚠️', '일시적 오류', `잠시 후 다시 시도해주세요. (HTTP ${r.status})`)
-      }
+    if (r.ok) {
+      const j = await r.json()
+      serverData = j.data || j  // Hono c.json wrapping unwrap
+    } else if (r.status === 404 && !fallback.senderName) {
+      // URL fallback도 없으면 진짜 invalid
+      showState('error', '🔍', '초대를 찾을 수 없습니다', '링크가 만료되었거나 유효하지 않습니다.')
       return
     }
-    const data = await r.json()
+    // 404인데 fallback 있으면 client-only 모드 (dev 환경 미로그인 등) — 진행 가능
+  } catch (e) {
+    // 네트워크 실패 시 fallback만으로 진행
+    if (!fallback.senderName) {
+      showState('error', '🌐', '네트워크 오류', '인터넷 연결을 확인하고 다시 시도해주세요.')
+      return
+    }
+  }
 
-    // 이미 처리된 초대 분기
-    if (data.status === 'agreed') {
+  // 서버 응답 기반 분기 (이미 처리된 초대)
+  if (serverData) {
+    if (serverData.status === 'agreed') {
       showState('success', '✅', '이미 동의하셨습니다', '서버 비식별 처리가 진행됩니다. 송신자에게 알림이 전달됩니다.')
       return
     }
-    if (data.status === 'declined') {
+    if (serverData.status === 'declined') {
       showState('', '🙅', '거절 완료', '본 동의는 거절되었습니다. 송신자가 다시 요청 가능합니다.')
       return
     }
-    if (data.status === 'expired') {
+    if (serverData.status === 'expired') {
       showState('error', '⏰', '만료된 초대', '송신자에게 새 초대 링크 요청을 부탁드립니다.')
       return
     }
-
-    // 정상 pending 상태 — UI 채움
-    document.getElementById('senderName').textContent = data.sender_name || '송신자'
-    document.getElementById('callCount').textContent = (data.call_count ?? '—') + '건'
-    document.getElementById('totalHours').textContent = (data.total_hours ? data.total_hours.toFixed(1) + 'h' : '—')
-    document.getElementById('amountValue').textContent = fmtKRW(data.estimated_amount_krw)
-
-    // 버튼 활성화
-    const btnAgree = document.getElementById('btnAgree')
-    const btnDecline = document.getElementById('btnDecline')
-    btnAgree.disabled = false
-    btnDecline.disabled = false
-
-    btnAgree.addEventListener('click', () => handleResponse('agree', token))
-    btnDecline.addEventListener('click', () => handleResponse('decline', token))
-
-  } catch (e) {
-    showState('error', '🌐', '네트워크 오류', '인터넷 연결을 확인하고 다시 시도해주세요.')
   }
+
+  // 정상 pending 또는 client-only 모드 — 동의/거절 버튼 활성화
+  const btnAgree = document.getElementById('btnAgree')
+  const btnDecline = document.getElementById('btnDecline')
+  btnAgree.disabled = false
+  btnDecline.disabled = false
+  btnAgree.addEventListener('click', () => handleResponse('agree', token))
+  btnDecline.addEventListener('click', () => handleResponse('decline', token))
 }
 
 async function handleResponse(action, token) {
