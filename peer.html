@@ -605,20 +605,38 @@ async function handleResponse(action, token) {
   btnDecline.disabled = true
   btnAgree.textContent = '처리 중...'
 
+  let status = 0
   try {
     const r = await fetch(`${API_BASE}/api/consent/${action}/${encodeURIComponent(token)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
     })
-    if (!r.ok) {
+    status = r.status
+
+    if (r.ok) {
+      // 정상 서버 등록된 토큰 — 백엔드 처리 완료
+      if (action === 'agree') {
+        showState('success', '🎉', '동의 완료', '서버 비식별 처리가 시작됩니다. 송신자에게 알림이 전달됩니다. 본인의 통화 데이터도 자산화 가능 — 아래 가입 안내 참고.')
+      } else {
+        showState('', '🙅', '거절 완료', '본 동의는 거절되었습니다. 송신자가 새 요청 보낼 수 있습니다.')
+      }
+    } else if (r.status === 404) {
+      // 토큰 서버 미등록 — client-only 모드 (송신자가 미로그인 상태에서 발송)
+      // 시드 검증 단계 자주 발생. UX는 success로 처리하되 안내 추가.
+      if (action === 'agree') {
+        showState('success', '✅',
+          '동의 의사 확인 (검증 모드)',
+          '송신자가 로그인 상태에서 발송하지 않아 서버 등록이 보류됐습니다. ' +
+          '송신자에게 직접 알려주세요: "동의했어, 다시 발송해줘" — 송신자가 재로그인 후 재발송 시 정식 처리됩니다.')
+      } else {
+        showState('', '🙅', '거절 의사 확인',
+          '송신자에게 거절 의사를 직접 전달해주세요.')
+      }
+    } else {
       throw new Error(`HTTP ${r.status}`)
     }
-    if (action === 'agree') {
-      showState('success', '🎉', '동의 완료', '서버 비식별 처리가 시작됩니다. 송신자에게 알림이 전달됩니다. 본인의 통화 데이터도 자산화 가능 — 아래 가입 안내 참고.')
-    } else {
-      showState('', '🙅', '거절 완료', '본 동의는 거절되었습니다. 송신자가 새 요청 보낼 수 있습니다. 본인 통화 데이터도 자산화 관심 있으시면 아래 가입 안내 참고.')
-    }
+
     // Layer 4 가입 CTA 자동 스크롤 노출 (잠재 가입자 캡처)
     setTimeout(() => {
       document.querySelector('.layer-signup').scrollIntoView({ behavior: 'smooth' })
@@ -627,7 +645,11 @@ async function handleResponse(action, token) {
     btnAgree.disabled = false
     btnDecline.disabled = false
     btnAgree.textContent = '동의하기'
-    showState('error', '⚠️', '처리 실패', `${e.message}. 잠시 후 다시 시도해주세요.`)
+    showState('error', '⚠️',
+      `처리 실패 (HTTP ${status || '?'})`,
+      status === 0
+        ? '네트워크 연결 확인 후 다시 시도해주세요.'
+        : `${e.message} — 잠시 후 다시 시도하거나 송신자에게 문의해주세요.`)
   }
 }
 
