@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보처리방침 — UNCOUNTED</title>
+<meta name="description" content="Uncounted 개인정보처리방침. v1.1 · 시행일 2026년 6월 1일">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #06081a;
+  --bg-primary: #0a0e27;
+  --bg-card: #ffffff;
+  --purple-core: #7c6cf0;
+  --purple-light: #a78bfa;
+  --border: rgba(124,108,240,0.12);
+  --border-strong: rgba(124,108,240,0.25);
+  --text-on-dark: #e8e6f0;
+  --text-dim: #8b87a8;
+  --text-body: #1a1a2e;
+  --text-body-sub: #4a4a6a;
+  --text-body-tertiary: #7a7a90;
+  --row-zebra: #f7f6fb;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-on-dark);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.topbar {
+  padding: 16px 20px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.logo span { color: var(--purple-core); }
+.topbar-link {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topbar-link:hover { color: var(--purple-light); }
+
+.page-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+.page-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.page-header .meta {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--purple-light);
+  padding: 4px 12px;
+  background: rgba(124,108,240,0.12);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+}
+
+.content-card {
+  background: var(--bg-card);
+  color: var(--text-body);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 24px 64px rgba(6,8,26,0.4);
+}
+.content-card h1 { display: none; }
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-body);
+  margin-top: 32px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--purple-core);
+}
+.content-card h2:first-child { margin-top: 0; }
+.content-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-body);
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+.content-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-body-sub);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.content-card p {
+  font-size: 14px;
+  color: var(--text-body-sub);
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+.content-card ul, .content-card ol {
+  font-size: 14px;
+  color: var(--text-body-sub);
+  margin-bottom: 12px;
+  padding-left: 24px;
+  line-height: 1.8;
+}
+.content-card li { margin-bottom: 6px; }
+.content-card li > ul, .content-card li > ol { margin-top: 6px; margin-bottom: 6px; }
+.content-card strong { color: var(--text-body); font-weight: 700; }
+.content-card a { color: var(--purple-core); text-decoration: underline; text-underline-offset: 2px; }
+.content-card a:hover { color: var(--purple-light); }
+.content-card hr {
+  border: 0;
+  border-top: 1px solid #e5e3ee;
+  margin: 32px 0;
+}
+.content-card blockquote {
+  background: #f7f6fb;
+  border-left: 3px solid var(--purple-core);
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: var(--text-body-sub);
+  border-radius: 0 8px 8px 0;
+}
+.content-card blockquote p { margin-bottom: 6px; font-size: 13px; }
+.content-card blockquote p:last-child { margin-bottom: 0; }
+.content-card code {
+  background: #ecebf3;
+  color: var(--text-body);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 13px;
+}
+.content-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.content-card thead th {
+  background: var(--purple-core);
+  color: #fff;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 12px;
+}
+.content-card tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e3ee;
+  color: var(--text-body-sub);
+  vertical-align: top;
+}
+.content-card tbody tr:nth-child(even) td { background: var(--row-zebra); }
+.content-card tbody tr:last-child td { border-bottom: 0; }
+
+.footer {
+  max-width: 820px;
+  margin: 32px auto 0;
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+.footer-links { margin-bottom: 8px; }
+.footer-links a {
+  color: var(--purple-light);
+  text-decoration: none;
+  margin: 0 8px;
+}
+.footer-links a:hover { text-decoration: underline; }
+.footer-meta { font-size: 11px; color: var(--text-dim); }
+
+@media (max-width: 600px) {
+  .page-header h1 { font-size: 22px; }
+  .content-card { padding: 24px 18px; }
+  .content-card h2 { font-size: 17px; }
+  .content-card h3 { font-size: 15px; }
+  .content-card p, .content-card ul, .content-card ol { font-size: 13px; }
+  .content-card table { font-size: 12px; }
+  .content-card thead th, .content-card tbody td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="logo">UN<span>COUNTED</span></a>
+    <a href="/" class="topbar-link">메인 사이트 &rarr;</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-header">
+    <h1>개인정보처리방침</h1>
+    <span class="meta">v1.1 · 시행일 2026년 6월 1일</span>
+  </div>
+
+  <article class="content-card">
+<h1>Uncounted 개인정보처리방침</h1>
+<blockquote>
+<p><strong>버전:</strong> v1.1
+<strong>작성일:</strong> 2026-04-29
+<strong>개정일:</strong> 2026-05-02 (제3.1조 프로필 정보에 &quot;억양&quot; 추가)
+<strong>시행일자:</strong> 2026년 6월 1일
+<strong>준거 법령:</strong> 「개인정보 보호법」(PIPA) 제30조, 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」, 「통신비밀보호법」, 「위치정보의 보호 및 이용 등에 관한 법률」</p>
+</blockquote>
+<hr>
+<h2>시행일자</h2>
+<p>본 개인정보처리방침은 <strong>2026년 6월 1일</strong>부터 적용됩니다.</p>
+<h2>제1조 (총칙)</h2>
+<p>Uncounted(이하 &quot;회사&quot;)는 「개인정보 보호법」 제30조에 따라 정보주체(이하 &quot;이용자&quot;)의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 본 개인정보처리방침을 수립·공개합니다.</p>
+<p>회사는 본 방침을 통해 다음 사항을 명확히 알립니다.</p>
+<ul>
+<li>이용자의 개인정보를 어떤 목적으로, 어떤 항목을, 얼마 동안 처리하는지</li>
+<li>통화 음성 데이터(생체정보)에 대한 별도의 보호 조치</li>
+<li>통화 상대방의 권익 보호를 위한 양자 동의 메커니즘</li>
+<li>비식별 처리된 데이터의 제3자 제공 및 이용자 보상 구조</li>
+</ul>
+<h2>제2조 (처리 목적)</h2>
+<p>회사는 다음의 목적을 위하여 개인정보를 처리하며, 이용자의 사전 동의 없이는 본래의 목적 범위를 초과하여 이용하지 않습니다.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>처리 목적</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>회원 가입 및 관리</td>
+<td>본인 식별·인증, 회원 자격 유지·관리, 서비스 부정이용 방지, 각종 고지·통지</td>
+</tr>
+<tr>
+<td>서비스 제공</td>
+<td>통화 음성 데이터의 비식별 처리(가명처리), 화자분리, 음성-텍스트 변환(STT, 외부 미공개), AI 학습용 데이터셋 구축</td>
+</tr>
+<tr>
+<td>데이터 거래</td>
+<td>비식별 처리된 음성·메타데이터의 제3자 제공(AI 모델 개발 기업·연구기관), 보상금 정산 및 지급</td>
+</tr>
+<tr>
+<td>법령 준수</td>
+<td>「통신비밀보호법」상 양자 동의 기반 데이터 활용 증명, 「개인정보 보호법」상 처리 이력 기록·보존</td>
+</tr>
+</tbody></table>
+<h2>제3조 (처리하는 개인정보 항목)</h2>
+<h3>3.1 회원 가입 시 수집 항목 (필수)</h3>
+<ul>
+<li><strong>인증 정보</strong>: 이메일 주소, 소셜 로그인(Google) 식별자</li>
+<li><strong>프로필 정보</strong>: 성별, 연령대, 거주 지역(시·도 단위), 주 사용 언어, 억양</li>
+<li><strong>디바이스 정보</strong>: 기기 고유 식별자(pseudo_id), 운영체제 버전</li>
+</ul>
+<h3>3.2 서비스 이용 시 수집 항목</h3>
+<ul>
+<li><strong>통화 음성 파일</strong>: 이용자가 직접 녹음·보관 중인 통화 녹음 파일</li>
+<li><strong>메타데이터</strong>: 통화 시각(일 단위로 비식별 처리), 통화 시간(분 단위), 발신/수신 구분</li>
+<li><strong>자동 수집 정보</strong>: 접속 IP, 쿠키, 서비스 이용 기록, 접속 로그</li>
+</ul>
+<h3>3.3 통화 상대방 동의 처리 시 수집 항목</h3>
+<ul>
+<li>동의 토큰(UUID), 동의 일시, 동의자의 IP 주소</li>
+</ul>
+<h3>3.4 민감정보 처리에 관한 별도 고지</h3>
+<p>회사가 처리하는 <strong>음성 데이터는 「개인정보 보호법」 시행령 제18조에 따라 생체인식정보(민감정보)에 해당할 수 있으며</strong>, 회사는 이를 다음과 같이 보호합니다.</p>
+<ul>
+<li>음성 파일 업로드 전 PII(개인식별정보) 자동 마스킹 처리(이름·전화번호·주소 등 비프 처리)</li>
+<li>화자분리를 통한 통화 상대방 음성의 별도 처리 (상대방 동의 미수신 시 본인 발화 구간만 활용)</li>
+<li>비식별 처리된 데이터만 제3자 제공</li>
+<li>「KISA 개인정보 비식별 조치 가이드라인」 준수 및 재식별 위험도 평가 통과 데이터에 한정 제공</li>
+</ul>
+<h2>제4조 (개인정보 보유 및 이용 기간)</h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>보유 기간</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>회원 정보</td>
+<td>회원 탈퇴 시까지 (탈퇴 후 즉시 파기)</td>
+<td>정보주체 동의</td>
+</tr>
+<tr>
+<td>통화 음성 원본</td>
+<td>업로드 후 처리 완료 즉시 파기 (GPU 서버 보관 기간 최대 24시간)</td>
+<td>처리 목적 달성</td>
+</tr>
+<tr>
+<td>비식별 처리된 음성 세그먼트·메타데이터</td>
+<td><strong>이용자의 동의 철회 시까지 (기간 제한 없음)</strong></td>
+<td>정보주체 동의</td>
+</tr>
+<tr>
+<td>동의 기록 (PIPA 동의·통화 상대방 동의 토큰)</td>
+<td>회원 탈퇴 시까지</td>
+<td>동의 사실 증빙</td>
+</tr>
+<tr>
+<td>부정이용 방지 기록</td>
+<td>1년</td>
+<td>「정보통신망법」</td>
+</tr>
+<tr>
+<td>결제·정산 기록</td>
+<td>5년</td>
+<td>「전자상거래법」</td>
+</tr>
+<tr>
+<td>접속 로그</td>
+<td>3개월</td>
+<td>「통신비밀보호법」</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>이용자 알림</strong>: 비식별 처리된 음성 세그먼트의 보유 기간은 이용자가 동의를 철회하기 전까지 회사가 계속 보유합니다. 이는 데이터 자산의 지속적 활용을 위함이며, 이용자는 언제든지 앱 내 [설정 &gt; 개인정보 관리]에서 동의를 철회하여 회사 내 보유 데이터의 즉시 삭제를 요청할 수 있습니다.</p>
+</blockquote>
+<h2>제5조 (개인정보의 제3자 제공)</h2>
+<p>회사는 이용자의 별도 동의를 받은 경우에 한하여 개인정보를 제3자에게 제공합니다.</p>
+<h3>5.1 제공 대상</h3>
+<ul>
+<li>AI 모델 개발 기업 (네이버클라우드, 카카오엔터프라이즈, 솔트룩스, 마인즈랩 등 국내 AI 데이터 수요 기업)</li>
+<li>AI 음성 기술 연구기관 (대학·연구소)</li>
+<li>음성 클로닝·합성 기업 (슈퍼톤, 네오사피엔스 등)</li>
+<li>글로벌 AI 모델 개발 기업 (OpenAI, Google, Anthropic 등 — 별도 국외 이전 동의 시)</li>
+</ul>
+<p>구체적 제공 대상 기업명·기관명은 계약 체결 후 본 방침에 추가 게시하며, 추가 시 시행 7일 전부터 공지합니다.</p>
+<h3>5.2 제공 항목</h3>
+<ul>
+<li>비식별 처리된 음성 세그먼트 (PII 마스킹 + 화자분리 완료)</li>
+<li>메타데이터 (통화 시각·시간·품질 메트릭, 화자 인구통계 분포)</li>
+</ul>
+<h3>5.3 제공 목적</h3>
+<p>AI 음성 인식·합성·자연어 처리 모델 학습용 데이터셋 구축</p>
+<h3>5.4 제공 받는 자의 보유·이용 기간</h3>
+<ul>
+<li>제공받은 데이터의 영구 사용권 부여 (계약 체결 시 별도 명시)</li>
+<li><strong>비독점 제공</strong>: 회사는 동일 데이터를 다수 기업에 제공할 수 있음</li>
+</ul>
+<blockquote>
+<p><strong>이용자 알림</strong>: 회사가 제3자에게 제공한 데이터는 영구 사용권이 부여되므로, 이용자가 동의를 철회하더라도 회사는 이미 제공된 데이터를 직접 회수할 수 없습니다. 이용자는 회원 탈퇴 또는 동의 철회 시 회사로부터 제공된 제3자 목록을 안내받으며, 해당 제3자에 대한 삭제는 이용자가 직접 요청해야 합니다.</p>
+</blockquote>
+<h3>5.5 통화 상대방 동의 기반 제공</h3>
+<p>「통신비밀보호법」 제3조에 따라, 통화 상대방의 음성이 포함된 데이터는 다음 조건을 모두 충족한 경우에만 제공됩니다.</p>
+<ul>
+<li>이용자(전화기 소유자)의 동의 (<code>user_only</code>)</li>
+<li>통화 상대방의 동의 (<code>both_agreed</code>)</li>
+</ul>
+<p>상대방 동의 미수신 시에는 이용자 본인의 발화 구간(화자분리 결과)만 제공되며, 상대방의 음성은 제공 데이터에서 제외됩니다.</p>
+<h2>제6조 (개인정보 처리의 위탁)</h2>
+<p>회사는 원활한 서비스 제공을 위하여 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+<table>
+<thead>
+<tr>
+<th>수탁자</th>
+<th>위탁 업무</th>
+<th>소재 국가</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Render Services, Inc.</td>
+<td>API 서버 호스팅</td>
+<td>미국</td>
+</tr>
+<tr>
+<td>Supabase, Inc.</td>
+<td>데이터베이스 운영</td>
+<td>싱가포르 (ap-southeast-1)</td>
+</tr>
+<tr>
+<td>iwinv (가비아)</td>
+<td>음성 파일 저장(S3 호환 객체 스토리지)</td>
+<td>대한민국</td>
+</tr>
+<tr>
+<td>Google LLC</td>
+<td>소셜 로그인(OAuth)</td>
+<td>미국</td>
+</tr>
+<tr>
+<td>Uncounted (자체 운영)</td>
+<td>음성 처리(STT, 화자분리, PII 마스킹)</td>
+<td>대한민국</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>참고</strong>: Supabase 리전은 가입 시 선택한 리전에 따라 다를 수 있으며, 정확한 리전은 회사가 운영 중인 인스턴스 기준입니다. 이용자는 회사 고객지원 이메일을 통해 정확한 리전을 확인할 수 있습니다.</p>
+</blockquote>
+<p>회사는 「개인정보 보호법」 제26조에 따라 위탁계약 체결 시 위탁업무 목적 외 처리 금지, 기술적·관리적 보호조치, 재위탁 제한, 책임 등을 계약서에 명시하고 위탁자가 안전하게 처리하는지 감독합니다.</p>
+<h2>제7조 (개인정보의 국외 이전)</h2>
+<p>회사는 다음과 같이 개인정보를 국외로 이전합니다.</p>
+<table>
+<thead>
+<tr>
+<th>이전 받는 자</th>
+<th>이전 국가</th>
+<th>이전 일시·방법</th>
+<th>이전 목적</th>
+<th>보유·이용 기간</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Render Services, Inc.</td>
+<td>미국</td>
+<td>서비스 이용 시 네트워크를 통한 전송</td>
+<td>API 서버 호스팅</td>
+<td>회원 탈퇴 시까지</td>
+</tr>
+<tr>
+<td>Supabase, Inc.</td>
+<td>싱가포르</td>
+<td>데이터베이스 저장</td>
+<td>DB 운영</td>
+<td>회원 탈퇴 시까지</td>
+</tr>
+<tr>
+<td>Google LLC</td>
+<td>미국</td>
+<td>소셜 로그인 시 네트워크 전송</td>
+<td>OAuth 인증</td>
+<td>Google 정책에 따름</td>
+</tr>
+</tbody></table>
+<p>이용자는 위 국외 이전을 거부할 수 있으나, 거부 시 서비스 이용이 제한될 수 있습니다.</p>
+<p><strong>제3자 제공 시 국외 이전:</strong> 비식별 처리된 데이터를 해외 AI 기업(OpenAI, Google, Anthropic 등)에 제공하는 경우, 이용자는 회원가입 시 별도의 국외 이전 동의를 받습니다.</p>
+<h2>제8조 (정보주체의 권리·의무 및 행사 방법)</h2>
+<p>이용자는 회사에 대해 언제든지 다음의 권리를 행사할 수 있습니다.</p>
+<ol>
+<li>개인정보 열람 요구</li>
+<li>개인정보 정정·삭제 요구</li>
+<li>개인정보 처리 정지 요구</li>
+<li>동의 철회</li>
+</ol>
+<h3>8.1 권리 행사 방법</h3>
+<ul>
+<li>앱 내 [설정 &gt; 개인정보 관리] 메뉴</li>
+<li>이메일: <a href="mailto:privacy@uncounted.app">privacy@uncounted.app</a></li>
+</ul>
+<h3>8.2 동의 철회·삭제 요청 처리</h3>
+<p>동의 철회 시 회사는 다음을 5일 이내에 처리합니다.</p>
+<ol>
+<li><strong>회사 내 보유 데이터 삭제</strong>: GPU 서버, S3 음성 파일, DB 개인정보</li>
+<li><strong>납품 대기 세션 취소</strong>: 제3자 제공 예정이었으나 아직 전달되지 않은 데이터 삭제</li>
+<li><strong>이미 제공된 데이터에 대한 안내</strong>: 삭제 요청 시점 이전에 제3자에게 이미 제공된 데이터 목록을 이용자에게 제공하며, 해당 제3자에 대한 삭제는 이용자가 직접 요청해야 합니다.</li>
+</ol>
+<blockquote>
+<p><strong>중요</strong>: 본 회사가 제3자에게 제공한 데이터는 영구 사용권이 부여되어 있으므로, 회사가 직접 회수하거나 삭제할 수 없습니다. 이용자는 본 사실을 인지하고 동의 여부를 결정해야 합니다.</p>
+</blockquote>
+<h2>제9조 (개인정보의 파기)</h2>
+<p>회사는 보유 기간 경과 또는 처리 목적 달성 시 지체 없이 다음과 같이 파기합니다.</p>
+<ul>
+<li><strong>전자적 파일</strong>: 복구·재생 불가능한 방법으로 영구 삭제</li>
+<li><strong>종이 문서</strong>: 분쇄 또는 소각</li>
+</ul>
+<h2>제10조 (개인정보의 안전성 확보 조치)</h2>
+<p>회사는 다음의 기술적·관리적 보호조치를 시행합니다.</p>
+<ul>
+<li><strong>암호화</strong>: 모든 API 통신 AES-256-GCM 암호화. 비밀번호 일방향 해시 저장</li>
+<li><strong>접근 권한 관리</strong>: 개인정보 접근 권한 최소화, 접근 로그 기록·보존</li>
+<li><strong>접근 통제</strong>: 외부 무단 접근 차단을 위한 방화벽·침입탐지 시스템</li>
+<li><strong>PII 자동 마스킹</strong>: 음성 처리 단계에서 정규식·NER·LLM 3중 검증으로 개인식별정보 자동 비프 처리. 검출률 ≥97% 목표</li>
+<li><strong>가명처리 기록 관리</strong>: 가명처리 목적·항목·방법을 문서로 보관 (3년 이상)</li>
+<li><strong>KISA 가이드라인 준수</strong>: 「개인정보 비식별 조치 가이드라인」에 따른 재식별 위험도 평가 시행</li>
+</ul>
+<h2>제11조 (자동 수집 장치 — 쿠키)</h2>
+<p>회사는 서비스 제공을 위해 쿠키를 사용할 수 있으며, 이용자는 브라우저 설정에서 쿠키 저장을 거부할 수 있습니다.</p>
+<h2>제12조 (개인정보 보호책임자)</h2>
+<p>회사는 개인정보 보호 관련 업무를 총괄하는 개인정보 보호책임자를 다음과 같이 지정합니다.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>개인정보 보호책임자</td>
+<td>문식환 (대표자)</td>
+</tr>
+<tr>
+<td>직책</td>
+<td>대표 (CEO)</td>
+</tr>
+<tr>
+<td>연락처 (이메일)</td>
+<td><a href="mailto:privacy@uncounted.app">privacy@uncounted.app</a></td>
+</tr>
+</tbody></table>
+<h2>제13조 (권익침해 구제 방법)</h2>
+<p>이용자는 다음 기관에 분쟁 해결 또는 상담을 요청할 수 있습니다.</p>
+<ul>
+<li>개인정보분쟁조정위원회: (국번없이) 1833-6972 / <a href="http://www.kopico.go.kr">www.kopico.go.kr</a></li>
+<li>개인정보침해신고센터: (국번없이) 118 / privacy.kisa.or.kr</li>
+<li>대검찰청 사이버수사과: (국번없이) 1301 / <a href="http://www.spo.go.kr">www.spo.go.kr</a></li>
+<li>경찰청 사이버수사국: (국번없이) 182 / cyberbureau.police.go.kr</li>
+</ul>
+<h2>제14조 (개인정보처리방침의 변경)</h2>
+<p>본 방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경 시 변경 사항의 시행 7일 전부터 공지사항을 통해 고지합니다.</p>
+<p>이용자에게 불리한 변경의 경우 변경 시행 30일 전부터 공지하며, 이용자가 변경에 동의하지 않을 경우 회원 탈퇴를 요청할 수 있습니다.</p>
+<hr>
+<p><strong>부칙</strong></p>
+<ul>
+<li>본 방침은 2026년 6월 1일부터 시행됩니다.</li>
+<li>이전 방침: 해당 없음 (최초 시행)</li>
+</ul>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/legal/terms.html">이용약관</a> &middot;
+    <a href="/legal/privacy.html">개인정보처리방침</a> &middot;
+    <a href="mailto:admin@uncounted.cloud">문의: admin@uncounted.cloud</a>
+  </div>
+  <div class="footer-meta">
+    개인정보 보호책임자: privacy@uncounted.app &middot; &copy; UNCOUNTED
+  </div>
+</footer>
+
+</body>
+</html>

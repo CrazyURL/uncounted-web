@@ -1,0 +1,13 @@
+{
+  "name": "uncounted-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Uncounted 정적 홈페이지 (Cloudflare Pages 배포). 약관/개인정보처리방침 HTML 빌드 포함.",
+  "scripts": {
+    "build:legal": "node scripts/build-legal-pages.mjs"
+  },
+  "devDependencies": {
+    "marked": "^14.1.3"
+  }
+}

@@ -3,6 +3,4 @@
 # (이전 /peer/* /peer.html 200 = 308 redirect 이슈로 token 잘림)
 # 신규: /peer?token=... query 형식 사용 (peer.html 자동 매칭)
 
-# /legal/* — 약관 페이지 미배포, 메인으로 임시 redirect (302)
-/legal/privacy   /   302
-/legal/terms     /   302
+# /legal/* — terms.html / privacy.html 정적 서빙 (legal/ 디렉토리에 배치)

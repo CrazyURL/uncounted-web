@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이용약관 — UNCOUNTED</title>
+<meta name="description" content="Uncounted 이용약관. v1.0 · 시행일 2026년 6월 1일">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #06081a;
+  --bg-primary: #0a0e27;
+  --bg-card: #ffffff;
+  --purple-core: #7c6cf0;
+  --purple-light: #a78bfa;
+  --border: rgba(124,108,240,0.12);
+  --border-strong: rgba(124,108,240,0.25);
+  --text-on-dark: #e8e6f0;
+  --text-dim: #8b87a8;
+  --text-body: #1a1a2e;
+  --text-body-sub: #4a4a6a;
+  --text-body-tertiary: #7a7a90;
+  --row-zebra: #f7f6fb;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-on-dark);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.topbar {
+  padding: 16px 20px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.logo span { color: var(--purple-core); }
+.topbar-link {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topbar-link:hover { color: var(--purple-light); }
+
+.page-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+.page-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.page-header .meta {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--purple-light);
+  padding: 4px 12px;
+  background: rgba(124,108,240,0.12);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+}
+
+.content-card {
+  background: var(--bg-card);
+  color: var(--text-body);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 24px 64px rgba(6,8,26,0.4);
+}
+.content-card h1 { display: none; }
+.content-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-body);
+  margin-top: 32px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--purple-core);
+}
+.content-card h2:first-child { margin-top: 0; }
+.content-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-body);
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+.content-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-body-sub);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.content-card p {
+  font-size: 14px;
+  color: var(--text-body-sub);
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+.content-card ul, .content-card ol {
+  font-size: 14px;
+  color: var(--text-body-sub);
+  margin-bottom: 12px;
+  padding-left: 24px;
+  line-height: 1.8;
+}
+.content-card li { margin-bottom: 6px; }
+.content-card li > ul, .content-card li > ol { margin-top: 6px; margin-bottom: 6px; }
+.content-card strong { color: var(--text-body); font-weight: 700; }
+.content-card a { color: var(--purple-core); text-decoration: underline; text-underline-offset: 2px; }
+.content-card a:hover { color: var(--purple-light); }
+.content-card hr {
+  border: 0;
+  border-top: 1px solid #e5e3ee;
+  margin: 32px 0;
+}
+.content-card blockquote {
+  background: #f7f6fb;
+  border-left: 3px solid var(--purple-core);
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: var(--text-body-sub);
+  border-radius: 0 8px 8px 0;
+}
+.content-card blockquote p { margin-bottom: 6px; font-size: 13px; }
+.content-card blockquote p:last-child { margin-bottom: 0; }
+.content-card code {
+  background: #ecebf3;
+  color: var(--text-body);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 13px;
+}
+.content-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.content-card thead th {
+  background: var(--purple-core);
+  color: #fff;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 12px;
+}
+.content-card tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e3ee;
+  color: var(--text-body-sub);
+  vertical-align: top;
+}
+.content-card tbody tr:nth-child(even) td { background: var(--row-zebra); }
+.content-card tbody tr:last-child td { border-bottom: 0; }
+
+.footer {
+  max-width: 820px;
+  margin: 32px auto 0;
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+.footer-links { margin-bottom: 8px; }
+.footer-links a {
+  color: var(--purple-light);
+  text-decoration: none;
+  margin: 0 8px;
+}
+.footer-links a:hover { text-decoration: underline; }
+.footer-meta { font-size: 11px; color: var(--text-dim); }
+
+@media (max-width: 600px) {
+  .page-header h1 { font-size: 22px; }
+  .content-card { padding: 24px 18px; }
+  .content-card h2 { font-size: 17px; }
+  .content-card h3 { font-size: 15px; }
+  .content-card p, .content-card ul, .content-card ol { font-size: 13px; }
+  .content-card table { font-size: 12px; }
+  .content-card thead th, .content-card tbody td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="logo">UN<span>COUNTED</span></a>
+    <a href="/" class="topbar-link">메인 사이트 &rarr;</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-header">
+    <h1>이용약관</h1>
+    <span class="meta">v1.0 · 시행일 2026년 6월 1일</span>
+  </div>
+
+  <article class="content-card">
+<h1>Uncounted 서비스 이용약관</h1>
+<blockquote>
+<p><strong>버전:</strong> v1.0
+<strong>작성일:</strong> 2026-04-29
+<strong>시행일자:</strong> 2026년 6월 1일
+<strong>준거 법령:</strong> 「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」, 「데이터 산업진흥 및 이용촉진에 관한 기본법」(데이터산업법), 「통신비밀보호법」</p>
+</blockquote>
+<hr>
+<h2>시행일자</h2>
+<p>본 약관은 <strong>2026년 6월 1일</strong>부터 적용됩니다.</p>
+<h2>제1장 총칙</h2>
+<h3>제1조 (목적)</h3>
+<p>본 약관은 Uncounted(이하 &quot;회사&quot;)가 제공하는 모바일 애플리케이션 및 웹 서비스(이하 &quot;서비스&quot;)의 이용과 관련하여 회사와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+<h3>제2조 (정의)</h3>
+<p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th>용어</th>
+<th>정의</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>이용자</strong></td>
+<td>본 약관에 동의하고 회사가 제공하는 서비스를 이용하는 회원</td>
+</tr>
+<tr>
+<td><strong>회원</strong></td>
+<td>회사에 개인정보를 제공하여 회원등록을 한 자로서, 서비스를 지속적으로 이용할 수 있는 자</td>
+</tr>
+<tr>
+<td><strong>서비스</strong></td>
+<td>통화 음성 데이터의 비식별 처리 및 AI 학습용 데이터 거래 중개 서비스</td>
+</tr>
+<tr>
+<td><strong>음성 데이터</strong></td>
+<td>이용자가 보유한 통화 녹음 파일을 화자분리·PII 마스킹 처리한 결과물</td>
+</tr>
+<tr>
+<td><strong>메타데이터</strong></td>
+<td>음성 데이터에 부수하여 생성되는 통화 시각·시간·품질 메트릭·화자 인구통계 정보</td>
+</tr>
+<tr>
+<td><strong>양자 동의</strong></td>
+<td>통화 당사자(이용자)와 통화 상대방 모두의 동의를 받은 상태</td>
+</tr>
+<tr>
+<td><strong>본인 발화</strong></td>
+<td>이용자 본인의 음성 구간만 분리한 데이터 (<code>user_only</code>)</td>
+</tr>
+<tr>
+<td><strong>양측 발화</strong></td>
+<td>양자 동의 완료 후 이용자와 상대방 음성 모두 포함된 데이터 (<code>both_agreed</code>)</td>
+</tr>
+<tr>
+<td><strong>보상금</strong></td>
+<td>회사가 이용자의 데이터를 제3자에게 제공한 대가로 이용자에게 지급하는 금원</td>
+</tr>
+<tr>
+<td><strong>데이터 패키지</strong></td>
+<td>회사가 제3자에게 제공하는 비식별 음성·메타데이터의 표준 단위 (UC-A01, UC-MX 등)</td>
+</tr>
+<tr>
+<td><strong>구매자</strong></td>
+<td>회사로부터 데이터 패키지를 제공받는 AI 모델 개발 기업·연구기관 등 제3자</td>
+</tr>
+</tbody></table>
+<h3>제3조 (약관의 효력 및 변경)</h3>
+<ol>
+<li>본 약관은 회사가 서비스 화면에 게시하거나 기타의 방법으로 이용자에게 공지함으로써 효력이 발생합니다.</li>
+<li>회사는 「약관의 규제에 관한 법률」, 「정보통신망법」 등 관련 법령을 위배하지 않는 범위에서 본 약관을 변경할 수 있습니다.</li>
+<li>회사가 약관을 변경하는 경우에는 적용일자 및 변경 사유를 명시하여 시행 7일 전(이용자에게 불리한 변경의 경우 30일 전)부터 서비스 화면에 공지합니다.</li>
+<li>이용자가 변경된 약관에 동의하지 않는 경우 회원 탈퇴를 요청할 수 있으며, 변경된 약관의 효력 발생일 이후에도 서비스를 계속 이용하는 경우 약관 변경에 동의한 것으로 간주합니다.</li>
+</ol>
+<h2>제2장 서비스 이용 계약</h2>
+<h3>제4조 (이용 계약의 성립)</h3>
+<ol>
+<li>이용 계약은 이용자가 본 약관, 개인정보처리방침 및 별도의 동의 항목에 동의한 후 회원가입을 완료함으로써 성립합니다.</li>
+<li>회원가입 시 이용자는 다음 사항에 대해 별도로 동의해야 합니다.<ul>
+<li>본 약관 (필수)</li>
+<li>개인정보처리방침 (필수)</li>
+<li>음성 데이터(생체정보 가능성 포함)의 수집·이용 (필수)</li>
+<li>비식별 처리된 데이터의 제3자 제공 (선택 — 미동의 시 보상금 지급 대상 아님)</li>
+<li>비식별 처리된 데이터의 국외 이전 (선택 — 해외 구매자 제공 시)</li>
+<li>마케팅 정보 수신 (선택)</li>
+</ul>
+</li>
+</ol>
+<h3>제5조 (회원가입 자격 및 거부)</h3>
+<ol>
+<li>회원가입은 만 14세 이상의 자연인에 한합니다.</li>
+<li>회사는 다음 각 호에 해당하는 신청에 대하여 가입을 거부하거나 사후 회원자격을 박탈할 수 있습니다.<ul>
+<li>타인의 명의를 도용하여 신청한 경우</li>
+<li>허위 정보를 기재한 경우</li>
+<li>사회의 안녕 및 질서, 미풍양속을 저해할 목적으로 신청한 경우</li>
+<li>본인의 통화가 아닌 제3자의 통화 녹음을 무단으로 업로드한 경우</li>
+</ul>
+</li>
+</ol>
+<h3>제6조 (회원 탈퇴 및 자격 상실)</h3>
+<ol>
+<li>이용자는 언제든지 앱 내 [설정 &gt; 회원 탈퇴] 메뉴를 통해 탈퇴할 수 있습니다.</li>
+<li>탈퇴 시 회사는 「개인정보 보호법」 및 회사의 개인정보처리방침에 따라 이용자의 개인정보를 처리합니다.</li>
+<li><strong>이미 제3자(구매자)에게 제공된 데이터에 대해서는 회사가 직접 회수할 수 없으며</strong>, 이는 구매자가 데이터에 대한 영구 사용권을 보유하기 때문입니다. 이용자는 다음 사항을 사전에 인지하고 회원가입 및 데이터 제공에 동의해야 합니다.<ul>
+<li>회사는 탈퇴 시점까지 데이터가 제공된 구매자 목록을 이용자에게 안내합니다.</li>
+<li>이미 제공된 데이터의 삭제 요청은 이용자가 해당 구매자에게 직접 수행해야 합니다.</li>
+<li>회사는 탈퇴 시점 이후 신규 제공을 중단하며, 회사 내 보유 데이터를 즉시 삭제합니다.</li>
+</ul>
+</li>
+</ol>
+<h2>제3장 서비스 이용</h2>
+<h3>제7조 (서비스의 내용)</h3>
+<p>회사가 제공하는 서비스는 다음과 같습니다.</p>
+<ol>
+<li><strong>음성 데이터 비식별 처리</strong>: 이용자가 업로드한 통화 녹음 파일을 화자분리, 음성-텍스트 변환(STT, 외부 미공개), 개인식별정보(PII) 자동 마스킹 처리</li>
+<li><strong>데이터 거래 중개</strong>: 비식별 처리된 음성·메타데이터를 AI 모델 개발 기업·연구기관(이하 &quot;구매자&quot;)에 제공</li>
+<li><strong>보상금 정산·지급</strong>: 구매자로부터 받은 대가의 일부를 이용자에게 분배</li>
+</ol>
+<h3>제8조 (서비스 이용 시간)</h3>
+<p>서비스는 연중무휴 24시간 제공함을 원칙으로 하나, 시스템 점검·업데이트, 천재지변 등 불가피한 사유가 있는 경우 일시 중단될 수 있습니다.</p>
+<h3>제9조 (이용자의 의무)</h3>
+<p>이용자는 다음 행위를 하여서는 안 됩니다.</p>
+<ol>
+<li>본인의 통화가 아닌 타인 간의 통화 녹음을 업로드하는 행위 (「통신비밀보호법」 위반)</li>
+<li>동의하지 않은 통화 상대방의 음성을 본인 발화 구간을 넘어 제공하는 행위</li>
+<li>회사 또는 제3자의 권리를 침해하는 행위</li>
+<li>서비스의 정상적 운영을 방해하는 행위</li>
+<li>허위 정보 등록을 통해 보상금을 부정 수령하는 행위</li>
+<li>PII 마스킹 결과물을 회사 동의 없이 외부에 유출하는 행위</li>
+</ol>
+<h2>제4장 데이터 거래 및 보상</h2>
+<h3>제10조 (데이터 거래 조건)</h3>
+<ol>
+<li>회사는 이용자의 비식별 처리된 데이터를 다음 조건으로 구매자에게 제공합니다.<ul>
+<li><strong>비독점</strong>: 회사는 동일 데이터를 다수 구매자에게 동시에 제공할 수 있습니다.</li>
+<li><strong>양자 동의 기반</strong>: 통화 상대방의 음성이 포함된 데이터는 상대방 동의 완료(<code>both_agreed</code>) 시에만 제공합니다. 상대방 동의 미수신 시에는 본인 발화 구간(<code>user_only</code>)만 제공합니다.</li>
+<li><strong>표준 단가</strong>: 데이터 패키지 단가는 회사가 별도로 공지하며, 시장 환경에 따라 조정될 수 있습니다.</li>
+<li><strong>구매자 영구 사용권</strong>: 구매자에게 제공된 데이터는 영구 사용권이 부여됩니다.</li>
+</ul>
+</li>
+</ol>
+<h3>제11조 (보상금 지급)</h3>
+<ol>
+<li><p><strong>보상금 산정 기준</strong></p>
+<ul>
+<li>제공된 데이터의 양(시간·세그먼트 수), 품질 메트릭(SNR·명료도 등), 양자 동의 여부에 따라 차등 지급</li>
+<li>구체적 산식은 앱 내 [데이터 매칭 알고리즘 공개] 페이지에서 확인 가능</li>
+</ul>
+</li>
+<li><p><strong>지급 방식 및 세무 처리</strong></p>
+<ul>
+<li>보상금은 1회성 지급을 원칙으로 하며, 「소득세법」상 기타소득(원천징수 22%, 필요경비 60% 공제 후)으로 분류됩니다.</li>
+<li>회사는 매년 1월 말까지 전년도 지급 내역을 이용자에게 안내합니다.</li>
+<li>이용자의 연간 보상금 누적액에 따라 세법상 분류가 변경될 수 있으며, 종합소득세 신고 의무는 이용자 본인에게 있습니다.</li>
+</ul>
+</li>
+<li><p><strong>지급 시점</strong>: 구매자로부터 대금 입금 후 익월 말일에 이용자가 지정한 계좌로 송금합니다.</p>
+</li>
+<li><p><strong>보상금 청구권 시효</strong>: 「상법」에 따라 지급일로부터 5년</p>
+</li>
+</ol>
+<h3>제12조 (데이터 회수 불가의 원칙)</h3>
+<ol>
+<li>한번 구매자에게 제공된 데이터는 구매자의 영구 사용권에 따라 회사가 직접 회수할 수 없습니다.</li>
+<li>이용자가 회원 탈퇴 또는 동의 철회 시, 회사는 다음을 이행합니다.<ul>
+<li>회사 내 보유 데이터 5일 이내 즉시 삭제</li>
+<li>납품 대기 중인 데이터 제공 취소</li>
+<li>이미 제공된 데이터의 구매자 목록을 이용자에게 안내</li>
+</ul>
+</li>
+<li>이미 제공된 데이터의 삭제는 이용자가 해당 구매자에게 직접 요청해야 합니다.</li>
+<li>본 조항은 데이터의 자산 가치 보존 및 구매자의 모델 학습 안정성을 위한 것이며, 이용자는 회원가입 및 데이터 제공 동의 시 본 사실을 충분히 인지하고 동의합니다.</li>
+</ol>
+<h2>제5장 회사의 의무 및 면책</h2>
+<h3>제13조 (회사의 의무)</h3>
+<p>회사는 다음의 의무를 이행합니다.</p>
+<ol>
+<li>이용자에게 안정적인 서비스 제공</li>
+<li>이용자의 개인정보 보호 (개인정보처리방침에 따름)</li>
+<li><strong>PII 마스킹 정확도 ≥97%</strong> 유지를 위한 지속적 모델 개선</li>
+<li><strong>「KISA 비식별 조치 가이드라인」 준수</strong> 및 재식별 위험도 평가</li>
+<li>데이터 매칭 알고리즘의 투명한 공개 (이용자 대시보드)</li>
+<li>다크 패턴, 강제 동의, 변조 처리 등 이용자 권익을 침해하는 모든 우회 수단의 사용 금지</li>
+</ol>
+<h3>제14조 (이용자에 대한 통지)</h3>
+<p>회사는 이용자에 대한 통지를 하는 경우 이용자가 등록한 이메일 주소 또는 앱 내 푸시 알림으로 할 수 있습니다. 불특정 다수 이용자에 대한 통지는 7일 이상 서비스 화면에 게시함으로써 개별 통지에 갈음할 수 있습니다.</p>
+<h3>제15조 (면책)</h3>
+<ol>
+<li>회사는 천재지변, 전쟁, 기간통신사업자의 서비스 중지 등 불가항력으로 인한 손해에 대해 책임지지 않습니다.</li>
+<li>회사는 이용자가 본 약관 제9조의 의무를 위반하여 발생한 손해(예: 타인의 통화 녹음을 무단 업로드)에 대해 책임지지 않으며, 해당 이용자에게 구상권을 행사할 수 있습니다.</li>
+<li>회사는 구매자가 제공받은 데이터를 약정된 목적 외로 사용한 경우, 회사가 구매자와 체결한 계약에 따라 조치를 취하되, 직접적인 데이터 회수 의무는 없습니다.</li>
+</ol>
+<h2>제6장 분쟁 해결</h2>
+<h3>제16조 (관할 법원)</h3>
+<p>본 약관에 명시되지 않은 사항은 「전자상거래법」, 「약관의 규제에 관한 법률」, 회사가 정한 운영정책 및 관련 법령에 따릅니다.</p>
+<p>본 약관 또는 서비스 이용과 관련하여 회사와 이용자 간에 분쟁이 발생한 경우, 양 당사자는 분쟁의 해결을 위해 성실히 협의하며, 협의가 이루어지지 않을 경우 「민사소송법」에 따른 관할 법원에 제소할 수 있습니다.</p>
+<h3>제17조 (준거법)</h3>
+<p>본 약관 및 서비스 이용에 관해서는 대한민국 법령을 적용합니다.</p>
+<hr>
+<h2>부칙</h2>
+<ol>
+<li>본 약관은 2026년 6월 1일부터 시행됩니다.</li>
+<li>이전 약관: 해당 없음 (최초 시행)</li>
+</ol>
+<hr>
+<h2>회사 정보</h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>상호</td>
+<td>Uncounted (개인사업자: 문식환)</td>
+</tr>
+<tr>
+<td>대표자</td>
+<td>문식환</td>
+</tr>
+<tr>
+<td>사업자등록번호</td>
+<td>[사업자등록 완료 후 기재]</td>
+</tr>
+<tr>
+<td>통신판매업 신고번호</td>
+<td>[통신판매업 신고 후 기재]</td>
+</tr>
+<tr>
+<td>부가통신사업자 신고번호</td>
+<td>[부가통신사업자 신고 후 기재]</td>
+</tr>
+<tr>
+<td>데이터 거래사업자 등록번호</td>
+<td>[Kdata 등록 후 기재]</td>
+</tr>
+<tr>
+<td>사업장 주소</td>
+<td>[사업자등록 시 기재 주소]</td>
+</tr>
+<tr>
+<td>이메일</td>
+<td><a href="mailto:support@uncounted.app">support@uncounted.app</a></td>
+</tr>
+<tr>
+<td>개인정보 보호책임자 이메일</td>
+<td><a href="mailto:privacy@uncounted.app">privacy@uncounted.app</a></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>참고</strong>: 시행일 이전까지 사업자등록·통신판매업 신고·부가통신사업자 신고·Kdata 데이터거래사업자 등록을 완료하여 본 약관 회사 정보 섹션에 등록번호를 명시합니다.</p>
+</blockquote>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/legal/terms.html">이용약관</a> &middot;
+    <a href="/legal/privacy.html">개인정보처리방침</a> &middot;
+    <a href="mailto:admin@uncounted.cloud">문의: admin@uncounted.cloud</a>
+  </div>
+  <div class="footer-meta">
+    개인정보 보호책임자: privacy@uncounted.app &middot; &copy; UNCOUNTED
+  </div>
+</footer>
+
+</body>
+</html>
