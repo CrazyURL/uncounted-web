@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNCOUNTED — Android APK 다운로드</title>
-<meta name="description" content="Android dev APK 직접 다운로드. 시드 단계 한정 비공식 배포. Google Play 등록은 Phase 4 이후.">
+<title>UNCOUNTED — 안드로이드 앱 받기</title>
+<meta name="description" content="안드로이드 개발용 앱 직접 받기. 서비스 초기 단계 한정 비공식 배포. 구글 플레이 정식 등록은 추후 진행.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -12,47 +12,55 @@
   --bg-deep: #06081a; --bg-primary: #0a0e27; --bg-card: #0f1333; --bg-cta: #1a1a2e;
   --purple-core: #7c6cf0; --purple-light: #a78bfa; --purple-dark: #6B46C1;
   --purple-glow: rgba(124,108,240,0.15); --border: rgba(124,108,240,0.12); --border-strong: rgba(124,108,240,0.25);
-  --text-primary: #e8e6f0; --text-secondary: #8b87a8; --text-dim: #5a5678;
+  --text-primary: #f1eef8; --text-secondary: #b8b4d0; --text-dim: #9a96b8;
   --white: #ffffff; --green: #34d399; --amber: #fbbf24; --red: #f87171;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg-deep); color: var(--text-primary); line-height: 1.7; min-height: 100vh; }
+/* 40~60대 사용자 가독성 우선 */
+html { font-size: 18px; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg-deep); color: var(--text-primary); line-height: 1.75; min-height: 100vh; font-size: 16px; -webkit-font-smoothing: antialiased; }
 .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
 .topbar { padding: 16px 20px; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
 .topbar-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--white); text-decoration: none; }
+.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); text-decoration: none; }
 .logo span { color: var(--purple-core); }
-.topbar-link { font-size: 12px; color: var(--text-secondary); text-decoration: none; }
+.topbar-link { font-size: 14px; color: var(--text-secondary); text-decoration: none; }
 .hero { padding: 56px 0; text-align: center; }
-.eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple-light); padding: 6px 14px; background: var(--purple-glow); border: 1px solid var(--border-strong); border-radius: 999px; margin-bottom: 20px; }
-h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 12px; }
-.hero-sub { font-size: 14px; color: var(--text-secondary); max-width: 520px; margin: 0 auto; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; color: var(--purple-light); padding: 7px 16px; background: var(--purple-glow); border: 1px solid var(--border-strong); border-radius: 999px; margin-bottom: 22px; }
+h1 { font-size: 32px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 14px; }
+.hero-sub { font-size: 16px; color: var(--text-secondary); max-width: 520px; margin: 0 auto; line-height: 1.7; }
 .download-section { padding: 32px 0; }
-.download-card { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: 16px; padding: 32px 24px; text-align: center; }
-.apk-icon { font-size: 56px; margin-bottom: 16px; }
-.apk-name { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-.apk-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 24px; }
-.apk-meta span { display: inline-block; padding: 2px 10px; background: rgba(124,108,240,0.12); border-radius: 4px; margin: 0 4px; }
-.download-btn { display: inline-block; padding: 18px 36px; background: linear-gradient(135deg, var(--purple-core), var(--purple-light)); color: var(--white); border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px; box-shadow: 0 12px 32px rgba(124,108,240,0.35); transition: all 0.2s; }
+.download-card { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: 16px; padding: 36px 26px; text-align: center; }
+.apk-icon { font-size: 60px; margin-bottom: 18px; }
+.apk-name { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.apk-meta { font-size: 14px; color: var(--text-dim); margin-bottom: 26px; }
+.apk-meta span { display: inline-block; padding: 4px 12px; background: rgba(124,108,240,0.12); border-radius: 4px; margin: 0 4px; }
+.download-btn { display: inline-block; padding: 20px 40px; background: linear-gradient(135deg, var(--purple-core), var(--purple-light)); color: var(--white); border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 18px; box-shadow: 0 12px 32px rgba(124,108,240,0.35); transition: all 0.2s; min-height: 60px; }
 .download-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(124,108,240,0.45); }
 .warning-section { padding: 32px 0; background: var(--bg-cta); }
-.warning-box { background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.25); border-radius: 12px; padding: 20px; }
-.warning-title { font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 10px; }
-.warning-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+.warning-box { background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.25); border-radius: 12px; padding: 22px; }
+.warning-title { font-size: 15px; font-weight: 700; color: var(--red); margin-bottom: 10px; }
+.warning-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 .steps-section { padding: 48px 0; background: var(--bg-primary); }
-.section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 12px; }
-.section-title { font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; }
+.section-label { font-size: 13px; font-weight: 700; letter-spacing: 1.2px; color: var(--purple-light); margin-bottom: 14px; }
+.section-title { font-size: 24px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; }
 .install-steps { display: flex; flex-direction: column; gap: 14px; }
-.install-step { display: flex; gap: 14px; align-items: flex-start; background: var(--bg-card); padding: 16px; border-radius: 12px; border: 1px solid var(--border); }
-.install-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--purple-core); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.install-step { display: flex; gap: 16px; align-items: flex-start; background: var(--bg-card); padding: 18px; border-radius: 12px; border: 1px solid var(--border); }
+.install-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--purple-core); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; }
 .install-text { flex: 1; }
-.install-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-.install-desc { font-size: 12px; color: var(--text-secondary); }
+.install-title { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.install-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 .footer { padding: 24px 0 32px; background: var(--bg-deep); border-top: 1px solid var(--border); text-align: center; }
-.footer-disclaimer { font-size: 10px; color: var(--text-dim); line-height: 1.7; max-width: 600px; margin: 0 auto 12px; }
-.footer-links { font-size: 11px; color: var(--text-dim); }
+.footer-disclaimer { font-size: 14px; color: var(--text-dim); line-height: 1.8; max-width: 600px; margin: 0 auto 14px; }
+.footer-links { font-size: 13px; color: var(--text-dim); }
 .footer-links a { color: var(--purple-light); text-decoration: none; }
-@media (max-width: 480px) { .container { padding: 0 16px; } h1 { font-size: 24px; } .download-btn { padding: 16px 24px; font-size: 14px; } }
+@media (max-width: 480px) {
+  html { font-size: 17px; }
+  .container { padding: 0 16px; }
+  h1 { font-size: 26px; }
+  .download-btn { padding: 18px 28px; font-size: 16px; }
+  .install-title { font-size: 16px; }
+}
 </style>
 </head>
 <body>
@@ -66,9 +74,9 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 
 <section class="hero">
   <div class="container">
-    <div class="eyebrow">Android APK</div>
-    <h1>Uncounted Dev<br>다운로드</h1>
-    <p class="hero-sub">시드 단계 직접 배포. Google Play 등록은 Phase 4 (가입자 100명+) 이후 진행.</p>
+    <div class="eyebrow">안드로이드 앱</div>
+    <h1>UNCOUNTED 개발용<br>앱 받기</h1>
+    <p class="hero-sub">서비스 초기 단계라 직접 배포해 드립니다. 구글 플레이 정식 등록은 가입자 100분 이상 모이면 진행할 예정입니다.</p>
   </div>
 </section>
 
@@ -76,18 +84,17 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
   <div class="container">
     <div class="download-card">
       <div class="apk-icon">&#x1F4F1;</div>
-      <div class="apk-name">Uncounted Dev v0.1</div>
+      <div class="apk-name">UNCOUNTED 개발용 v0.1</div>
       <div class="apk-meta">
         <span>app-dev-debug.apk</span>
-        <span>~100MB</span>
-        <span>Android 7+</span>
+        <span>약 100MB</span>
+        <span>안드로이드 7 이상</span>
       </div>
-      <!-- 시드 단계: GitHub Release 또는 R2 Storage URL로 교체 권고 -->
       <a href="#contact" class="download-btn">
-        APK 다운로드 (준비 중)
+        앱 받기 (준비 중)
       </a>
-      <div style="font-size:11px;color:var(--text-dim);margin-top:16px">
-        ⚠️ 다운로드 링크는 시드 가입자 모집 시점 활성화. 우선 <a href="mailto:contact@uncounted.kr?subject=시드 가입자 신청" style="color:var(--purple-light)">시드 신청 메일</a> 부탁드립니다.
+      <div style="font-size:13px;color:var(--text-dim);margin-top:18px;line-height:1.7">
+        ⚠️ 받기 링크는 초기 가입자 모집이 시작되면 활성화됩니다. 먼저 <a href="mailto:contact@uncounted.kr?subject=초기 가입자 신청" style="color:var(--purple-light)">가입 신청 메일</a>을 보내 주세요.
       </div>
     </div>
   </div>
@@ -96,11 +103,12 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 <section class="warning-section">
   <div class="container">
     <div class="warning-box">
-      <div class="warning-title">⚠️ 비공식 배포 안내</div>
+      <div class="warning-title">⚠️ 정식 배포 전 안내</div>
       <div class="warning-desc">
-        본 APK는 시드 단계 한정 직접 배포 — Google Play 등록 미완료 (Phase 4 이후 진행).
-        설치 시 "알 수 없는 출처" 권한 허용 필요. 보안 경고는 미서명 인증서로 인한 것이며,
-        앱 자체는 BM v10.0 정합 + KISA·PIPA 정합. 신뢰 우려 시 시드 통과 + Google Play 등록까지 대기 권고.
+        이 앱은 서비스 초기 단계 한정으로 직접 배포해 드립니다 — 구글 플레이 정식 등록은 추후 진행될 예정입니다.
+        설치하실 때 "알 수 없는 출처에서 앱 설치 허용"을 켜셔야 합니다. 화면에 나오는 보안 경고는
+        정식 인증을 받지 않은 단계라서 나오는 것이며, 앱 자체는 한국인터넷진흥원(KISA)
+        지침과 「개인정보보호법」을 모두 따릅니다. 안심이 되지 않으시면 구글 플레이 정식 등록 후 받으셔도 좋습니다.
       </div>
     </div>
   </div>
@@ -114,36 +122,36 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
       <div class="install-step">
         <div class="install-num">1</div>
         <div class="install-text">
-          <div class="install-title">APK 다운로드</div>
-          <div class="install-desc">위 다운로드 버튼 클릭 → 폰 다운로드 폴더에 저장 (시드 가입 신청 후 활성화)</div>
+          <div class="install-title">앱 파일 받기</div>
+          <div class="install-desc">위 받기 버튼을 누르시면 휴대폰의 다운로드 폴더에 저장됩니다 (가입 신청 후 활성화).</div>
         </div>
       </div>
       <div class="install-step">
         <div class="install-num">2</div>
         <div class="install-text">
-          <div class="install-title">알 수 없는 출처 허용</div>
-          <div class="install-desc">설정 → 보안 → "알 수 없는 출처에서 앱 설치 허용" → 파일 관리자에 권한 부여</div>
+          <div class="install-title">"알 수 없는 출처" 허용</div>
+          <div class="install-desc">휴대폰 [설정] → [보안] → "알 수 없는 출처에서 앱 설치 허용"을 켜시고, 파일 관리자 앱에 권한을 주세요.</div>
         </div>
       </div>
       <div class="install-step">
         <div class="install-num">3</div>
         <div class="install-text">
-          <div class="install-title">APK 탭 + 설치</div>
-          <div class="install-desc">파일 관리자에서 app-dev-debug.apk 탭 → "설치" → 확인 (앱 ID: com.uncounted.app.dev)</div>
+          <div class="install-title">앱 파일을 눌러서 설치</div>
+          <div class="install-desc">파일 관리자에서 app-dev-debug.apk 파일을 누르시면 → "설치"를 누르시고 → 확인을 눌러 주세요.</div>
         </div>
       </div>
       <div class="install-step">
         <div class="install-num">4</div>
         <div class="install-text">
-          <div class="install-title">앱 실행 + Google 로그인</div>
-          <div class="install-desc">Uncounted Dev 앱 아이콘 탭 → Google 계정 (Gmail 등) 로그인 → 본인 동의</div>
+          <div class="install-title">앱 실행 + 구글 로그인</div>
+          <div class="install-desc">UNCOUNTED 앱 아이콘을 누르신 뒤 → 구글 계정(지메일 등)으로 로그인 → 본인 동의를 눌러 주세요.</div>
         </div>
       </div>
       <div class="install-step">
         <div class="install-num">5</div>
         <div class="install-text">
-          <div class="install-title">권한 부여 + 자동 스캔</div>
-          <div class="install-desc">통화 녹음 + 통화 기록 + 마이크 권한 부여 → 자동 스캔 + 메타 식별 시작</div>
+          <div class="install-title">권한 허용 + 자동 확인 시작</div>
+          <div class="install-desc">통화 녹음, 통화 기록, 마이크 권한을 모두 허용해 주시면 → 휴대폰의 통화를 자동으로 확인하기 시작합니다.</div>
         </div>
       </div>
     </div>
@@ -153,13 +161,13 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 <footer class="footer">
   <div class="container">
     <div class="footer-disclaimer">
-      개인정보보호법 제15조 + 통신비밀보호법 + PIPA 30조 11항 (음성=생체정보) 정합.<br>
-      양자 동의 완료 후에만 회사 서버에 전송 + 처리.
+      「개인정보보호법」 제15조, 「통신비밀보호법」, 「개인정보보호법」 음성 생체정보 보호 조항을 따릅니다.<br>
+      본인과 상대방이 모두 동의하신 뒤에만 회사 서버로 전송하여 처리합니다.
     </div>
     <div class="footer-links">
       <a href="/legal/privacy">개인정보처리방침</a> &middot;
       <a href="/legal/terms">이용약관</a> &middot;
-      <a href="mailto:contact@uncounted.kr">문의</a>
+      <a href="mailto:contact@uncounted.kr">문의하기</a>
     </div>
   </div>
 </footer>

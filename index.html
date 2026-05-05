@@ -16,9 +16,9 @@
   --purple-light: #a78bfa;
   --purple-glow: rgba(124,108,240,0.15);
   --purple-subtle: rgba(124,108,240,0.06);
-  --text-primary: #e8e6f0;
-  --text-secondary: #8b87a8;
-  --text-dim: #5a5678;
+  --text-primary: #f1eef8;
+  --text-secondary: #b8b4d0;   /* 8b87a8 → b8b4d0 (40~60대 가독성 강화) */
+  --text-dim: #9a96b8;          /* 5a5678 → 9a96b8 (희미한 회색 X, 충분한 대비) */
   --border: rgba(124,108,240,0.12);
   --border-strong: rgba(124,108,240,0.25);
   --white: #ffffff;
@@ -62,7 +62,7 @@ body {
 
 .section-label {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--purple-core);
   letter-spacing: 3px;
@@ -224,7 +224,7 @@ body::after {
 
 .nav-cta {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 14px;
   padding: 8px 20px;
   background: transparent;
   border: 1px solid var(--purple-core);
@@ -317,7 +317,7 @@ body::after {
 
 .hero-eyebrow {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--purple-core);
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -546,7 +546,7 @@ body::after {
 }
 
 .device-item-text .title {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -585,7 +585,7 @@ body::after {
 .hero-float-tag {
   position: absolute;
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 13px;
   padding: 6px 14px;
   background: rgba(15, 19, 51, 0.9);
   border: 1px solid var(--border-strong);
@@ -680,7 +680,7 @@ body::after {
 
 .problem-source {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-dim);
   margin-top: 12px;
   padding-top: 12px;
@@ -771,7 +771,7 @@ body::after {
 }
 
 .step-desc {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -871,7 +871,7 @@ body::after {
   line-height: 1.7;
 }
 
-/* ═══════════════════ B2B / SKU SECTION ═══════════════════ */
+/* ═══════════════════ 기업 매수자 / 데이터 패키지 SECTION ═══════════════════ */
 .section-b2b {
   padding: 120px 0;
   position: relative;
@@ -902,7 +902,7 @@ body::after {
 
 .sku-table thead th {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-dim);
   text-align: left;
@@ -932,7 +932,7 @@ body::after {
 
 .sku-code {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-block;
   padding: 4px 12px;
   background: var(--purple-glow);
@@ -949,7 +949,7 @@ body::after {
 }
 
 .sku-name-sub {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-dim);
   margin-top: 2px;
 }
@@ -960,7 +960,7 @@ body::after {
 }
 
 .sku-target {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-dim);
 }
 
@@ -999,7 +999,7 @@ body::after {
 }
 
 .diff-table thead th {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-secondary);
   text-align: center;
@@ -1164,7 +1164,7 @@ body::after {
 
 .team-role {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   display: inline-block;
   padding: 4px 14px;
   background: var(--purple-glow);
@@ -1250,7 +1250,7 @@ body::after {
 
 .cta-note {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-dim);
   margin-top: 24px;
 }
@@ -1277,7 +1277,7 @@ body::after {
 .footer-logo span { color: var(--purple-core); }
 
 .footer-copy {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-dim);
 }
 
@@ -1287,7 +1287,7 @@ body::after {
 }
 
 .footer-links a {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-dim);
   text-decoration: none;
   transition: color 0.3s;
@@ -1351,7 +1351,7 @@ body::after {
   <div class="hero-orb hero-orb-2"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-eyebrow reveal">C2B2B Data Platform</div>
+      <div class="hero-eyebrow reveal">개인-기업 음성 데이터 거래 플랫폼</div>
       <h1 class="hero-title reveal reveal-delay-1">
         방치된 데이터에서<br>
         <span class="accent">AI의 미래</span>를<br>
@@ -1359,7 +1359,7 @@ body::after {
       </h1>
       <p class="hero-subtitle reveal reveal-delay-2">
         개인에겐 데이터 자산을, 기업에겐 적법한 고품질 학습데이터를.
-        <strong>양자 동의 인프라</strong>와 <strong>PII 마스킹 97.5%</strong>로
+        <strong>양측 동의 기반</strong>과 <strong>개인정보 자동 가림 97.5%</strong>으로
         매수자가 즉시 학습에 투입할 수 있는 데이터 공급 생태계를 구축합니다.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
@@ -1412,35 +1412,35 @@ body::after {
               <div class="device-item-icon" style="background:rgba(124,108,240,0.12)">&#x1F399;</div>
               <div class="device-item-text">
                 <div class="title">통화_0309_14:23</div>
-                <div class="meta">12:34 &bull; B+ &bull; 양자 동의 대기</div>
+                <div class="meta">12:34 &bull; B+ &bull; 양측 동의 대기</div>
               </div>
             </div>
             <div class="device-item">
               <div class="device-item-icon" style="background:rgba(52,211,153,0.12)">&#x1F50A;</div>
               <div class="device-item-text">
                 <div class="title">회의_0308_09:15</div>
-                <div class="meta">45:12 &bull; A &bull; 양자 동의 완료</div>
+                <div class="meta">45:12 &bull; A &bull; 양측 동의 완료</div>
               </div>
             </div>
           </div>
           <div class="device-badge">
             <div class="dot"></div>
-            <div class="txt">디바이스 보관 중 &bull; 양자 동의 후 서버 처리</div>
+            <div class="txt">디바이스 보관 중 &bull; 양측 동의 후 서버 처리</div>
           </div>
         </div>
       </div>
 
       <div class="hero-float-tag t1">
         <span class="tag-dot" style="background:var(--green-accent)"></span>
-        양자 동의 완료
+        양측 동의 완료
       </div>
       <div class="hero-float-tag t2">
         <span class="tag-dot" style="background:var(--purple-core)"></span>
-        PII 마스킹 97.5%
+        개인정보 자동 가림 97.5%
       </div>
       <div class="hero-float-tag t3">
         <span class="tag-dot" style="background:var(--amber-accent)"></span>
-        SKU: U-A02
+        성장 패키지 (60시간)
       </div>
       <div class="hero-float-tag t4">
         <span class="tag-dot" style="background:var(--purple-light)"></span>
@@ -1490,33 +1490,33 @@ body::after {
 <section class="section-solution" id="solution">
   <div class="container">
     <div class="section-label reveal">Solution</div>
-    <h2 class="section-title reveal reveal-delay-1">양자 동의 인프라로<br>신뢰할 수 있는 데이터를</h2>
-    <p class="section-desc reveal reveal-delay-2">디바이스 측 메타 식별 → 양자 동의 → 서버 비식별 처리. 통화 음성은 양자 동의 완료 시점까지 서버 전송 X. 디바이스 갤러리 그대로 보존.</p>
+    <h2 class="section-title reveal reveal-delay-1">양측 동의 기반으로<br>신뢰할 수 있는 데이터를</h2>
+    <p class="section-desc reveal reveal-delay-2">휴대전화에서 통화 파일 자동 탐색 → 양측 동의 → 서버에서 개인정보 자동 가림. 통화 음성은 양측 동의가 완료될 때까지 서버로 절대 전송되지 않으며, 휴대전화 갤러리는 그대로 유지됩니다.</p>
 
     <div class="solution-flow">
       <div class="solution-step reveal reveal-delay-1">
         <div class="step-num">1</div>
-        <div class="step-title">디바이스 메타 식별</div>
-        <div class="step-desc">스마트폰 자동녹음 자산 자동 탐지.<br>메타만 추출 (시간·길이·해시).<br>음성 원본은 디바이스 보관.</div>
-        <div class="step-tag">On-Device Meta</div>
+        <div class="step-title">휴대전화 통화 파일 발견</div>
+        <div class="step-desc">자동 녹음된 통화를 휴대전화에서 자동 탐색.<br>파일 정보(시간·길이·식별값)만 사용.<br>음성 원본은 휴대전화에 그대로 보관.</div>
+        <div class="step-tag">휴대전화 내부 처리</div>
       </div>
       <div class="solution-step reveal reveal-delay-2">
         <div class="step-num">2</div>
-        <div class="step-title">양자 동의</div>
-        <div class="step-desc">본인 + 상대방 양쪽 동의 완료.<br>카카오톡·웹 동의 페이지로<br>상대방 IP·토큰 chain 검증.</div>
-        <div class="step-tag">Both-Agreed Gate</div>
+        <div class="step-title">양측 동의</div>
+        <div class="step-desc">본인 + 상대방 양쪽 동의 완료.<br>카카오톡·웹 동의 페이지로<br>상대방 동의 여부를 안전하게 검증.</div>
+        <div class="step-tag">양측 동의 완료 후 처리</div>
       </div>
       <div class="solution-step reveal reveal-delay-3">
         <div class="step-num">3</div>
-        <div class="step-title">서버 비식별 처리</div>
-        <div class="step-desc">동의 완료 후에만 서버 GPU 처리.<br>PII 마스킹 97.5% + STT + 화자분리.<br>KISA·PIPA 가이드라인 준수.</div>
-        <div class="step-tag">Server GPU + KISA</div>
+        <div class="step-title">서버에서 개인정보 가림</div>
+        <div class="step-desc">동의가 완료된 후에만 서버에서 처리.<br>개인정보 자동 가림 97.5% + 음성을 글자로 변환 + 말한 사람별 분리.<br>한국인터넷진흥원(KISA)·개인정보 보호법 지침 준수.</div>
+        <div class="step-tag">서버 처리 + 한국인터넷진흥원 지침</div>
       </div>
       <div class="solution-step reveal reveal-delay-4">
         <div class="step-num">&#x2713;</div>
-        <div class="step-title">B2B 공급</div>
-        <div class="step-desc">600h 단위 코호트 v 발급.<br>비독점 N회 판매. 파일럿 →<br>정식 계약 → 신선도 차등 단가.</div>
-        <div class="step-tag">v Cohort + Tiered</div>
+        <div class="step-title">기업 매수자에게 공급</div>
+        <div class="step-desc">600시간 단위로 데이터 묶음 발급.<br>여러 기업에 비독점 판매. 시범 운영 →<br>정식 계약 → 최신 데이터일수록 높은 단가.</div>
+        <div class="step-tag">묶음 발급 + 단가 차등</div>
       </div>
     </div>
   </div>
@@ -1543,33 +1543,33 @@ body::after {
       <div class="b2c-card reveal reveal-delay-2">
         <div class="b2c-card-num">02</div>
         <div class="b2c-card-icon">&#x1F512;</div>
-        <h3>양자 동의 후만 서버</h3>
-        <p>본인 + 상대방 양쪽 동의 완료 시점까지 통화 음성은 디바이스 갤러리 그대로 보존. 동의 후에만 서버 비식별 처리. KISA·PIPA 정합.</p>
+        <h3>양측 동의 후만 서버 처리</h3>
+        <p>본인 + 상대방 양측 동의 완료 시점까지 통화 음성은 휴대폰 갤러리에 그대로 보존. 동의 후에만 서버에서 비식별 처리. 한국인터넷진흥원·개인정보보호법 정합.</p>
       </div>
       <div class="b2c-card reveal reveal-delay-3">
         <div class="b2c-card-num">03</div>
         <div class="b2c-card-icon">&#x1F4B0;</div>
-        <h3>정당한 보상 + Cap 안전</h3>
-        <p>공유를 허용한 데이터에 대해 투명한 기여도 산정 + 매수자 매출 분배. <strong>연 ₩300만 Cap</strong> (분리과세 안전, 매년 1월 리셋).</p>
+        <h3>정당한 보상 + 한도 안전</h3>
+        <p>공유를 허용한 데이터에 대해 투명한 기여도 산정 + 매수자 매출 분배. <strong>1년에 한 분당 최대 ₩300만</strong> (세금 부담 적은 구간, 매년 1월 초기화).</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════ B2B / SKU ═══════════════════ -->
+<!-- ═══════════════════ 기업 매수자 / 데이터 패키지 ═══════════════════ -->
 <section class="section-b2b" id="b2b">
   <div class="container">
-    <div class="section-label reveal">For Business</div>
+    <div class="section-label reveal">기업 매수자 안내</div>
     <h2 class="section-title reveal reveal-delay-1">즉시 투입 가능한<br>실생활 음성 데이터셋</h2>
-    <p class="section-desc reveal reveal-delay-2">용도별로 사전 분류된 SKU 기반 데이터셋. 추가 전처리 없이 AI 학습에 바로 활용하세요.</p>
+    <p class="section-desc reveal reveal-delay-2">용도별로 사전 분류된 데이터 패키지. 추가 전처리 없이 AI 학습에 바로 활용하세요.</p>
 
     <div class="sku-table-wrap reveal reveal-delay-3">
       <table class="sku-table">
         <thead>
           <tr>
-            <th>SKU</th>
-            <th>상품명</th>
-            <th>단위 / 단가</th>
+            <th>코드</th>
+            <th>패키지명</th>
+            <th>분량 / 단가</th>
             <th>설명</th>
             <th>주요 수요처</th>
           </tr>
@@ -1578,47 +1578,47 @@ body::after {
           <tr>
             <td><span class="sku-code">UC-A1</span></td>
             <td>
-              <div class="sku-name">VoiceRaw 시드</div>
+              <div class="sku-name">시드 (원본 음성)</div>
               <div class="sku-name-sub">파일럿 단위</div>
             </td>
-            <td class="sku-desc"><strong>6h</strong> / ₩100K~500K/건<br><span style="font-size:11px;color:var(--text-dim)">시드 단계 무료 검증</span></td>
-            <td class="sku-desc">비식별 처리된 원천 음성 파일(WAV). 다양한 화자·환경·잡음 포함.</td>
-            <td class="sku-target"><strong>STT · TTS</strong><br>모델 사전 검증</td>
+            <td class="sku-desc"><strong>6시간</strong> / 건당 ₩100,000~500,000<br><span style="font-size:13px;color:var(--text-dim)">시드 단계 무료 검증</span></td>
+            <td class="sku-desc">개인정보 자동 가림 처리된 원본 음성 파일(WAV). 다양한 발화자·환경·잡음 포함.</td>
+            <td class="sku-target"><strong>음성→글자 변환 · 글자→음성 변환</strong><br>모델 사전 검증</td>
           </tr>
           <tr>
             <td><span class="sku-code">UC-A2</span></td>
             <td>
-              <div class="sku-name">VoiceRaw 트라이얼/정기</div>
+              <div class="sku-name">성장 (원본 음성)</div>
               <div class="sku-name-sub">시간당 거래</div>
             </td>
-            <td class="sku-desc"><strong>60h</strong> 또는 <strong>600h</strong><br>₩200~600K / h<br><span style="font-size:11px;color:var(--text-dim)">신선도 차등 (vN > vN-1)</span></td>
-            <td class="sku-desc">사용자 입력 라벨 부착 가능. 대화 맥락 메타데이터 포함. 비독점 N회 (5~10).</td>
-            <td class="sku-target"><strong>AICC · 대화 AI</strong><br>컨택센터 솔루션</td>
+            <td class="sku-desc"><strong>60시간</strong> 또는 <strong>600시간</strong><br>시간당 ₩200,000~600,000<br><span style="font-size:13px;color:var(--text-dim)">최신 데이터일수록 높은 단가</span></td>
+            <td class="sku-desc">사용자 입력 라벨 부착 가능. 대화 맥락 메타데이터 포함. 비독점 5~10회 판매.</td>
+            <td class="sku-target"><strong>AI 콜센터 · 대화 AI</strong><br>컨택센터 솔루션</td>
           </tr>
           <tr>
             <td><span class="sku-code">UC-A3</span></td>
             <td>
-              <div class="sku-name">VoiceRaw 대량</div>
-              <div class="sku-name-sub">규모 단위</div>
+              <div class="sku-name">규모 (원본 음성)</div>
+              <div class="sku-name-sub">대량 단위</div>
             </td>
-            <td class="sku-desc"><strong>6,000h</strong><br>₩600K~2M / h<br><span style="font-size:11px;color:var(--text-dim)">희소 도메인 프리미엄</span></td>
-            <td class="sku-desc">dialog_act(요청/응답/확인 등) + intensity 라벨. 세션형 JSONL 포맷.</td>
-            <td class="sku-target"><strong>LLM · 에이전트</strong><br>파인튜닝용</td>
+            <td class="sku-desc"><strong>6,000시간</strong><br>시간당 ₩600,000~2,000,000<br><span style="font-size:13px;color:var(--text-dim)">희소 분야 프리미엄</span></td>
+            <td class="sku-desc">대화 의도(요청/응답/확인 등) + 감정 강도 라벨. 세션 단위 데이터 포맷.</td>
+            <td class="sku-target"><strong>대규모 언어모델(LLM) · AI 에이전트</strong><br>파인튜닝용</td>
           </tr>
           <tr>
             <td><span class="sku-code">UC-LLM</span></td>
             <td>
-              <div class="sku-name">Instruction Data</div>
-              <div class="sku-name-sub">4세대 가공</div>
+              <div class="sku-name">지시문 학습 데이터</div>
+              <div class="sku-name-sub">4단계 가공</div>
             </td>
-            <td class="sku-desc"><strong>6,000h</strong><br>₩1~2M / h<br><span style="font-size:11px;color:var(--text-dim)">자동 분류·요약·QA</span></td>
-            <td class="sku-desc">통화 메타 + 자동 분류·요약·QA 가공 데이터. Instruction Tuning 포맷.</td>
-            <td class="sku-target"><strong>LLM 미세조정</strong><br>한국어 instruction</td>
+            <td class="sku-desc"><strong>6,000시간</strong><br>시간당 ₩1,000,000~2,000,000<br><span style="font-size:13px;color:var(--text-dim)">자동 분류·요약·질의응답</span></td>
+            <td class="sku-desc">통화 메타데이터 + 자동 분류·요약·질의응답 가공 데이터. 지시문 튜닝 포맷.</td>
+            <td class="sku-target"><strong>대규모 언어모델 미세조정</strong><br>한국어 지시문 학습</td>
           </tr>
         </tbody>
       </table>
-      <p style="margin-top:16px;font-size:12px;color:var(--text-dim);text-align:center">
-        ※ 단가는 시드 단계 추정 범위. LOI 1건 후 정식 단가 확정. 신선도 차등 (vN ₩600K > vN-1 ₩500K > vN-3 ₩300K).
+      <p style="margin-top:16px;font-size:14px;color:var(--text-dim);text-align:center">
+        ※ 단가는 시드 단계 추정 범위. 매수 의향서 1건 확보 후 정식 단가 확정. 최신 데이터일수록 높은 단가 (최신 ₩600,000 > 한 분기 전 ₩500,000 > 세 분기 전 ₩300,000).
       </p>
     </div>
   </div>
@@ -1655,7 +1655,7 @@ body::after {
             <td class="diff-check">&#x2713;</td>
             <td class="diff-warn">&#x25B2; 부분적</td>
             <td class="diff-cross">&#x2715;</td>
-            <td class="diff-check">&#x2713; 양자 동의</td>
+            <td class="diff-check">&#x2713; 양측 동의</td>
           </tr>
           <tr>
             <td>화자·환경 다양성</td>
@@ -1676,7 +1676,7 @@ body::after {
             <td>해당없음</td>
             <td>서버 처리</td>
             <td class="diff-cross">미처리</td>
-            <td class="diff-check">&#x2713; 양자 동의 후 서버 (PII 97.5%)</td>
+            <td class="diff-check">&#x2713; 양측 동의 후 서버 (개인정보 자동 가림 97.5%)</td>
           </tr>
           <tr>
             <td>비용 대비 리스크</td>
@@ -1698,22 +1698,22 @@ body::after {
       <div class="stat-card reveal reveal-delay-1">
         <div class="stat-value">97.5</div>
         <div class="stat-unit">%</div>
-        <div class="stat-label">PII 마스킹 검출률 (알파 209건)</div>
+        <div class="stat-label">개인정보 자동 가림 검출률 (알파 209건)</div>
       </div>
       <div class="stat-card reveal reveal-delay-2">
         <div class="stat-value">4.53</div>
         <div class="stat-unit">%</div>
-        <div class="stat-label">한국어 통화 CER (AI-Hub 능가)</div>
+        <div class="stat-label">한국어 통화 글자 인식 오차율 (AI 허브 능가)</div>
       </div>
       <div class="stat-card reveal reveal-delay-3">
         <div class="stat-value" data-count="402">0</div>
         <div class="stat-unit">건</div>
-        <div class="stat-label">자동 회귀 테스트 PASS</div>
+        <div class="stat-label">자동 회귀 테스트 통과</div>
       </div>
       <div class="stat-card reveal reveal-delay-4">
         <div class="stat-value">v10.0</div>
         <div class="stat-unit">&nbsp;</div>
-        <div class="stat-label">BM 인프라 박힘 (시드 출발 준비)</div>
+        <div class="stat-label">사업 모델 인프라 완성 (시드 출발 준비)</div>
       </div>
     </div>
   </div>
@@ -1729,34 +1729,34 @@ body::after {
     <div class="team-grid">
       <div class="team-card reveal reveal-delay-1">
         <div class="team-avatar">&#x1F6E1;</div>
-        <div class="team-role">CEO</div>
+        <div class="team-role">대표 (CEO)</div>
         <h3>대표</h3>
-        <div class="team-exp">정보보안 PM/PL 15년<br>금융권 보안 구축·운영<br>개인정보보호 체계 설계</div>
+        <div class="team-exp">정보보안 프로젝트 관리 15년<br>금융권 보안 구축·운영<br>개인정보 보호 체계 설계</div>
         <div class="team-tags">
           <span class="team-tag">보안 PM</span>
-          <span class="team-tag">풀스택</span>
+          <span class="team-tag">풀스택 개발</span>
           <span class="team-tag">AI 활용</span>
         </div>
       </div>
       <div class="team-card reveal reveal-delay-2">
         <div class="team-avatar">&#x1F4BB;</div>
-        <div class="team-role">CTO</div>
+        <div class="team-role">기술 총괄 (CTO)</div>
         <h3>기술 총괄</h3>
-        <div class="team-exp">풀스택 개발 10년<br>AWS 아키텍처 설계·운영<br>대규모 트래픽 안정화</div>
+        <div class="team-exp">풀스택 개발 10년<br>아마존 클라우드 아키텍처 설계·운영<br>대규모 트래픽 안정화</div>
         <div class="team-tags">
-          <span class="team-tag">풀스택 10Y</span>
+          <span class="team-tag">풀스택 10년</span>
           <span class="team-tag">AWS</span>
-          <span class="team-tag">DevOps</span>
+          <span class="team-tag">개발-운영(DevOps)</span>
         </div>
       </div>
       <div class="team-card reveal reveal-delay-3">
         <div class="team-avatar">&#x1F91D;</div>
-        <div class="team-role">CBO</div>
+        <div class="team-role">사업 총괄 (CBO)</div>
         <h3>사업 총괄</h3>
-        <div class="team-exp">운영·마케팅 5년<br>정부사업 수행 경험<br>B2B 파트너십 협상</div>
+        <div class="team-exp">운영·마케팅 5년<br>정부사업 수행 경험<br>기업 매수자 파트너십 협상</div>
         <div class="team-tags">
-          <span class="team-tag">그로스</span>
-          <span class="team-tag">B2B</span>
+          <span class="team-tag">사업 성장</span>
+          <span class="team-tag">기업 영업</span>
           <span class="team-tag">정부사업</span>
         </div>
       </div>
@@ -1775,29 +1775,29 @@ body::after {
         지금 시작하세요
       </h2>
       <p class="section-desc" style="text-align:center">
-        개인 — 방치된 통화 데이터를 자산으로. <strong>연 ₩300만 Cap</strong> (분리과세 안전).<br>
-        기업 — 맞춤 샘플 데이터셋 2주 이내 무상 제공. NDA 체결 가능.
+        개인 — 방치된 통화 데이터를 자산으로. <strong>1년에 한 분당 최대 ₩300만</strong> (세금 부담 적은 구간).<br>
+        기업 — 맞춤 샘플 데이터셋 2주 이내 무상 제공. 비밀유지 계약(NDA) 체결 가능.
       </p>
 
       <div class="cta-actions" style="margin-top:32px">
-        <a href="/signup" class="btn-primary" style="font-size:15px; padding:16px 40px; background:linear-gradient(135deg,#7c6cf0,#a78bfa)">
+        <a href="/signup" class="btn-primary" style="font-size:16px; padding:16px 40px; background:linear-gradient(135deg,#7c6cf0,#a78bfa)">
           개인 가입하기 &rarr;
         </a>
-        <a href="mailto:admin@uncounted.cloud?subject=B2B 파일럿 데이터 요청" class="btn-primary" style="font-size:15px; padding:16px 40px;">
-          B2B 파일럿 요청 &rarr;
+        <a href="mailto:admin@uncounted.cloud?subject=기업 매수자 파일럿 데이터 요청" class="btn-primary" style="font-size:16px; padding:16px 40px;">
+          기업 매수자 파일럿 요청 &rarr;
         </a>
         <a href="mailto:admin@uncounted.cloud" class="btn-ghost">일반 문의</a>
       </div>
 
       <div class="cta-note" style="margin-top:24px">
-        <strong>개인:</strong> Android APK + iOS 웹 가입 &bull; 양자 동의 후만 처리 &bull; 매월 정산 &bull; 매년 1월 Cap 리셋<br>
-        <strong>기업:</strong> 100~500건 샘플 무상 &bull; NDA 가능 &bull; 2주 이내 납품 &bull; 비독점 N회 5~10
+        <strong>개인:</strong> 안드로이드 앱 + 아이폰 웹 가입 &bull; 양측 동의 후만 처리 &bull; 매월 정산 &bull; 매년 1월 한도 초기화<br>
+        <strong>기업:</strong> 100~500건 샘플 무상 &bull; 비밀유지 계약 가능 &bull; 2주 이내 납품 &bull; 비독점 5~10회 판매
       </div>
 
-      <div style="margin-top:32px;padding:20px;background:rgba(124,108,240,0.06);border:1px solid var(--border);border-radius:12px;font-size:12px;color:var(--text-secondary);text-align:center;line-height:1.7">
-        ※ 보상금 산정 — 매출 - 운영비 = 순이익 → 50% 회사 유보 + 50% 화자 풀 (선가입자 우선 + 시간 비례).<br>
-        ※ 분배 알고리즘 + 분기 운영비 결산 공개 (가입자 10K+ 시점부터 외부 회계 감사).<br>
-        ※ 본 페이지의 단가·보상은 시드 단계 추정. LOI 확보 + 첫 매출 발생 후 정식 단가 공시.
+      <div style="margin-top:32px;padding:20px;background:rgba(124,108,240,0.06);border:1px solid var(--border);border-radius:12px;font-size:14px;color:var(--text-secondary);text-align:center;line-height:1.7">
+        ※ 보상금 산정 — 매출 - 운영비 = 순이익 → 50%는 회사 유보 + 50%는 발화자 풀에 분배 (먼저 가입한 분 우선, 통화 시간 비례).<br>
+        ※ 분배 알고리즘 + 분기 운영비 결산 공개 (가입자 1만 명 시점부터 외부 회계 감사).<br>
+        ※ 본 페이지의 단가·보상은 시드 단계 추정. 매수 의향서 확보 + 첫 매출 발생 후 정식 단가 공시.
       </div>
     </div>
   </div>

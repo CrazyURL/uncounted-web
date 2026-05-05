@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNCOUNTED — 가입 안내</title>
-<meta name="description" content="방치된 통화 데이터를 자산으로. Android APK 다운로드 + iOS 웹 가입. 연 ₩300만 Cap (분리과세 안전).">
+<meta name="description" content="잠자고 있던 통화 녹음을 자산으로. 안드로이드 앱 받기, 아이폰 웹 가입. 매년 300만원 한도 (세금 부담이 적은 구간).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -12,51 +12,60 @@
   --bg-deep: #06081a; --bg-primary: #0a0e27; --bg-card: #0f1333; --bg-cta: #1a1a2e;
   --purple-core: #7c6cf0; --purple-light: #a78bfa; --purple-dark: #6B46C1;
   --purple-glow: rgba(124,108,240,0.15); --border: rgba(124,108,240,0.12); --border-strong: rgba(124,108,240,0.25);
-  --text-primary: #e8e6f0; --text-secondary: #8b87a8; --text-dim: #5a5678;
+  --text-primary: #f1eef8; --text-secondary: #b8b4d0; --text-dim: #9a96b8;
   --white: #ffffff; --green: #34d399; --amber: #fbbf24;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg-deep); color: var(--text-primary); line-height: 1.7; min-height: 100vh; }
+/* 40~60대 사용자 가독성 우선 */
+html { font-size: 18px; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg-deep); color: var(--text-primary); line-height: 1.75; min-height: 100vh; font-size: 16px; -webkit-font-smoothing: antialiased; }
 .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
 .topbar { padding: 16px 20px; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
 .topbar-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--white); text-decoration: none; }
+.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); text-decoration: none; }
 .logo span { color: var(--purple-core); }
-.topbar-link { font-size: 12px; color: var(--text-secondary); text-decoration: none; }
+.topbar-link { font-size: 14px; color: var(--text-secondary); text-decoration: none; }
 .hero { padding: 56px 0; text-align: center; background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-deep) 100%); }
-.eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple-light); padding: 6px 14px; background: var(--purple-glow); border: 1px solid var(--border-strong); border-radius: 999px; margin-bottom: 20px; }
-h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 12px; }
-.hero-sub { font-size: 14px; color: var(--text-secondary); max-width: 480px; margin: 0 auto 32px; }
-.cap-box { display: inline-block; background: rgba(124,108,240,0.12); border: 1px solid var(--border-strong); border-radius: 12px; padding: 14px 20px; font-size: 14px; color: var(--purple-light); }
-.cap-box strong { color: var(--white); font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; color: var(--purple-light); padding: 7px 16px; background: var(--purple-glow); border: 1px solid var(--border-strong); border-radius: 999px; margin-bottom: 22px; }
+h1 { font-size: 32px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 14px; }
+.hero-sub { font-size: 17px; color: var(--text-secondary); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+.cap-box { display: inline-block; background: rgba(124,108,240,0.12); border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px 22px; font-size: 16px; color: var(--purple-light); }
+.cap-box strong { color: var(--white); font-family: 'Noto Sans KR', sans-serif; font-weight: 800; }
 .platform-section { padding: 48px 0; }
 .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-.platform-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 20px; }
-.platform-icon { font-size: 36px; margin-bottom: 14px; }
-.platform-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-.platform-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-.platform-btn { display: block; padding: 14px; background: linear-gradient(135deg, var(--purple-core), var(--purple-light)); color: var(--white); border-radius: 10px; text-align: center; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.2s; }
+.platform-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 22px; }
+.platform-icon { font-size: 40px; margin-bottom: 16px; }
+.platform-title { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.platform-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 22px; line-height: 1.75; }
+.platform-btn { display: block; padding: 16px; background: linear-gradient(135deg, var(--purple-core), var(--purple-light)); color: var(--white); border-radius: 10px; text-align: center; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.2s; min-height: 56px; }
 .platform-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,108,240,0.35); }
 .platform-btn-disabled { background: var(--bg-card); border: 1px dashed var(--border-strong); color: var(--text-dim); cursor: not-allowed; }
-.platform-meta { font-size: 11px; color: var(--text-dim); margin-top: 12px; }
+.platform-meta { font-size: 13px; color: var(--text-dim); margin-top: 14px; }
 .steps-section { padding: 48px 0; background: var(--bg-primary); }
-.section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 12px; }
-.section-title { font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; }
+.section-label { font-size: 13px; font-weight: 700; letter-spacing: 1.2px; color: var(--purple-light); margin-bottom: 14px; }
+.section-title { font-size: 24px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; }
 .step-list { display: flex; flex-direction: column; gap: 14px; }
-.step { display: flex; gap: 14px; align-items: flex-start; background: var(--bg-card); padding: 16px; border-radius: 12px; border: 1px solid var(--border); }
-.step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--purple-core); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.step { display: flex; gap: 16px; align-items: flex-start; background: var(--bg-card); padding: 18px; border-radius: 12px; border: 1px solid var(--border); }
+.step-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--purple-core); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; }
 .step-text { flex: 1; }
-.step-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-.step-desc { font-size: 12px; color: var(--text-secondary); }
+.step-title { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 .warning-section { padding: 32px 0; background: var(--bg-cta); }
-.warning-box { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.25); border-radius: 12px; padding: 20px; }
-.warning-title { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 10px; }
-.warning-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+.warning-box { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.25); border-radius: 12px; padding: 22px; }
+.warning-title { font-size: 15px; font-weight: 700; color: var(--amber); margin-bottom: 10px; }
+.warning-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 .footer { padding: 24px 0 32px; background: var(--bg-deep); border-top: 1px solid var(--border); text-align: center; }
-.footer-disclaimer { font-size: 10px; color: var(--text-dim); line-height: 1.7; max-width: 600px; margin: 0 auto 12px; }
-.footer-links { font-size: 11px; color: var(--text-dim); }
+.footer-disclaimer { font-size: 14px; color: var(--text-dim); line-height: 1.8; max-width: 600px; margin: 0 auto 14px; }
+.footer-links { font-size: 13px; color: var(--text-dim); }
 .footer-links a { color: var(--purple-light); text-decoration: none; }
-@media (max-width: 480px) { .container { padding: 0 16px; } h1 { font-size: 24px; } .platform-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) {
+  html { font-size: 17px; }
+  .container { padding: 0 16px; }
+  h1 { font-size: 26px; }
+  .platform-grid { grid-template-columns: 1fr; }
+  .hero-sub { font-size: 16px; }
+  .step-title { font-size: 16px; }
+}
 </style>
 </head>
 <body>
@@ -71,33 +80,33 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 <section class="hero">
   <div class="container">
     <div class="eyebrow">개인 가입</div>
-    <h1>방치된 통화 데이터가<br>자산이 됩니다</h1>
-    <p class="hero-sub">평균 380건 통화 (디바이스마다 다름). 본인 + 상대방 동의로 양쪽 분배. 매월 정산.</p>
+    <h1>잠자고 있던 통화가<br>자산이 됩니다</h1>
+    <p class="hero-sub">한 분당 평균 380건 정도의 통화 녹음 (사람마다 다릅니다). 본인과 상대방이 동의하시면 두 분이 보상을 나누어 받으시고, 매월 정산해 드립니다.</p>
     <div class="cap-box">
-      <strong>연 ₩300만 Cap</strong> &middot; 분리과세 안전 &middot; 매년 1월 리셋
+      <strong>매년 한도 300만원</strong> &middot; 세금 부담 적은 구간 &middot; 매년 1월 초기화
     </div>
   </div>
 </section>
 
 <section class="platform-section">
   <div class="container">
-    <div class="section-label">플랫폼 선택</div>
-    <h2 class="section-title">시작하기</h2>
+    <div class="section-label">기기 선택</div>
+    <h2 class="section-title">어떤 휴대폰을 쓰시나요?</h2>
 
     <div class="platform-grid">
       <div class="platform-card">
         <div class="platform-icon">&#x1F916;</div>
-        <div class="platform-title">Android</div>
-        <p class="platform-desc">자동 통화 녹음 + 메타 자동 식별 + 양자 동의 발송 + 매월 정산. 풀 기능.</p>
-        <a href="/download" class="platform-btn">APK 다운로드 &rarr;</a>
-        <div class="platform-meta">시드 단계 직접 배포 (Google Play 등록은 Phase 4 후)</div>
+        <div class="platform-title">안드로이드</div>
+        <p class="platform-desc">자동 통화 녹음, 통화 정보 자동 확인, 동의 요청 보내기, 매월 정산까지 모든 기능을 사용하실 수 있습니다.</p>
+        <a href="/download" class="platform-btn">앱 받기 &rarr;</a>
+        <div class="platform-meta">초기 단계라 직접 배포 중입니다 (구글 플레이 정식 등록은 추후 예정)</div>
       </div>
       <div class="platform-card">
         <div class="platform-icon">&#x1F4F1;</div>
-        <div class="platform-title">iOS</div>
-        <p class="platform-desc">웹 기반 가입 + 통화 녹음 수동 공유 (iOS 18.1+) + 양자 동의. 제한적 기능.</p>
+        <div class="platform-title">아이폰</div>
+        <p class="platform-desc">웹으로 가입 후, 통화 녹음을 직접 올려서 공유하실 수 있습니다 (아이폰 iOS 18.1 이상). 일부 기능만 지원됩니다.</p>
         <a class="platform-btn platform-btn-disabled" aria-disabled="true">웹 가입 (준비 중)</a>
-        <div class="platform-meta">Capacitor 웹 export 작업 중 (Sprint 5)</div>
+        <div class="platform-meta">아이폰 웹 가입 기능을 준비하고 있습니다</div>
       </div>
     </div>
   </div>
@@ -106,27 +115,27 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 <section class="steps-section">
   <div class="container">
     <div class="section-label">가입 후 흐름</div>
-    <h2 class="section-title">3단계로 시작</h2>
+    <h2 class="section-title">3단계로 간단합니다</h2>
     <div class="step-list">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-text">
-          <div class="step-title">앱 설치 + 본인 동의</div>
-          <div class="step-desc">PIPA + 음성=생체정보 + 약관 동의. 통화 녹음 접근 권한 + 상대방 식별 권한.</div>
+          <div class="step-title">앱 설치 후 본인 동의</div>
+          <div class="step-desc">「개인정보보호법」, 음성을 생체정보로 보호하는 규정, 이용약관에 동의하시고, 통화 녹음 접근 권한과 상대방 확인 권한을 허용하시면 됩니다.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-text">
-          <div class="step-title">디바이스 자동 스캔</div>
-          <div class="step-desc">통화 메타 자동 추출 (시간·길이·해시). 음성 원본은 폰에 그대로 보관.</div>
+          <div class="step-title">휴대폰 자동 확인</div>
+          <div class="step-desc">통화의 기본 정보(시각·길이·고유 번호)만 자동으로 가져옵니다. 통화 음성 자체는 본인 휴대폰에 그대로 저장되어 있습니다.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-text">
-          <div class="step-title">양자 동의 → 매월 정산</div>
-          <div class="step-desc">상대방에게 카카오톡 동의 요청 발송. 동의 완료 후 서버 처리 + 매월 15일 자동 입금.</div>
+          <div class="step-title">양측 동의 → 매월 정산</div>
+          <div class="step-desc">상대방께 카카오톡으로 동의 요청을 보내드립니다. 두 분이 모두 동의하신 뒤에만 서버에서 처리하고, 매월 15일에 자동으로 입금됩니다.</div>
         </div>
       </div>
     </div>
@@ -136,10 +145,12 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 <section class="warning-section">
   <div class="container">
     <div class="warning-box">
-      <div class="warning-title">⚠️ 시드 단계 안내</div>
+      <div class="warning-title">⚠️ 서비스 초기 단계 안내</div>
       <div class="warning-desc">
-        본 서비스는 시드 단계 (가입자 20~100명). 단가·보상 산정은 추정 — LOI 1건 확보 후 정식 단가 공시.
-        보상 발생은 양자 동의 완료 + 매수자 거래 + 첫 입금 (M5~M10 예상). Cap ₩300만/년 내 분리과세 처리.
+        지금은 서비스 초기 단계입니다 (가입자 20~100분 정도). 보상 단가는 아직 추정치이며,
+        매수자가 정식으로 들어오시면 그때 정확한 단가를 안내드립니다.
+        본인과 상대방 양측 동의가 완료되고, 매수자 거래가 이루어진 뒤에 첫 입금이 시작됩니다 (가입 후 약 5~10개월 예상).
+        매년 300만원 한도 안에서 세금 부담이 적은 방식으로 처리됩니다.
       </div>
     </div>
   </div>
@@ -148,13 +159,13 @@ h1 { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; m
 <footer class="footer">
   <div class="container">
     <div class="footer-disclaimer">
-      개인정보보호법 제15조 + 통신비밀보호법 + PIPA 30조 11항 (음성=생체정보) 정합.<br>
-      양자 동의 완료 후에만 회사 서버에 전송 + 처리.
+      「개인정보보호법」 제15조, 「통신비밀보호법」, 「개인정보보호법」 음성 생체정보 보호 조항을 따릅니다.<br>
+      본인과 상대방이 모두 동의하신 뒤에만 회사 서버로 전송하여 처리합니다.
     </div>
     <div class="footer-links">
       <a href="/legal/privacy">개인정보처리방침</a> &middot;
       <a href="/legal/terms">이용약관</a> &middot;
-      <a href="mailto:contact@uncounted.kr">문의</a>
+      <a href="mailto:contact@uncounted.kr">문의하기</a>
     </div>
   </div>
 </footer>

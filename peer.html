@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNCOUNTED — 양쪽 동의 요청</title>
-<meta name="description" content="통화 데이터 양쪽 동의 요청. 본인 + 상대방 양쪽 동의 후에만 서버 처리. 개인정보 가림 97.5% + 한국인터넷진흥원 가이드라인 준수.">
+<title>UNCOUNTED — 양측 동의 요청</title>
+<meta name="description" content="통화 데이터 양측 동의 요청. 본인과 상대방이 모두 동의해야만 회사 서버에서 처리합니다. 이름·전화번호 등 개인정보는 자동으로 가립니다.">
 
 <!-- 동적 OG (token별 갱신은 Cloudflare Pages Functions 영역, 향후 작업) -->
-<meta property="og:title" content="UNCOUNTED — 양쪽 동의 요청">
+<meta property="og:title" content="UNCOUNTED — 양측 동의 요청">
 <meta property="og:description" content="통화 데이터 동의 요청. 30초면 확인 가능.">
 <meta property="og:image" content="https://uncounted-web.pages.dev/og-default.png">
 <meta property="og:url" content="https://uncounted-web.pages.dev/peer">
@@ -53,14 +53,16 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; font-size: 17px; }
+/* 40~60대 사용자 가독성 우선 — 데스크톱 18px, 모바일 17px */
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; font-size: 18px; }
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
   background: var(--bg-deep);
   color: var(--text-primary);
-  line-height: 1.7;
+  line-height: 1.75;
   min-height: 100vh;
+  font-size: 16px;
 }
 
 .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
@@ -84,25 +86,25 @@ body {
 }
 .eyebrow {
   display: inline-block;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--purple-light);
   letter-spacing: 1px;
-  padding: 8px 16px;
+  padding: 9px 18px;
   background: var(--purple-glow);
   border: 1px solid var(--border-strong);
   border-radius: 999px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 .hero-title {
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 700;
   line-height: 1.4;
   color: var(--white);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .hero-title .name { color: var(--purple-light); }
-.hero-sub { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+.hero-sub { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
 
 /* 본인 확인 박스 (받는 사람 표시 + 체크) */
 .recipient-box {
@@ -113,16 +115,16 @@ body {
   margin: 0 0 24px;
   text-align: left;
 }
-.recipient-label { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; }
-.recipient-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.recipient-label { font-size: 14px; color: var(--text-dim); margin-bottom: 6px; }
+.recipient-name { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
 .recipient-check {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
   cursor: pointer;
-  padding: 12px;
+  padding: 16px;
   background: var(--bg-elevated);
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid transparent;
   transition: all 0.2s;
 }
@@ -130,17 +132,18 @@ body {
 .recipient-check input[type="checkbox"] {
   flex-shrink: 0;
   margin-top: 3px;
-  width: 18px; height: 18px;
+  width: 22px; height: 22px;
   accent-color: var(--purple-core);
   cursor: pointer;
 }
-.recipient-check-text { font-size: 14px; color: var(--text-primary); line-height: 1.5; }
+.recipient-check-text { font-size: 16px; color: var(--text-primary); line-height: 1.6; }
 .recipient-check-text strong { color: var(--purple-light); }
 .recipient-warn {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--amber);
-  margin-top: 10px;
-  line-height: 1.5;
+  margin-top: 12px;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
 /* 큰 금액 박스 */
@@ -151,20 +154,20 @@ body {
   margin: 24px 0;
   box-shadow: 0 12px 32px rgba(124,108,240,0.25);
 }
-.amount-label { font-size: 14px; color: rgba(255,255,255,0.85); margin-bottom: 8px; }
+.amount-label { font-size: 16px; color: rgba(255,255,255,0.9); margin-bottom: 10px; font-weight: 500; }
 .amount-value {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 36px;
-  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
   color: var(--white);
-  letter-spacing: -1px;
-  line-height: 1.2;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
 }
 .amount-disclaimer {
-  font-size: 13px;
-  color: rgba(255,255,255,0.85);
-  margin-top: 12px;
-  line-height: 1.6;
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  margin-top: 14px;
+  line-height: 1.7;
 }
 
 /* 데이터 요약 */
@@ -180,8 +183,8 @@ body {
   border-radius: 10px;
   border: 1px solid var(--border);
 }
-.data-item-val { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--white); }
-.data-item-lbl { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+.data-item-val { font-family: 'Noto Sans KR', sans-serif; font-size: 26px; font-weight: 800; color: var(--white); }
+.data-item-lbl { font-size: 15px; color: var(--text-secondary); margin-top: 6px; }
 
 /* CTA 버튼 — 동의/거절 1:2 비대칭 */
 .cta-row {
@@ -191,14 +194,15 @@ body {
   margin-top: 8px;
 }
 .btn {
-  padding: 18px;
-  font-size: 17px;
+  padding: 20px 18px;
+  font-size: 19px;
   font-weight: 700;
   border-radius: 12px;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
+  min-height: 60px;
 }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 .btn-decline {
@@ -215,22 +219,22 @@ body {
 .btn-agree:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(124,108,240,0.45); }
 
 .hero-disclaimer {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-secondary);
-  margin-top: 16px;
-  line-height: 1.7;
+  margin-top: 18px;
+  line-height: 1.75;
 }
 
 /* ═══════════════════ LAYER 2 — 안전 안내 ═══════════════════ */
 .layer-trust { padding: 56px 0; background: var(--bg-deep); }
 .section-label {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 1.2px;
   color: var(--purple-light);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
-.section-title { font-size: 24px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; }
+.section-title { font-size: 26px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 30px; }
 .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .trust-card {
   background: var(--bg-card);
@@ -238,10 +242,10 @@ body {
   border-radius: 14px;
   padding: 22px 18px;
 }
-.trust-icon { font-size: 26px; margin-bottom: 12px; }
-.trust-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-.trust-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-.trust-metric { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--purple-light); margin: 6px 0; }
+.trust-icon { font-size: 30px; margin-bottom: 12px; }
+.trust-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.trust-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.75; }
+.trust-metric { font-family: 'Noto Sans KR', sans-serif; font-size: 28px; font-weight: 800; color: var(--purple-light); margin: 8px 0; }
 
 /* ═══════════════════ LAYER 3 — HOW IT WORKS ═══════════════════ */
 .layer-how { padding: 56px 0; background: var(--bg-primary); }
@@ -257,17 +261,17 @@ body {
 }
 .how-num {
   flex-shrink: 0;
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   background: var(--purple-core);
   color: var(--white);
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 800;
+  font-size: 18px;
 }
 .how-text { flex: 1; }
-.how-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-.how-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.how-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.how-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.75; }
 
 /* ═══════════════════ LAYER 4 — SIGNUP CTA ═══════════════════ */
 .layer-signup {
@@ -277,37 +281,38 @@ body {
 }
 .signup-eyebrow {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 7px 14px;
   background: rgba(251,191,36,0.18);
   color: var(--amber);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
   border-radius: 4px;
   margin-bottom: 16px;
 }
-.signup-title { font-size: 26px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 12px; }
-.signup-desc { font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; }
+.signup-title { font-size: 28px; font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 14px; }
+.signup-desc { font-size: 16px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7; }
 .signup-cap {
   display: inline-block;
   background: rgba(124,108,240,0.15);
   border: 1px solid var(--border-strong);
   border-radius: 8px;
-  padding: 12px 16px;
-  margin: 12px 0 24px;
-  font-size: 15px;
+  padding: 14px 18px;
+  margin: 14px 0 26px;
+  font-size: 16px;
   color: var(--purple-light);
 }
-.signup-cap strong { color: var(--white); font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
-.signup-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.signup-cap strong { color: var(--white); font-family: 'Noto Sans KR', sans-serif; font-weight: 800; }
+.signup-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .signup-btn {
-  padding: 18px;
+  padding: 20px;
   border-radius: 10px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   transition: all 0.2s;
+  min-height: 60px;
 }
 .signup-btn-primary {
   background: var(--purple-core);
@@ -333,9 +338,9 @@ body {
 }
 .state-message.success { border-color: var(--green); background: rgba(52,211,153,0.08); }
 .state-message.error { border-color: var(--red); background: rgba(248,113,113,0.08); }
-.state-emoji { font-size: 40px; margin-bottom: 12px; }
-.state-msg-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-.state-msg-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.state-emoji { font-size: 44px; margin-bottom: 14px; }
+.state-msg-title { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.state-msg-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.75; }
 
 /* ═══════════════════ FOOTER ═══════════════════ */
 .footer {
@@ -345,24 +350,29 @@ body {
   text-align: center;
 }
 .footer-disclaimer {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-dim);
-  line-height: 1.8;
+  line-height: 1.85;
   max-width: 600px;
-  margin: 0 auto 14px;
+  margin: 0 auto 16px;
 }
-.footer-links { font-size: 13px; color: var(--text-dim); }
+.footer-links { font-size: 14px; color: var(--text-dim); }
 .footer-links a { color: var(--purple-light); text-decoration: none; }
 
 /* ═══════════════════ MOBILE ═══════════════════ */
 @media (max-width: 480px) {
-  html { font-size: 16px; }
+  html { font-size: 17px; }
+  body { font-size: 16px; }
   .container { padding: 0 16px; }
-  .hero-title { font-size: 24px; }
-  .amount-value { font-size: 32px; }
+  .hero-title { font-size: 28px; }
+  .amount-value { font-size: 34px; }
   .data-summary { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
   .signup-cta-grid { grid-template-columns: 1fr; }
+  .btn { font-size: 18px; min-height: 58px; }
+  .recipient-name { font-size: 20px; }
+  .recipient-check-text { font-size: 15px; }
+  .recipient-warn { font-size: 14px; }
 }
 
 /* ═══════════════════ LOADING ═══════════════════ */
@@ -383,36 +393,36 @@ body {
 <!-- ═══════════════════ LAYER 1 — HERO 동의 (Above the Fold) ═══════════════════ -->
 <section class="layer-hero">
   <div class="container">
-    <div class="eyebrow">양쪽 동의 요청</div>
+    <div class="eyebrow">양측 동의 요청</div>
     <h1 class="hero-title">
-      <span class="name" id="senderName">[송신자]</span>님이<br>부탁이 있어요
+      <span class="name" id="senderName">[보낸 사람]</span>님이<br>부탁이 있어요
     </h1>
-    <p class="hero-sub">통화 데이터 동의 요청 · 30초면 확인 가능</p>
+    <p class="hero-sub">한 번 동의하시면 그분과의 모든 통화 (과거 + 앞으로의 통화)에 적용됩니다 · 30초면 확인 가능</p>
 
     <!-- 본인 확인 박스 -->
     <div class="recipient-box" id="recipientBox" style="display:none">
-      <div class="recipient-label">이 동의 요청을 받은 분</div>
+      <div class="recipient-label">이 요청을 받으신 분</div>
       <div class="recipient-name" id="recipientName">—</div>
       <label class="recipient-check">
         <input type="checkbox" id="recipientCheck">
         <span class="recipient-check-text">
-          제가 <strong id="recipientNameInline">—</strong>이 맞습니다. 본인이 직접 동의/거절합니다.
+          네, 제가 <strong id="recipientNameInline">—</strong> 본인이 맞습니다. 제가 직접 동의 또는 거절합니다.
         </span>
       </label>
       <p class="recipient-warn">
-        ※ 본인이 아니라면 동의/거절을 누르지 마시고, 송신자에게 직접 알려주세요.
-        본인만 동의 가능합니다.
+        ⚠ 본인이 아니시면 아래 버튼을 누르지 말아주세요.<br>
+        본인만 동의할 수 있습니다. 가족이나 친구가 대신 받았다면, 본인에게 이 메시지를 다시 전달해주세요.
       </p>
     </div>
 
     <!-- 큰 금액 박스 -->
     <div class="amount-box">
-      <div class="amount-label">예상 본인 몫 (양쪽 동의 후)</div>
-      <div class="amount-value" id="amountValue">₩—</div>
+      <div class="amount-label">예상 본인 몫 (양측 동의 후)</div>
+      <div class="amount-value" id="amountValue">—</div>
       <div class="amount-disclaimer" id="amountDisclaimer">
-        시간당 약 <strong>5만~10만원</strong> × 50% (본인 + 상대방 반반) 기준 추정.<br>
-        한도: 매년 <strong>300만원</strong>까지 (세금 안전 구간, 1월 초기화).<br>
-        ※ 초기 단계 — 매수자 의향서(LOI) 0건. 실거래가는 시장 단가에 따라 달라집니다.
+        통화 1시간당 <strong>약 5만~10만원</strong> 기준, 본인과 상대방이 반반씩 나눕니다.<br>
+        받으실 수 있는 한도: 매년 <strong>300만원</strong>까지 (세금 부담이 적은 구간, 매년 1월 초기화).<br>
+        <span style="opacity:0.85">※ 서비스 초기라 실제 매수자가 아직 없습니다. 실제 받는 금액은 시장 단가에 따라 달라질 수 있습니다.</span>
       </div>
     </div>
 
@@ -435,9 +445,11 @@ body {
     </div>
 
     <p class="hero-disclaimer">
-      ※ 본 동의는 양쪽 동의 시스템의 한 축입니다. 본인 + 상대방이 모두 동의해야만
-      통화 음성이 회사 서버로 전송되어 처리됩니다.
-      그 전까지는 송신자 휴대폰에 그대로 보관됩니다.
+      ※ 통화는 두 사람의 것이라 본인과 상대방이 모두 동의해야만
+      통화 녹음이 회사 서버로 전송됩니다. 동의 전까지는
+      보낸 분의 휴대폰에만 그대로 저장되어 있습니다.<br>
+      ※ 한 번 동의하시면 보낸 분과의 <strong>모든 통화 (과거 + 앞으로 발생하는 통화)</strong>에 자동으로 적용됩니다.
+      매번 다시 받지 않습니다 (이용약관 제5조의2).
     </p>
 
     <!-- 동의/거절 후 상태 메시지 (초기 hidden) -->
@@ -449,45 +461,57 @@ body {
 <section class="layer-trust">
   <div class="container">
     <div class="section-label">왜 안전한가요?</div>
-    <h2 class="section-title">정부 가이드라인 + 측정값으로 검증</h2>
+    <h2 class="section-title">정부 지침을 따르고,<br>실제 수치로 보여드립니다</h2>
     <div class="trust-grid">
       <div class="trust-card">
         <div class="trust-icon">&#x1F6E1;&#xFE0F;</div>
-        <div class="trust-title">개인 정보 가림</div>
+        <div class="trust-title">개인정보 자동 가림</div>
         <div class="trust-metric">97.5%</div>
         <div class="trust-desc">
-          이름·전화번호·주민등록번호 등 개인 식별 정보를 자동으로 가립니다.
-          한국인터넷진흥원(KISA) 비식별 조치 가이드라인을 따릅니다.
+          통화 속 이름, 전화번호, 주민등록번호 등 개인을 알 수 있는 정보를
+          자동으로 가립니다. 한국인터넷진흥원(KISA) 지침을 따릅니다.
         </div>
       </div>
       <div class="trust-card">
         <div class="trust-icon">&#x2696;&#xFE0F;</div>
-        <div class="trust-title">양쪽 동의 시스템</div>
+        <div class="trust-title">양측 동의 시스템</div>
         <div class="trust-metric">국내 최초</div>
         <div class="trust-desc">
-          본인과 상대방 양쪽이 모두 동의해야 처리됩니다.
-          동의자의 접속 정보(IP)와 토큰을 함께 기록해 위변조를 방지합니다.
-          개인정보보호법(PIPA)을 따릅니다.
+          본인과 상대방 두 분이 모두 동의해야 처리됩니다.
+          누가 언제 어디서 동의했는지(접속 위치 정보·일회용 동의 코드)를
+          함께 기록해 위변조를 막습니다. 「개인정보보호법」을 따릅니다.
         </div>
       </div>
       <div class="trust-card">
         <div class="trust-icon">&#x1F4DC;</div>
-        <div class="trust-title">보상 분배 방식 공개</div>
+        <div class="trust-title">보상 나누는 방식 공개</div>
         <div class="trust-metric">v0.6</div>
         <div class="trust-desc">
-          매출에서 운영비를 뺀 순이익의 50%를 통화에 참여한 분들에게 분배합니다.
-          먼저 가입한 분 우선 + 매년 한도 300만원. 분기마다 결산 내용을 공개합니다.
+          회사 매출에서 운영비를 뺀 순이익의 절반(50%)을
+          통화를 제공해 주신 분들께 나눠 드립니다.
+          먼저 가입하신 분이 우선이며, 한 분당 매년 300만원까지 받으실 수 있습니다.
+          분기마다 결산 내용을 공개합니다.
         </div>
       </div>
       <div class="trust-card">
         <div class="trust-icon">&#x1F510;</div>
-        <div class="trust-title">언제든 철회 가능</div>
-        <div class="trust-metric">즉시 삭제</div>
+        <div class="trust-title">언제든 동의 취소 가능</div>
+        <div class="trust-metric">판매 전 즉시 회수</div>
         <div class="trust-desc">
-          동의 후에도 앱 또는 웹에서 즉시 철회할 수 있습니다.
-          아직 매수자에게 전달되지 않은 데이터는 즉시 삭제됩니다.
-          개인정보보호법(PIPA)에 따른 조치입니다.
+          동의하신 뒤에도 앱이나 웹에서 언제든 동의를 취소할 수 있습니다.
+          매수자에게 전달되기 전의 데이터는 즉시 회수해 삭제합니다.
+          이미 매수자에게 전달된 데이터는 회사가 직접 회수할 수 없으나,
+          매수자 목록과 표준 삭제 요청서를 안내해 드립니다 (이용약관 제8조의2 · 제12조).
         </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">&#x1F4DE;</div>
+        <div class="trust-title">직무 통화는 별도 비식별</div>
+        <div class="trust-metric">강화 마스킹</div>
+        <div class="trust-desc">
+          콜센터 대표번호(1588 등) 또는 가상번호(050) 등 직무로 받으신 통화는
+          개인이 아닌 직무 발화자로 분류해 음성·이름·소속의 식별 가능 부분을
+          한 단계 더 강하게 가리고 처리합니다 (이용약관 제5조의2 3항).
       </div>
     </div>
   </div>
@@ -502,31 +526,35 @@ body {
       <div class="how-step">
         <div class="how-num">1</div>
         <div class="how-text">
-          <div class="how-title">통화 정보 식별</div>
+          <div class="how-title">통화 기본 정보 확인</div>
           <div class="how-desc">
-            송신자 휴대폰에서 통화의 기본 정보(시간·길이·고유 코드)만 추출합니다.
-            음성 원본은 송신자 휴대폰에 그대로 보관됩니다.
+            보낸 분의 휴대폰에서 통화의 기본 정보(통화 시각·길이·고유 번호)만 가져옵니다.
+            통화 음성 자체는 보낸 분의 휴대폰에 그대로 저장되어 있습니다.
           </div>
         </div>
       </div>
       <div class="how-step">
         <div class="how-num">2</div>
         <div class="how-text">
-          <div class="how-title">양쪽 동의 (지금 이 단계)</div>
+          <div class="how-title">양측 동의 (지금 이 단계)</div>
           <div class="how-desc">
             본인과 상대방이 모두 동의를 완료합니다.
-            접속 정보와 토큰으로 위변조를 검증하고, 동의 시점을 기록합니다.
+            동의하신 분의 접속 위치 정보와 일회용 동의 코드를 함께 기록해
+            위변조를 막고, 동의한 시각을 정확히 남깁니다.
+            <strong>한 번의 동의로 보낸 분과의 모든 통화 (과거 + 앞으로의 통화)에 적용됩니다</strong> —
+            매번 다시 받지 않습니다.
           </div>
         </div>
       </div>
       <div class="how-step">
         <div class="how-num">3</div>
         <div class="how-text">
-          <div class="how-title">서버 비식별 처리 + 보상 분배</div>
+          <div class="how-title">개인정보 가림 + 매월 보상</div>
           <div class="how-desc">
-            동의 후에만 회사 서버에서 처리합니다.
-            개인 식별 정보를 가리고(97.5%), 음성을 글자로 변환하며(STT),
-            발화자별로 분리합니다. 보상은 매월 정산됩니다.
+            두 분이 모두 동의한 뒤에만 회사 서버에서 처리합니다.
+            개인을 알 수 있는 정보를 자동으로 가리고(97.5%),
+            음성을 글자로 옮긴 뒤, 누가 어떤 말을 했는지
+            발화자별로 나눠 저장합니다. 보상은 매월 정산해 드립니다.
           </div>
         </div>
       </div>
@@ -537,21 +565,21 @@ body {
 <!-- ═══════════════════ LAYER 4 — SIGNUP CTA ═══════════════════ -->
 <section class="layer-signup">
   <div class="container">
-    <div class="signup-eyebrow">당신도 통화 자산이 있나요?</div>
-    <h2 class="signup-title">방치된 통화 데이터가<br>자산이 됩니다</h2>
+    <div class="signup-eyebrow">본인 휴대폰에도 통화가 쌓여 있나요?</div>
+    <h2 class="signup-title">잠자고 있던 통화가<br>자산이 됩니다</h2>
     <p class="signup-desc">
-      한 사람당 평균 380건의 통화가 휴대폰에 남아 있습니다 (사람마다 다름).
-      본인과 상대방의 동의로 양쪽 모두에게 보상이 분배됩니다.
+      한 사람의 휴대폰에는 평균 380건 정도의 통화 녹음이 쌓여 있습니다 (사람마다 다릅니다).
+      본인과 상대방이 동의하면 두 분 모두에게 보상이 나뉘어 들어갑니다.
     </p>
     <div class="signup-cap">
-      <strong>매년 한도 300만원</strong> (세금 안전 구간, 매년 1월 초기화)
+      <strong>매년 한도 300만원</strong> (세금 부담 적은 구간, 매년 1월 초기화)
     </div>
     <div class="signup-cta-grid">
       <a href="/download" class="signup-btn signup-btn-primary">
-        Android 앱 다운로드
+        안드로이드 앱 받기
       </a>
       <a href="/signup" class="signup-btn signup-btn-secondary">
-        iOS 웹 가입
+        아이폰 웹으로 가입
       </a>
     </div>
   </div>
@@ -561,14 +589,16 @@ body {
 <footer class="footer">
   <div class="container">
     <div class="footer-disclaimer">
-      개인정보보호법 제15조 + 통신비밀보호법 + 개인정보보호법(PIPA) 30조 11항
-      (음성=생체정보) 정합. 본인과 상대방의 양쪽 동의 후에만 회사 서버에 전송·처리합니다.<br>
-      ※ 위 예상 금액은 초기 단계 추정치이며 실거래가는 시장 단가와 매수자 거래에 따라 달라집니다.
+      「개인정보보호법」 제15조, 「통신비밀보호법」, 「개인정보보호법」 제23조(민감정보)
+      및 제30조의2(가명정보)를 따릅니다. 음성은 생체정보로 분류되어 있어,
+      본인과 상대방이 모두 동의하신 뒤에만 회사 서버로 전송하여 처리합니다.<br>
+      ※ 위 예상 금액은 서비스 초기 단계의 추정치이며, 실제 받으시는 금액은
+      시장 단가와 매수자 거래 상황에 따라 달라질 수 있습니다.
     </div>
     <div class="footer-links">
       <a href="/legal/privacy">개인정보처리방침</a> &middot;
       <a href="/legal/terms">이용약관</a> &middot;
-      <a href="mailto:contact@uncounted.kr">문의</a>
+      <a href="mailto:contact@uncounted.kr">문의하기</a>
     </div>
   </div>
 </footer>
@@ -587,8 +617,15 @@ function extractToken() {
 }
 
 function fmtKRW(n) {
-  if (n == null || isNaN(n)) return '₩—'
-  return '₩' + Math.round(n).toLocaleString('ko-KR')
+  if (n == null || isNaN(n)) return '—'
+  return Math.round(n).toLocaleString('ko-KR') + '원'
+}
+
+// 만원 단위로 친근하게 표시 — "약 5만~10만원" (초청 메시지와 같은 형식)
+function fmtManwon(n) {
+  if (n == null || isNaN(n) || n <= 0) return null
+  const man = Math.round(n / 10000)
+  return man.toLocaleString('ko-KR') + '만'
 }
 
 function showState(type, emoji, title, desc) {
@@ -630,17 +667,21 @@ function estimateRewardKrw(totalHours) {
   }
 }
 
-function fmtKRWRange(range) {
-  if (!range) return '₩—'
-  const { low, high } = range
-  if (low === high) return fmtKRW(low)
-  return `${fmtKRW(low)} ~ ${fmtKRW(high)}`
+// 만원 단위 범위 표시 — 초청 메시지의 "약 5만~10만원" 형식과 정확히 일치
+function fmtManwonRange(range) {
+  if (!range) return null
+  const lowMan = fmtManwon(range.low)
+  const highMan = fmtManwon(range.high)
+  if (!lowMan || !highMan) return null
+  if (lowMan === highMan) return `약 ${lowMan}원`
+  return `약 ${lowMan}~${highMan}원`
 }
 
 async function loadInvitation() {
   const token = extractToken()
   if (!token) {
-    showState('error', '⚠️', '잘못된 초대 링크', '카카오톡으로 받은 링크를 다시 확인해주세요.')
+    showState('error', '⚠️', '잘못된 요청 링크입니다',
+      '카카오톡이나 문자로 받으신 링크를 다시 한번 확인해 주세요. 링크 일부가 잘려서 전달됐을 수 있습니다.')
     return
   }
 
@@ -655,8 +696,9 @@ async function loadInvitation() {
   if (fallback.totalHours) {
     document.getElementById('totalHours').textContent = fallback.totalHours.toFixed(1) + '시간'
     const reward = estimateRewardKrw(fallback.totalHours)
-    if (reward) {
-      document.getElementById('amountValue').textContent = '~' + fmtKRWRange(reward)
+    const manwon = fmtManwonRange(reward)
+    if (manwon) {
+      document.getElementById('amountValue').textContent = manwon
     }
   }
   // 받는 사람 이름 표시 + 본인 확인 게이트
@@ -676,12 +718,14 @@ async function loadInvitation() {
       const j = await r.json()
       serverData = j.data || j
     } else if (r.status === 404 && !fallback.senderName) {
-      showState('error', '🔍', '초대를 찾을 수 없습니다', '링크가 만료되었거나 유효하지 않습니다.')
+      showState('error', '🔍', '요청을 찾을 수 없습니다',
+        '링크가 만료되었거나 잘못된 주소일 수 있습니다. 보낸 분께 다시 보내달라고 부탁해 주세요.')
       return
     }
   } catch (e) {
     if (!fallback.senderName) {
-      showState('error', '🌐', '네트워크 오류', '인터넷 연결을 확인하고 다시 시도해주세요.')
+      showState('error', '🌐', '인터넷 연결을 확인해 주세요',
+        '와이파이나 데이터 연결을 확인하시고, 잠시 후 다시 시도해 주세요.')
       return
     }
   }
@@ -689,15 +733,18 @@ async function loadInvitation() {
   // 서버 응답 기반 분기 (이미 처리된 초대)
   if (serverData) {
     if (serverData.status === 'agreed') {
-      showState('success', '✅', '이미 동의하셨습니다', '서버 처리가 진행됩니다. 송신자에게 알림이 전달됩니다.')
+      showState('success', '✅', '이미 동의하셨습니다',
+        '동의가 정상적으로 기록되어 있습니다. 보낸 분께 결과가 자동으로 전달됩니다.')
       return
     }
     if (serverData.status === 'declined') {
-      showState('', '🙅', '거절 완료', '본 동의는 거절되었습니다. 송신자가 다시 요청할 수 있습니다.')
+      showState('', '🙅', '이미 거절하셨습니다',
+        '이 요청은 이미 거절되어 있습니다. 보낸 분께서 다시 요청을 보내실 수 있습니다.')
       return
     }
     if (serverData.status === 'expired') {
-      showState('error', '⏰', '만료된 초대', '송신자에게 새 초대 링크 요청을 부탁드립니다.')
+      showState('error', '⏰', '요청 기간이 지났습니다',
+        '보낸 분께 새로운 동의 요청을 다시 보내달라고 부탁해 주세요.')
       return
     }
   }
@@ -726,7 +773,7 @@ async function handleResponse(action, token) {
   const btnDecline = document.getElementById('btnDecline')
   btnAgree.disabled = true
   btnDecline.disabled = true
-  btnAgree.textContent = '처리 중...'
+  btnAgree.textContent = '잠시만요...'
 
   let status = 0
   try {
@@ -740,22 +787,22 @@ async function handleResponse(action, token) {
     if (r.ok) {
       if (action === 'agree') {
         showState('success', '🎉', '동의가 완료되었습니다',
-          '서버 처리가 시작되며, 송신자에게 알림이 전달됩니다. ' +
-          '본인의 통화 데이터도 자산으로 만들 수 있어요 — 아래 가입 안내를 참고하세요.')
+          '동의해 주셔서 감사합니다. 결과가 보낸 분께 자동으로 전달됩니다. ' +
+          '본인의 통화 녹음도 자산이 될 수 있어요 — 아래 가입 안내를 한번 봐 주세요.')
       } else {
         showState('', '🙅', '거절이 완료되었습니다',
-          '본 동의는 거절되었습니다. 송신자가 새로 요청을 보낼 수 있습니다.')
+          '거절 의사가 잘 전달되었습니다. 보낸 분께서 새로 요청을 보내실 수도 있습니다.')
       }
     } else if (r.status === 404) {
-      // 토큰 서버 미등록 — 송신자가 미로그인 상태에서 발송
+      // 보낸 분이 로그인하지 않은 상태에서 발송 — 서버에 토큰 등록 보류
       if (action === 'agree') {
         showState('success', '✅', '동의 의사가 확인되었습니다',
-          '송신자가 로그인하지 않은 상태에서 발송했기 때문에 서버 등록이 보류되었습니다. ' +
-          '송신자에게 직접 알려주세요: "동의했어, 다시 보내줘". ' +
-          '송신자가 다시 로그인 후 발송하면 정식으로 처리됩니다.')
+          '보낸 분께서 아직 정식 가입을 마치지 않으신 것 같습니다. ' +
+          '직접 연락하셔서 "동의했어, 다시 보내줘"라고 한 마디만 전해 주세요. ' +
+          '보낸 분께서 가입 후 다시 보내시면 정식으로 처리됩니다.')
       } else {
         showState('', '🙅', '거절 의사가 확인되었습니다',
-          '송신자에게 거절 의사를 직접 전달해주세요.')
+          '보낸 분께 거절 의사를 직접 전달해 주세요.')
       }
     } else {
       throw new Error(`HTTP ${r.status}`)
@@ -769,17 +816,23 @@ async function handleResponse(action, token) {
     btnAgree.disabled = false
     btnDecline.disabled = false
     btnAgree.textContent = '동의하기'
-    // 사용자 친화 에러 메시지 (HTTP 코드는 숨기고 안내만)
+    // 사용자 친화 에러 메시지 (HTTP 코드 숨김)
     let title, desc
     if (status === 0) {
-      title = '인터넷 연결을 확인해주세요'
-      desc = '잠시 후 다시 시도하거나, 송신자에게 다시 보내달라고 요청해주세요.'
+      title = '인터넷 연결을 확인해 주세요'
+      desc = '와이파이나 데이터 연결을 확인하신 뒤 다시 시도해 주세요. 계속 같은 문제면 보낸 분께 알려주세요.'
+    } else if (status === 401 || status === 403) {
+      title = '본인만 동의하실 수 있습니다'
+      desc = '이 요청은 받으신 본인만 동의 또는 거절할 수 있도록 보호되어 있습니다. 가족이나 친구가 대신 받으셨다면, 본인에게 이 메시지를 다시 전달해 주세요.'
+    } else if (status === 409) {
+      title = '이미 처리된 요청입니다'
+      desc = '같은 요청을 두 번 보낼 수 없도록 막혀 있습니다. 결과는 이미 보낸 분께 전달되었습니다.'
     } else if (status >= 500) {
-      title = '잠시 서버에 문제가 있어요'
-      desc = '잠시 후 다시 시도해주세요. 계속 문제가 있으면 송신자에게 알려주세요.'
+      title = '잠시 서버에 문제가 있습니다'
+      desc = '잠시 후 다시 한번 눌러 주세요. 계속 같은 문제면 보낸 분께 알려주세요.'
     } else {
-      title = '처리할 수 없습니다'
-      desc = '링크가 만료되었거나 이미 처리된 초대일 수 있습니다. 송신자에게 다시 요청해주세요.'
+      title = '지금은 처리할 수 없습니다'
+      desc = '링크가 만료되었거나 이미 처리된 요청일 수 있습니다. 보낸 분께 새로 보내달라고 부탁해 주세요.'
     }
     showState('error', '⚠️', title, desc)
   }
