@@ -420,7 +420,7 @@ body {
       <div class="amount-label">예상 본인 몫 (양측 동의 후)</div>
       <div class="amount-value" id="amountValue">—</div>
       <div class="amount-disclaimer" id="amountDisclaimer">
-        통화 1시간당 <strong>약 5만~10만원</strong> 기준, 본인과 상대방이 반반씩 나눕니다.<br>
+        본인과 상대방이 반반씩 나눈 <strong>본인 몫</strong> 추정 범위입니다.<br>
         받으실 수 있는 한도: 매년 <strong>300만원</strong>까지 (세금 부담이 적은 구간, 매년 1월 초기화).<br>
         <span style="opacity:0.85">※ 서비스 초기라 실제 매수자가 아직 없습니다. 실제 받는 금액은 시장 단가에 따라 달라질 수 있습니다.</span>
       </div>
@@ -653,14 +653,27 @@ function extractFallbackMeta() {
 
 const YEARLY_CAP_KRW = 3_000_000
 
-// 보상 추정 (앱 AssetValuePage와 동일 산식):
-//   메타 ₩5K~10K/h + 음성 ₩100K~200K/h, 본인 분배 50%, 양쪽 동의 후 기준
-//   low  = totalHours × (5K + 100K) × 0.5  = totalHours × ₩52,500
-//   high = totalHours × (10K + 200K) × 0.5 = totalHours × ₩105,000
+// 보상 추정 — 앱(AssetValuePage)/카톡 메시지와 정합.
+// 송신측이 URL params(rl/rh)에 미리 계산한 본인 몫 범위(KRW)를 박아 보내줌.
+// peer.html은 자체 산식 갖지 않음 (정합성 보장 — 송신측 valueEngine 단일 source of truth).
+//
+// fallback: rl/rh 누락 시(레거시 링크) — 시간 × 기본 단가로 조잡 추정.
+//   기본은 BASE_RATE 15K~45K/h × 75% usable × 50% 본인 = totalHours × 5,625 ~ 16,875
 function estimateRewardKrw(totalHours) {
   if (!totalHours || totalHours <= 0) return null
-  const low = Math.round(totalHours * 52_500)
-  const high = Math.round(totalHours * 105_000)
+  // 1순위: URL params (송신측 미리 계산)
+  const params = new URLSearchParams(window.location.search)
+  const rl = parseInt(params.get('rl') ?? '', 10)
+  const rh = parseInt(params.get('rh') ?? '', 10)
+  if (Number.isFinite(rl) && Number.isFinite(rh) && rh > 0) {
+    return {
+      low: Math.min(rl, YEARLY_CAP_KRW),
+      high: Math.min(rh, YEARLY_CAP_KRW),
+    }
+  }
+  // fallback: valueEngine 기본 가정으로 산정 (정확도 낮음)
+  const low = Math.round(totalHours * 5_625)
+  const high = Math.round(totalHours * 16_875)
   return {
     low: Math.min(low, YEARLY_CAP_KRW),
     high: Math.min(high, YEARLY_CAP_KRW),
