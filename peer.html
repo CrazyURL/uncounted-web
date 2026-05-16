@@ -806,25 +806,14 @@ async function handleResponse(action, token) {
         showState('', '🙅', '거절이 완료되었습니다',
           '거절 의사가 잘 전달되었습니다. 보낸 분께서 새로 요청을 보내실 수도 있습니다.')
       }
-    } else if (r.status === 404) {
-      // 보낸 분이 로그인하지 않은 상태에서 발송 — 서버에 토큰 등록 보류
-      if (action === 'agree') {
-        showState('success', '✅', '동의 의사가 확인되었습니다',
-          '보낸 분께서 아직 정식 가입을 마치지 않으신 것 같습니다. ' +
-          '직접 연락하셔서 "동의했어, 다시 보내줘"라고 한 마디만 전해 주세요. ' +
-          '보낸 분께서 가입 후 다시 보내시면 정식으로 처리됩니다.')
-      } else {
-        showState('', '🙅', '거절 의사가 확인되었습니다',
-          '보낸 분께 거절 의사를 직접 전달해 주세요.')
-      }
+      // 실제 성공 시에만 가입 안내로 스크롤
+      setTimeout(() => {
+        document.querySelector('.layer-signup').scrollIntoView({ behavior: 'smooth' })
+      }, 1200)
     } else {
+      console.error(`[consent] API error: HTTP ${r.status}, action=${action}`)
       throw new Error(`HTTP ${r.status}`)
     }
-
-    // 동의/거절 후 가입 안내로 자동 스크롤
-    setTimeout(() => {
-      document.querySelector('.layer-signup').scrollIntoView({ behavior: 'smooth' })
-    }, 1200)
   } catch (e) {
     btnAgree.disabled = false
     btnDecline.disabled = false
@@ -834,6 +823,9 @@ async function handleResponse(action, token) {
     if (status === 0) {
       title = '인터넷 연결을 확인해 주세요'
       desc = '와이파이나 데이터 연결을 확인하신 뒤 다시 시도해 주세요. 계속 같은 문제면 보낸 분께 알려주세요.'
+    } else if (status === 404) {
+      title = '링크가 유효하지 않습니다'
+      desc = '링크가 만료되었거나 아직 준비 중입니다. 보내신 분께 다시 링크를 요청해 주세요.'
     } else if (status === 401 || status === 403) {
       title = '본인만 동의하실 수 있습니다'
       desc = '이 요청은 받으신 본인만 동의 또는 거절할 수 있도록 보호되어 있습니다. 가족이나 친구가 대신 받으셨다면, 본인에게 이 메시지를 다시 전달해 주세요.'
