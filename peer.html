@@ -832,6 +832,9 @@ async function handleResponse(action, token) {
     } else if (status === 409) {
       title = '이미 처리된 요청입니다'
       desc = '같은 요청을 두 번 보낼 수 없도록 막혀 있습니다. 결과는 이미 보낸 분께 전달되었습니다.'
+    } else if (status === 422) {
+      title = '아직 준비 중인 파일이 있습니다'
+      desc = '보낸 분의 녹음 파일이 아직 서버에 도착하지 않았습니다. 보내신 분께 앱을 열어 업로드가 완료됐는지 확인 후 링크를 다시 보내달라고 부탁해 주세요.'
     } else if (status >= 500) {
       title = '잠시 서버에 문제가 있습니다'
       desc = '잠시 후 다시 한번 눌러 주세요. 계속 같은 문제면 보낸 분께 알려주세요.'
