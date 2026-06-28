@@ -161,6 +161,42 @@ body {
   font-weight: 500;
 }
 
+/* 받는 분 자가신고 demographics (성별·나이 필수 / 지역·말투·언어 선택) */
+.demo-section { margin: 4px 0 20px; display: flex; flex-direction: column; gap: 18px; text-align: left; }
+.demo-intro-title { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+.demo-intro-sub { font-size: 14px; color: var(--text-secondary); margin-top: 4px; line-height: 1.55; }
+.demo-group { display: flex; flex-direction: column; gap: 9px; }
+.demo-label { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.demo-label .req { color: var(--purple-light); margin-left: 6px; font-size: 13px; font-weight: 700; }
+.demo-label .opt { color: var(--text-dim); margin-left: 6px; font-size: 13px; font-weight: 400; }
+.demo-btn-row { display: grid; gap: 8px; }
+.demo-btn-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.demo-btn-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.demo-btn {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px 6px; min-height: 56px;
+  background: var(--bg-elevated); border: 1.5px solid transparent;
+  border-radius: 10px; cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  font-size: 16px; font-weight: 600; color: var(--text-secondary); text-align: center;
+}
+/* 라디오는 화면에서 숨기되 라벨 클릭으로 토글 (구형 WebView 호환 — :has() 미사용) */
+.demo-btn input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.demo-btn:hover { border-color: var(--border-strong); }
+.demo-btn.selected {
+  background: var(--purple-glow); border-color: var(--purple-core);
+  color: var(--white); box-shadow: 0 0 0 1px var(--purple-core);
+}
+.demo-select {
+  width: 100%; padding: 14px 16px; min-height: 54px;
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text-primary); font-size: 16px;
+  font-family: inherit; cursor: pointer;
+}
+.demo-select:focus { outline: none; border-color: var(--purple-core); }
+.demo-note { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-top: 2px; }
+
 /* 큰 금액 박스 */
 .amount-box {
   background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-core) 100%);
@@ -472,6 +508,77 @@ body {
       </label>
     </div>
 
+    <!-- 받는 분 자가신고 정보 (동의 시 사용) -->
+    <div class="demo-section" id="demoSection">
+      <div>
+        <div class="demo-intro-title">받으시는 분(본인)에 대해 알려주세요</div>
+        <div class="demo-intro-sub">동의하시는 경우, 통화 데이터의 품질 확인에만 쓰입니다. 성별·나이대만 꼭 골라주세요.</div>
+      </div>
+
+      <div class="demo-group">
+        <div class="demo-label">성별<span class="req">필수</span></div>
+        <div class="demo-btn-row cols-3">
+          <label class="demo-btn"><input type="radio" name="selfGender" value="남성">남성</label>
+          <label class="demo-btn"><input type="radio" name="selfGender" value="여성">여성</label>
+          <label class="demo-btn"><input type="radio" name="selfGender" value="논바이너리">논바이너리</label>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <div class="demo-label">나이대<span class="req">필수</span></div>
+        <div class="demo-btn-row cols-3">
+          <label class="demo-btn"><input type="radio" name="selfAge" value="10대">10대</label>
+          <label class="demo-btn"><input type="radio" name="selfAge" value="20대">20대</label>
+          <label class="demo-btn"><input type="radio" name="selfAge" value="30대">30대</label>
+          <label class="demo-btn"><input type="radio" name="selfAge" value="40대">40대</label>
+          <label class="demo-btn"><input type="radio" name="selfAge" value="50대">50대</label>
+          <label class="demo-btn"><input type="radio" name="selfAge" value="60대이상">60대 이상</label>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <div class="demo-label">사시는 지역<span class="opt">선택</span></div>
+        <select class="demo-select" id="selfRegion">
+          <option value="">선택 안 함</option>
+          <option value="수도권">수도권 (서울·경기·인천)</option>
+          <option value="영남">영남 (부산·대구·울산·경상)</option>
+          <option value="호남">호남 (광주·전라)</option>
+          <option value="충청">충청 (대전·세종·충청)</option>
+          <option value="강원">강원</option>
+          <option value="제주">제주</option>
+          <option value="해외">해외</option>
+        </select>
+      </div>
+
+      <div class="demo-group">
+        <div class="demo-label">말투(사투리)<span class="opt">선택</span></div>
+        <select class="demo-select" id="selfAccent">
+          <option value="">선택 안 함</option>
+          <option value="표준">표준말 (사투리 거의 없음)</option>
+          <option value="경상도">경상도</option>
+          <option value="전라도">전라도</option>
+          <option value="충청도">충청도</option>
+          <option value="강원도">강원도</option>
+          <option value="제주도">제주도</option>
+          <option value="혼합">여러 지역 섞임</option>
+        </select>
+      </div>
+
+      <div class="demo-group">
+        <div class="demo-label">주로 쓰는 언어<span class="opt">선택</span></div>
+        <select class="demo-select" id="selfLanguage">
+          <option value="">선택 안 함</option>
+          <option value="한국어(ko-KR)">한국어</option>
+          <option value="영어(en-US)">영어</option>
+          <option value="중국어(zh-CN)">중국어</option>
+          <option value="일본어(ja-JP)">일본어</option>
+          <option value="기타">기타</option>
+        </select>
+      </div>
+
+      <div class="demo-note">알려주신 정보는 통화 데이터의 품질 확인에만 쓰이며, 가려진 통화 내용과 함께 안전하게 보관됩니다.</div>
+    </div>
+
     <!-- CTA 1:2 비대칭 -->
     <div class="cta-row" id="ctaRow">
       <button class="btn btn-decline" id="btnDecline" disabled>거절</button>
@@ -694,6 +801,8 @@ function showState(type, emoji, title, desc) {
   ctaRow.style.display = 'none'
   const scopeChoice = document.getElementById('scopeChoice')
   if (scopeChoice) scopeChoice.style.display = 'none'
+  const demoSection = document.getElementById('demoSection')
+  if (demoSection) demoSection.style.display = 'none'
   document.getElementById('stateContainer').innerHTML = `
     <div class="state-message ${type}">
       <div class="state-emoji">${emoji}</div>
@@ -825,17 +934,45 @@ async function loadInvitation() {
     }
   }
 
-  // 정상 pending — 동의/거절 버튼 활성화 (단, 받는 사람 이름이 있으면 본인 확인 체크 필요)
+  // 정상 pending — 동의/거절 버튼 활성화.
+  //  · 거절: 받는 사람 이름이 있으면 본인 확인 체크만 필요.
+  //  · 동의: 본인 확인 + 성별·나이대(자가신고 필수) 선택돼야 활성화.
   const btnAgree = document.getElementById('btnAgree')
   const btnDecline = document.getElementById('btnDecline')
   const recipientCheck = document.getElementById('recipientCheck')
+  const genderRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="selfGender"]'))
+  const ageRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="selfAge"]'))
 
-  function updateButtons() {
+  function recipientPassed() {
     const requireCheck = !!fallback.recipientName
-    const passed = !requireCheck || (recipientCheck && recipientCheck.checked)
-    btnAgree.disabled = !passed
-    btnDecline.disabled = !passed
+    return !requireCheck || (recipientCheck && recipientCheck.checked)
   }
+  function demographicsPassed() {
+    const hasGender = genderRadios.some(function (r) { return r.checked })
+    const hasAge = ageRadios.some(function (r) { return r.checked })
+    return hasGender && hasAge
+  }
+  function updateButtons() {
+    const recip = recipientPassed()
+    btnDecline.disabled = !recip
+    btnAgree.disabled = !recip || !demographicsPassed()
+  }
+
+  // 선택된 큰 버튼 하이라이트 — .selected 클래스 토글 (구형 WebView 호환, :has() 미사용)
+  function syncSelected(radios) {
+    radios.forEach(function (r) {
+      const label = r.closest ? r.closest('.demo-btn') : r.parentNode
+      if (label && label.classList) label.classList.toggle('selected', r.checked)
+    })
+  }
+  genderRadios.concat(ageRadios).forEach(function (r) {
+    r.addEventListener('change', function () {
+      syncSelected(genderRadios)
+      syncSelected(ageRadios)
+      updateButtons()
+    })
+  })
+
   updateButtons()
   if (fallback.recipientName && recipientCheck) {
     recipientCheck.addEventListener('change', updateButtons)
@@ -851,11 +988,24 @@ async function handleResponse(action, token) {
   btnDecline.disabled = true
   btnAgree.textContent = '잠시만요...'
 
-  // 받는 분이 고른 동의 범위 (동의 시에만). 미선택 시 'ongoing' 기본.
+  // 받는 분이 고른 동의 범위 + 자가신고 demographics (동의 시에만). 미선택 시 'ongoing' 기본.
+  // 값은 앱 온보딩 정본 한국어(서버 peerConfirm enum 과 verbatim 일치). 선택 항목 미선택=null(서버 graceful skip).
   let payload = {}
   if (action === 'agree') {
     const sel = document.querySelector('input[name="consentScope"]:checked')
-    payload = { scope: sel && sel.value === 'snapshot' ? 'snapshot' : 'ongoing' }
+    const gender = document.querySelector('input[name="selfGender"]:checked')
+    const age = document.querySelector('input[name="selfAge"]:checked')
+    const region = document.getElementById('selfRegion')
+    const accent = document.getElementById('selfAccent')
+    const language = document.getElementById('selfLanguage')
+    payload = {
+      scope: sel && sel.value === 'snapshot' ? 'snapshot' : 'ongoing',
+      gender: gender ? gender.value : null,
+      age_band: age ? age.value : null,
+      region_group: region && region.value ? region.value : null,
+      accent_group: accent && accent.value ? accent.value : null,
+      primary_language: language && language.value ? language.value : null,
+    }
   }
 
   let status = 0
