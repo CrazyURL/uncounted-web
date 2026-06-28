@@ -512,7 +512,7 @@ body {
     <div class="demo-section" id="demoSection">
       <div>
         <div class="demo-intro-title">받으시는 분(본인)에 대해 알려주세요</div>
-        <div class="demo-intro-sub">동의하시는 경우, 통화 데이터의 품질 확인에만 쓰입니다. 성별·나이대만 꼭 골라주세요.</div>
+        <div class="demo-intro-sub">동의하시는 경우, 통화 데이터의 품질 확인에만 쓰입니다. 성별·나이대·말투·언어를 꼭 골라주세요 (사는 지역만 선택).</div>
       </div>
 
       <div class="demo-group">
@@ -551,9 +551,9 @@ body {
       </div>
 
       <div class="demo-group">
-        <div class="demo-label">말투(사투리)<span class="opt">선택</span></div>
+        <div class="demo-label">말투(사투리)<span class="req">필수</span></div>
         <select class="demo-select" id="selfAccent">
-          <option value="">선택 안 함</option>
+          <option value="" disabled selected>선택해주세요</option>
           <option value="표준">표준말 (사투리 거의 없음)</option>
           <option value="경상도">경상도</option>
           <option value="전라도">전라도</option>
@@ -565,9 +565,9 @@ body {
       </div>
 
       <div class="demo-group">
-        <div class="demo-label">주로 쓰는 언어<span class="opt">선택</span></div>
+        <div class="demo-label">주로 쓰는 언어<span class="req">필수</span></div>
         <select class="demo-select" id="selfLanguage">
-          <option value="">선택 안 함</option>
+          <option value="" disabled selected>선택해주세요</option>
           <option value="한국어(ko-KR)">한국어</option>
           <option value="영어(en-US)">영어</option>
           <option value="중국어(zh-CN)">중국어</option>
@@ -950,7 +950,12 @@ async function loadInvitation() {
   function demographicsPassed() {
     const hasGender = genderRadios.some(function (r) { return r.checked })
     const hasAge = ageRadios.some(function (r) { return r.checked })
-    return hasGender && hasAge
+    const accentEl = document.getElementById('selfAccent')
+    const langEl = document.getElementById('selfLanguage')
+    const hasAccent = !!(accentEl && accentEl.value)
+    const hasLang = !!(langEl && langEl.value)
+    // 사는 지역(selfRegion)은 선택 — 게이트 제외
+    return hasGender && hasAge && hasAccent && hasLang
   }
   function updateButtons() {
     const recip = recipientPassed()
@@ -971,6 +976,11 @@ async function loadInvitation() {
       syncSelected(ageRadios)
       updateButtons()
     })
+  })
+  // 필수 select(말투·언어) 변경 시 동의 버튼 재평가 (사는 지역=선택이라 게이트 제외)
+  ;['selfAccent', 'selfLanguage'].forEach(function (id) {
+    const el = document.getElementById(id)
+    if (el) el.addEventListener('change', updateButtons)
   })
 
   updateButtons()
